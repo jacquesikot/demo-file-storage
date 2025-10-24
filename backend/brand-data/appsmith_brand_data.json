@@ -1,0 +1,872 @@
+{
+  "brandInfo": {
+    "cdn": {
+      "value": "",
+      "locked": false
+    },
+    "cms": {
+      "value": "Custom platform built on React and Java backend with MongoDB",
+      "locked": false
+    },
+    "keyHubs": {
+      "value": [
+        "USA: San Francisco (headquarters)",
+        "India: Bengaluru (headquarters)"
+      ],
+      "locked": false
+    },
+    "brandAssets": {
+      "value": ["https://brandfetch.com/appsmith.com"],
+      "locked": false
+    },
+    "companyName": {
+      "value": "Appsmith",
+      "locked": false
+    },
+    "companyDomain": {
+      "value": "https://www.appsmith.com",
+      "locked": false
+    },
+    "otherProfiles": {
+      "value": [
+        "https://github.com/appsmithorg/appsmith",
+        "https://docs.appsmith.com/",
+        "https://community.appsmith.com/",
+        "https://brandfetch.com/appsmith.com"
+      ],
+      "locked": false
+    },
+    "analyticsTools": {
+      "value": ["Mixpanel", "Google Analytics", "Zendesk", "Salesforce"],
+      "locked": false
+    },
+    "websiteBuiltIn": {
+      "value": "React frontend with Java backend, MongoDB database, Redis caching, NGINX web server, deployed on AWS cloud infrastructure with Docker containerization",
+      "locked": false
+    },
+    "additionalNotes": {
+      "value": "Technology stack emphasizes open-source foundations with Java backend, MongoDB, Redis, and NGINX. Evolved from multi-container architecture to simplified deployment model. Over 36,900 GitHub stars and 4,000+ forks demonstrating strong developer community. 65 reviews on G2 with 4.7/5 rating. Community includes 9,278+ Discord members and operates across 4 continents. Platform integrates with 25+ databases and any REST API. Raised $49M total funding from investors including Accel, Insight Partners, and Canaan. Company operates with remote team model with offices in San Francisco and Bengaluru.",
+      "locked": false
+    },
+    "additionalTools": {
+      "value": [
+        "GitHub (Version Control & Open Source)",
+        "Docker (Containerization)",
+        "MongoDB (Database)",
+        "Redis (Caching)",
+        "NGINX (Web Server)",
+        "AWS (Cloud Infrastructure)",
+        "Mixpanel (Product Analytics)",
+        "Salesforce (CRM)",
+        "Stripe (Payments)",
+        "Zendesk (Support)"
+      ],
+      "locked": false
+    },
+    "brandDescription": {
+      "value": "Appsmith is a leading open-source low-code platform that empowers developers and technical teams to build custom internal tools, admin panels, and dashboards faster. Founded in 2019 by Abhishek Nayak, Arpit Mohan, and Nikhil Nandagopal, Appsmith has grown to serve over 1,000 enterprises across 100+ countries with more than 5 million downloads. Unlike traditional low-code platforms that sacrifice developer control for simplicity, Appsmith merges the customization and flexibility of traditional development with the automation and efficiency of low-code, offering a developer-first approach with full JavaScript support, Git-based version control, and code-level transparency. The platform connects to 25+ databases and any REST API, providing drag-and-drop UI components while maintaining the flexibility developers need. With offices in San Francisco and Bengaluru, Appsmith operates as a Series B company backed by prominent investors including Insight Partners, Accel, and Canaan Partners.",
+      "locked": false
+    },
+    "brandPointOfView": {
+      "value": "Appsmith believes that developers should never have to compromise between speed and control when building internal tools. The company champions the philosophy that low-code platforms should empower developers rather than constrain them, embracing open-source principles to ensure no vendor lock-in and complete transparency. Appsmith is committed to democratizing internal tool development by making professional-grade application building accessible to engineering teams of all sizes—from startups to enterprises—while maintaining the code-friendly experience, Git workflows, and JavaScript flexibility that developers trust. The platform stands for developer freedom, believing that teams should retain full control over their source code, host applications wherever they choose, and build exactly what they need without artificial limitations. Appsmith's mission centers on accelerating internal tool development by 10x while preserving the development practices and workflows that experienced engineers have established.",
+      "locked": false
+    },
+    "industryVertical": {
+      "value": "Enterprise Software, Developer Tools, Low-Code Development Platforms",
+      "locked": false
+    },
+    "companySubDomains": {
+      "value": ["docs.appsmith.com", "community.appsmith.com", "www.appsmith.com/blog", "login.appsmithai.com"],
+      "locked": false
+    },
+    "socialMediaProfiles": {
+      "value": {
+        "x": "https://twitter.com/theappsmith",
+        "reddit": ["https://www.reddit.com/r/appsmith/"],
+        "tiktok": "",
+        "youtube": "https://www.youtube.com/@appsmith",
+        "linkedin": "https://www.linkedin.com/company/appsmith",
+        "instagram": "",
+        "discord": "https://discord.com/invite/rBTTVJp",
+        "github": "https://github.com/appsmithorg/appsmith"
+      },
+      "locked": false
+    }
+  },
+  "competitors": {
+    "competitors": {
+      "value": [
+        {
+          "name": "Retool",
+          "description": "Developer-friendly internal tool builder with extensive integrations and role-based permissions, positioned as premium alternative with higher price point",
+          "type": "Direct competitor - Proprietary low-code platform"
+        },
+        {
+          "name": "Budibase",
+          "description": "Open-source low-code platform helping developers build, automate, and ship internal tools 50x faster",
+          "type": "Direct competitor - Open-source low-code platform"
+        },
+        {
+          "name": "OutSystems",
+          "description": "Enterprise-grade low-code platform with comprehensive application development capabilities",
+          "type": "Direct competitor - Enterprise low-code platform"
+        },
+        {
+          "name": "Appian",
+          "description": "Low-code automation platform focused on business process management and enterprise workflows",
+          "type": "Direct competitor - Enterprise low-code platform"
+        },
+        {
+          "name": "UI Bakery",
+          "description": "Low-code internal tool builder with enhanced design flexibility, offering more control over layout, styling, and design tokens than Appsmith",
+          "type": "Direct competitor - Low-code platform"
+        },
+        {
+          "name": "DronaHQ",
+          "description": "Low-code platform supporting both web and mobile app development with workflow automation and enterprise security features",
+          "type": "Direct competitor - Low-code platform"
+        },
+        {
+          "name": "Superblocks",
+          "description": "Platform for building internal tools with focus on backend workflows and API integrations",
+          "type": "Direct competitor - Low-code platform"
+        },
+        {
+          "name": "Microsoft Power Apps",
+          "description": "Microsoft's enterprise low-code platform integrated with Office 365 and Azure ecosystems",
+          "type": "Indirect competitor - Enterprise platform"
+        },
+        {
+          "name": "Mendix",
+          "description": "Enterprise low-code platform owned by Siemens, focused on complex application development",
+          "type": "Indirect competitor - Enterprise platform"
+        },
+        {
+          "name": "NocoDB",
+          "description": "Open-source platform that turns SQL databases into smart Airtable-like interfaces for quick internal app development",
+          "type": "Alternative - Database-focused"
+        },
+        {
+          "name": "ToolJet",
+          "description": "Open-source low-code framework for building business applications and internal tools",
+          "type": "Direct competitor - Open-source platform"
+        },
+        {
+          "name": "Kissflow",
+          "description": "No-code/low-code tool designed around business workflows and process automation, easier for non-developers but less flexible",
+          "type": "Indirect competitor - No-code platform"
+        },
+        {
+          "name": "Airtable",
+          "description": "Collaborative database platform with app-building capabilities, more focused on data organization than internal tools",
+          "type": "Alternative - Collaborative database"
+        },
+        {
+          "name": "Internal.io",
+          "description": "Low-code platform for building internal tools with SQL-first approach",
+          "type": "Direct competitor - Low-code platform"
+        },
+        {
+          "name": "Forest Admin",
+          "description": "Admin panel framework that generates interfaces from existing databases",
+          "type": "Alternative - Admin panel generator"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "targetAudience": {
+    "proofPoints": {
+      "value": [
+        "36,900+ GitHub stars, ranking among top 500 open-source projects globally",
+        "5+ million downloads across 100+ countries",
+        "1,000+ enterprises using the platform",
+        "$49M total funding from top-tier investors (Insight Partners, Accel, Canaan)",
+        "4.7/5 rating on G2 with 65+ reviews",
+        "9,278+ active Discord community members",
+        "4,000+ GitHub forks demonstrating developer engagement",
+        "25+ native database integrations and any REST API support",
+        "70% faster development time for custom applications (based on SCHMALZ+SCHÖN case study)",
+        "Self-hosting capabilities with no vendor lock-in",
+        "Free open-source edition available",
+        "Business plan starting at $15/user/month",
+        "Community grew 600% across GitHub, Discord, and YouTube"
+      ],
+      "locked": false
+    },
+    "targetMarkets": {
+      "value": [
+        "North America (USA and Canada - primary market with San Francisco headquarters)",
+        "India (strong presence with Bengaluru headquarters)",
+        "Europe (growing market for internal tool development)",
+        "Southeast Asia (expanding presence with customers like Funding Societies)",
+        "Global developer community across 100+ countries"
+      ],
+      "locked": false
+    },
+    "customerPersonas": {
+      "value": [
+        {
+          "name": "Backend Developers",
+          "companySize": "Medium-sized companies (up to 5,000 employees)",
+          "experience": "Experienced developers comfortable with databases and JavaScript",
+          "characteristics": "Technical, code-focused, values flexibility and control, familiar with Git workflows",
+          "valueProposition": "Speed without sacrificing developer control, JavaScript support, Git integration, no learning curve for new frameworks",
+          "channels": "GitHub, technical blogs, developer communities, Discord, Stack Overflow, Reddit"
+        },
+        {
+          "name": "Engineering Team Leads",
+          "companySize": "Startups to mid-market enterprises",
+          "experience": "Technical leaders managing internal tool development",
+          "characteristics": "Balancing speed and quality, focused on team productivity, budget-conscious",
+          "valueProposition": "10x faster internal tool development, reduced engineering time on CRUD apps, cost-effective alternative to custom development",
+          "channels": "LinkedIn, technical conferences, Y Combinator community, Product Hunt, engineering blogs"
+        },
+        {
+          "name": "Enterprise IT Teams",
+          "companySize": "Large enterprises (1,000+ employees)",
+          "experience": "IT professionals building internal applications for multiple departments",
+          "characteristics": "Security-focused, need enterprise features, require compliance and governance",
+          "valueProposition": "Self-hosting capabilities, SAML/OIDC SSO, role-based access controls, SCIM provisioning, audit logs",
+          "channels": "Enterprise tech publications, Gartner, G2, Capterra, direct sales, enterprise IT forums"
+        },
+        {
+          "name": "Technical Founders",
+          "companySize": "Startups and small teams (5-50 employees)",
+          "experience": "Founder-developers building MVP internal tools",
+          "characteristics": "Resource-constrained, moving fast, technical proficiency, open-source advocates",
+          "valueProposition": "Free open-source version, rapid prototyping, no vendor lock-in, community support",
+          "channels": "Hacker News, Product Hunt, Y Combinator, Indie Hackers, startup accelerators, GitHub"
+        },
+        {
+          "name": "DevOps Engineers",
+          "companySize": "Medium to large companies",
+          "experience": "Infrastructure-focused engineers building internal dashboards and monitoring tools",
+          "characteristics": "Automation-focused, need API integrations, Docker-savvy, cloud infrastructure experience",
+          "valueProposition": "Docker deployment, REST API integrations, custom workflows, monitoring dashboards",
+          "channels": "DevOps communities, Docker forums, AWS user groups, Kubernetes communities, technical conferences"
+        }
+      ],
+      "locked": false
+    },
+    "targetCustomerSegments": {
+      "value": [
+        "Backend developers building internal tools for their teams",
+        "Engineering teams at mid-market companies needing rapid internal app development",
+        "Enterprise IT departments requiring secure, self-hosted internal tools",
+        "Startups and technical founders building MVPs and internal dashboards",
+        "DevOps engineers creating monitoring and operational dashboards",
+        "Software development agencies building client internal tools",
+        "Data teams building custom analytics and reporting interfaces",
+        "Product teams creating admin panels for their applications",
+        "FinTech companies requiring secure internal tools with compliance features",
+        "SaaS companies building customer success dashboards and internal operations tools"
+      ],
+      "locked": false
+    },
+    "targetAudienceDescription": {
+      "value": "Appsmith serves a global community of technical professionals—primarily developers, engineering teams, and IT leaders—who need to build internal tools quickly without sacrificing control or flexibility. The core audience comprises backend developers at medium-sized companies (up to 5,000 employees) who are comfortable with databases and JavaScript, engineering team leads balancing speed and quality, and enterprise IT teams requiring security and compliance features. These users are technical, code-focused professionals who value open-source principles, full transparency, and the ability to retain control over their applications. They appreciate Git-based workflows, JavaScript flexibility, and the option to self-host without vendor lock-in. The sweet spot includes three primary personas: Backend Developers seeking rapid development without learning new frameworks, Engineering Team Leads aiming to 10x team productivity on internal tools, and Enterprise IT Teams requiring enterprise-grade security with self-hosting capabilities. The audience is highly engaged in developer communities including GitHub (36,900+ stars), Discord (9,278+ members), and technical forums, demonstrating strong word-of-mouth growth and community-driven adoption.",
+      "locked": false
+    }
+  },
+  "contentStrategy": {
+    "contentPillars": {
+      "value": [
+        {
+          "pillar": "Product Updates & Features",
+          "description": "Regular announcements about new features, improvements, and platform capabilities including AI agents, integrations, and IDE upgrades.",
+          "topics": [
+            "Feature releases",
+            "Platform improvements",
+            "Integration announcements",
+            "AI capabilities",
+            "Performance enhancements",
+            "Security updates"
+          ]
+        },
+        {
+          "pillar": "Developer Education",
+          "description": "Technical tutorials, guides, and best practices for building internal tools effectively with Appsmith.",
+          "topics": [
+            "How-to tutorials",
+            "Setup guides",
+            "Self-hosting best practices",
+            "Integration tutorials",
+            "Workflow automation",
+            "Advanced customization"
+          ]
+        },
+        {
+          "pillar": "Use Cases & Templates",
+          "description": "Practical examples and templates demonstrating specific internal tool applications and industry-specific solutions.",
+          "topics": [
+            "Admin panels",
+            "CRUD applications",
+            "Dashboards",
+            "Marketing automation",
+            "Customer 360 views",
+            "Data analysis tools"
+          ]
+        },
+        {
+          "pillar": "Open Source & Community",
+          "description": "Content celebrating the open-source community, contributions, governance, and community-driven development.",
+          "topics": [
+            "Open source governance",
+            "Community contributions",
+            "GitHub milestones",
+            "Hacktoberfest",
+            "Community spotlights",
+            "Developer advocacy"
+          ]
+        },
+        {
+          "pillar": "Company News & Culture",
+          "description": "Updates about company growth, funding announcements, team expansion, and company culture.",
+          "topics": [
+            "Funding announcements",
+            "Team growth",
+            "Office culture",
+            "Remote work",
+            "Company milestones",
+            "Vision and mission"
+          ]
+        },
+        {
+          "pillar": "Technical Deep Dives",
+          "description": "In-depth technical content about platform architecture, deployment strategies, and engineering decisions.",
+          "topics": [
+            "Architecture overview",
+            "Deployment options",
+            "Performance optimization",
+            "Security implementation",
+            "Technology stack",
+            "Engineering challenges"
+          ]
+        },
+        {
+          "pillar": "Competitive Analysis & Buying Guides",
+          "description": "Comparison content helping prospects understand Appsmith's positioning versus alternatives in the low-code space.",
+          "topics": [
+            "Platform comparisons",
+            "Retool alternatives",
+            "Low-code platform reviews",
+            "Pricing comparisons",
+            "Feature comparisons",
+            "Why choose Appsmith"
+          ]
+        },
+        {
+          "pillar": "Customer Success Stories",
+          "description": "Case studies and testimonials from companies using Appsmith to build internal tools and solve business challenges.",
+          "topics": [
+            "Enterprise case studies",
+            "Developer testimonials",
+            "ROI demonstrations",
+            "Implementation stories",
+            "Team productivity gains",
+            "Cost savings examples"
+          ]
+        },
+        {
+          "pillar": "Low-Code Industry Trends",
+          "description": "Thought leadership content about the evolution of low-code development, developer tools, and internal tool building.",
+          "topics": [
+            "Low-code trends",
+            "Developer tool evolution",
+            "Build vs buy decisions",
+            "Internal tool strategies",
+            "Future of development",
+            "Industry insights"
+          ]
+        }
+      ],
+      "locked": false
+    },
+    "sourcesToRepurpose": {
+      "value": [
+        "Customer success stories and case studies (SCHMALZ+SCHÖN, Funding Societies, HeyJobs)",
+        "G2 reviews and testimonials (65+ reviews, 4.7/5 rating)",
+        "GitHub discussions and community contributions (36,900+ stars)",
+        "Discord community conversations and support threads (9,278+ members)",
+        "Documentation pages from docs.appsmith.com",
+        "Product update announcements and release notes",
+        "Twitter/X posts and developer engagement (@theappsmith)",
+        "LinkedIn company updates and thought leadership",
+        "YouTube tutorials and feature demonstrations",
+        "Technical blog posts and engineering insights",
+        "Community portal guides and articles",
+        "Developer testimonials and feedback",
+        "Funding announcement content and investor quotes",
+        "Conference presentations and DevRel content",
+        "Integration partner announcements"
+      ],
+      "locked": false
+    }
+  },
+  "writingGuidelines": {
+    "guidelines": {
+      "value": [
+        {
+          "id": "developer-focused-language",
+          "do": "Use technical language appropriate for developers. Reference specific technologies (JavaScript, Git, REST APIs, databases) naturally. Write with the assumption that readers understand development concepts. Use code examples and technical specifications when relevant. Speak to developers as peers, not as someone teaching from scratch.",
+          "dont": "Don't oversimplify technical concepts or use patronizing explanations. Avoid marketing fluff or non-technical buzzwords. Don't shy away from technical details or assume readers need hand-holding through basic concepts."
+        },
+        {
+          "id": "authentic-developer-voice",
+          "do": "Write in a professional yet conversational tone that resonates with developers. Be direct and honest about capabilities and limitations. Address real developer pain points with empathy. Use authentic language that developers use in their daily work. Reference common developer experiences and workflows.",
+          "dont": "Don't use overly corporate language or sales-heavy messaging. Avoid exaggerated claims or superlatives. Don't pretend limitations don't exist. Avoid non-technical marketing speak that feels disconnected from developer reality."
+        },
+        {
+          "id": "practical-value-focus",
+          "do": "Focus on practical benefits and real-world applications. Show, don't just tell—use concrete examples and case studies. Highlight time savings, productivity gains, and specific problems solved. Provide actionable information that developers can immediately apply. Include code snippets, configuration examples, and implementation details.",
+          "dont": "Don't write theoretical content without practical application. Avoid vague benefits without specifics. Don't create content that doesn't provide immediate value or actionable takeaways for readers."
+        },
+        {
+          "id": "open-source-transparency",
+          "do": "Emphasize open-source benefits, transparency, and community involvement. Discuss GitHub contributions, community governance, and collaborative development. Highlight no vendor lock-in and self-hosting capabilities. Reference the open-source ecosystem and developer freedom. Celebrate community milestones and contributions.",
+          "dont": "Don't gloss over open-source aspects or treat them as secondary features. Avoid closed-source corporate messaging that contradicts open-source values. Don't underplay community contributions or make it seem like a purely corporate product."
+        },
+        {
+          "id": "educational-not-promotional",
+          "do": "Prioritize user education over marketing. Teach readers how to build better internal tools, whether they use Appsmith or not. Share knowledge, best practices, and industry insights freely. Make content valuable independent of product promotion. Focus on solving problems rather than selling solutions.",
+          "dont": "Don't create thinly-veiled product promotions disguised as educational content. Avoid constant product mentions or forced CTAs. Don't make every piece of content a sales pitch."
+        },
+        {
+          "id": "technical-credibility",
+          "do": "Maintain technical accuracy and credibility. Reference official documentation, technical specifications, and verified benchmarks. Cite sources for claims and statistics. Use proper technical terminology and architecture descriptions. Demonstrate deep understanding of development workflows and tools.",
+          "dont": "Don't make unsubstantiated technical claims. Avoid using technical jargon incorrectly. Don't oversimplify complex technical topics to the point of inaccuracy. Never fabricate statistics or performance metrics."
+        },
+        {
+          "id": "problem-solution-structure",
+          "do": "Structure content around specific problems and solutions. Start with the pain point developers face. Explain why existing solutions fall short. Demonstrate how to solve the problem step-by-step. Provide multiple approaches when applicable. Include troubleshooting and edge cases.",
+          "dont": "Don't write feature-focused content without context. Avoid jumping into solutions without establishing the problem. Don't present only one way to solve problems when alternatives exist."
+        }
+      ],
+      "locked": false
+    },
+    "toneOfVoice": {
+      "value": [
+        "Technical and precise - speaks the language of developers with appropriate technical depth",
+        "Professional yet conversational - like a knowledgeable colleague sharing insights over coffee",
+        "Honest and transparent - acknowledges limitations while highlighting strengths",
+        "Educational and helpful - prioritizes teaching and enabling over selling",
+        "Community-minded and collaborative - celebrates open-source values and collective problem-solving",
+        "Practical and pragmatic - focuses on real-world applications and tangible benefits",
+        "Developer-centric - understands and respects developer workflows, tools, and priorities",
+        "Confident without arrogance - demonstrates expertise while remaining approachable",
+        "Clear and direct - gets to the point without unnecessary fluff or corporate speak",
+        "Problem-focused - addresses real pain points developers face building internal tools"
+      ],
+      "locked": false
+    },
+    "authorPersona": {
+      "value": "Appsmith communicates like an experienced developer who has built countless internal tools and understands the frustrations of traditional development approaches. They're technical peers who speak your language, respect your time, and won't sugarcoat limitations. They believe in open-source principles, value developer freedom, and prioritize practical solutions over marketing hype. Like a trusted colleague in your Slack channel, they're quick to share code examples, point you to documentation, and celebrate community wins. They're passionate about making internal tool development faster without forcing you to abandon the workflows and tools you trust. This persona embodies technical credibility, open-source transparency, practical problem-solving, and genuine respect for the developer community.",
+      "locked": false
+    },
+    "examplePhrases": {
+      "value": [
+        "Developers who usually shun low-code platforms love using Appsmith because it doesn't force them to work against their established instincts and processes.",
+        "It's the low-code equivalent of the model-view-controller (MVC) frameworks that are so popular with developers, with the added benefits of low-code automation.",
+        "You can check out branches, commit changes, merge branches, and trigger standard CI/CD workflows on pushes for each application just like in traditional development.",
+        "All Appsmith applications, even the ones built on commercial tiers, are fully compatible with the open-source version—so you can always spin up an Appsmith instance and host them yourself.",
+        "If you're tech-savvy and comfortable with databases, Appsmith gives you the flexibility to build exactly what you need.",
+        "The platform is lightweight, extremely developer-friendly, and designed to fully integrate within modern SDLC processes.",
+        "Unlike most low-code platforms that accomplish 75%–90% of what's needed, Appsmith doesn't have inherent limitations.",
+        "We're not just a drag-and-drop builder; we're a fully fledged development platform that lets you build how you want.",
+        "The goal is to ensure Appsmith users can build their internal apps as quickly and elegantly as possible.",
+        "Start with our free open-source edition, and if you need enterprise features, we've got you covered with transparent pricing."
+      ],
+      "locked": false
+    },
+    "inspirationArticles": {
+      "value": [
+        "https://www.appsmith.com/blog",
+        "https://www.appsmith.com/blog/buying-guide-why-appsmith",
+        "https://www.appsmith.com/blog/30k-stars-on-github",
+        "https://www.appsmith.com/blog/series-b-funding",
+        "https://www.appsmith.com/blog/user-education",
+        "https://www.appsmith.com/case-studies",
+        "https://docs.appsmith.com/",
+        "https://community.appsmith.com/"
+      ],
+      "locked": false
+    },
+    "vocabularyPreferences": {
+      "value": [
+        "Preferred/encouraged terms: 'Developer-first', 'open-source', 'self-hosted', 'no vendor lock-in', 'Git-based version control', 'JavaScript flexibility', 'internal tools', 'admin panels', 'CRUD apps', 'dashboards', 'code-level control', 'MVC framework', 'REST API', 'database integrations', 'drag-and-drop UI', 'full customization', 'transparent pricing', 'community-driven', 'rapid development'",
+        "Terms/phrases to avoid (or use carefully): 'No-code' (Appsmith is low-code, not no-code), 'Easy' or 'simple' (developers want powerful, not dumbed-down), 'Revolutionary' or excessive superlatives, 'Enterprise' without context (can sound corporate and alienate smaller teams), 'Citizen developer' (focuses on non-technical users, not Appsmith's target), 'Visual programming' (sounds less code-centric), Buzzwords like 'digital transformation', 'best-in-class', 'cutting-edge' without substance"
+      ],
+      "locked": false
+    }
+  },
+  "companyPositioning": {
+    "useCases": {
+      "value": [
+        {
+          "useCase": "Internal Admin Panels",
+          "description": "Custom admin interfaces for managing users, content, permissions, and application settings with role-based access controls"
+        },
+        {
+          "useCase": "CRUD Applications",
+          "description": "Create, read, update, delete applications for managing database records, inventory, customer data, and business records"
+        },
+        {
+          "useCase": "Business Dashboards",
+          "description": "Real-time dashboards for monitoring KPIs, sales metrics, operational data, and business intelligence across multiple data sources"
+        },
+        {
+          "useCase": "Customer Success Tools",
+          "description": "Customer 360 views aggregating data from CRM, support tickets, billing, and product usage for customer success teams"
+        },
+        {
+          "useCase": "Marketing Automation Tools",
+          "description": "Multi-channel marketing dashboards, campaign management interfaces, and performance analytics tools"
+        },
+        {
+          "useCase": "Data Analysis & Reporting",
+          "description": "Custom analytics tools connecting to databases and APIs for data exploration, visualization, and report generation"
+        },
+        {
+          "useCase": "Operations & Workflow Tools",
+          "description": "Internal operations applications for approval workflows, ticketing systems, and business process management"
+        },
+        {
+          "useCase": "DevOps & Monitoring Dashboards",
+          "description": "Infrastructure monitoring, deployment dashboards, and operational visibility tools for DevOps teams"
+        },
+        {
+          "useCase": "Financial Tools & Reporting",
+          "description": "Financial dashboards, expense management, revenue operations, and ARR tracking applications"
+        },
+        {
+          "useCase": "AI-Powered Applications",
+          "description": "Internal tools leveraging AI agents with RAG and function calling for automated workflows and intelligent assistants"
+        }
+      ],
+      "locked": false
+    },
+    "marketCategories": {
+      "value": [
+        "Low-Code Development Platforms",
+        "Internal Tool Builders",
+        "Developer Tools",
+        "Open-Source Software",
+        "Enterprise Application Platforms",
+        "Rapid Application Development (RAD)",
+        "Admin Panel Generators",
+        "Business Intelligence Tools",
+        "Workflow Automation Platforms",
+        "Database Management Interfaces"
+      ],
+      "locked": false
+    },
+    "coreProblemsSolved": {
+      "value": [
+        {
+          "problem": "Slow Internal Tool Development",
+          "solution": "Provides drag-and-drop UI building with pre-built widgets, reducing development time from weeks to hours while maintaining full JavaScript customization capabilities"
+        },
+        {
+          "problem": "Choosing Between Speed and Control",
+          "solution": "Merges the automation of low-code with the flexibility of traditional development, offering rapid UI building without sacrificing code-level control or developer workflows"
+        },
+        {
+          "problem": "Vendor Lock-In with Proprietary Platforms",
+          "solution": "Open-source foundation ensures no vendor lock-in, with full source code access and the ability to self-host applications on your own infrastructure"
+        },
+        {
+          "problem": "Limited Developer-Friendly Options",
+          "solution": "Built specifically for developers with Git integration, JavaScript support, REST API connectivity, and standard SDLC processes instead of forcing new workflows"
+        },
+        {
+          "problem": "Expensive Low-Code Alternatives",
+          "solution": "Free open-source edition for unlimited users, with transparent pricing ($15/user/month for business, $25/user/month for enterprise at scale) and no hidden fees"
+        },
+        {
+          "problem": "Complex Database and API Integrations",
+          "solution": "Native integrations with 25+ databases and any REST API, plus cURL importer for quick connection setup without custom backend development"
+        },
+        {
+          "problem": "Security and Compliance Requirements",
+          "solution": "Self-hosting capabilities, SAML/OIDC SSO, SCIM provisioning, role-based access controls, and audit logs for enterprise security and compliance needs"
+        },
+        {
+          "problem": "Lack of Version Control and Collaboration",
+          "solution": "Git-based version control with branch management, commit history, and CI/CD integration enabling team collaboration with standard developer workflows"
+        },
+        {
+          "problem": "Insufficient Customization in No-Code Tools",
+          "solution": "Full JavaScript support for custom logic, complete control over styling and layout, and ability to modify platform source code through open-source access"
+        },
+        {
+          "problem": "Fragmented Internal Tool Stack",
+          "solution": "Unified platform for building all types of internal tools—admin panels, dashboards, CRUD apps, workflows—with consistent architecture and shared components"
+        }
+      ],
+      "locked": false
+    },
+    "referenceCustomers": {
+      "value": [
+        {
+          "type": "Volume Metrics",
+          "description": "5+ million downloads, 1,000+ enterprises across 100+ countries, 36,900+ GitHub stars"
+        },
+        {
+          "type": "Enterprise Customers",
+          "description": "GSK, Twilio, Dropbox, Amazon Web Services, Allianz, Omron using Appsmith for internal tools"
+        },
+        {
+          "type": "Customer Reviews",
+          "description": "4.7/5 rating on G2 with 65+ reviews praising productivity gains, integration capabilities, and developer-friendly approach"
+        },
+        {
+          "type": "Community Engagement",
+          "description": "9,278+ Discord members, 4,000+ GitHub forks, 600% community growth across platforms demonstrating strong developer adoption"
+        },
+        {
+          "type": "Case Study Results",
+          "description": "SCHMALZ+SCHÖN reduced development time by 70%, Funding Societies built AI assistant handling 50% of support workload, HeyJobs modernized legacy applications in weeks instead of months"
+        },
+        {
+          "type": "Developer Testimonials",
+          "description": "Developers praise intuitive drag-and-drop interface, versatile integrations, productivity boost from building functional apps without writing UI code, and open-source transparency"
+        },
+        {
+          "type": "Investment Validation",
+          "description": "$49M in funding from Insight Partners, Accel, Canaan Partners, and prominent angels including Postman and Cloudera co-founders"
+        }
+      ],
+      "locked": false
+    },
+    "productsAndServices": {
+      "value": [
+        {
+          "product": "Appsmith Community Edition (Open Source)",
+          "description": "Free, open-source version with full feature set for building and deploying internal tools. Includes unlimited users, self-hosting capabilities, Git sync, JavaScript customization, and 25+ database integrations. Available for download from GitHub with Docker deployment.",
+          "category": "Primary Product - Free"
+        },
+        {
+          "product": "Appsmith Business Plan",
+          "description": "Commercial tier at $15/user/month (up to 99 users) with advanced features including SSO, audit logs, enhanced collaboration tools, priority support, and advanced security features. Billed monthly via credit card.",
+          "category": "Primary Product - Paid"
+        },
+        {
+          "product": "Appsmith Enterprise Plan",
+          "description": "Enterprise-grade offering starting at $2,500/month for 100 users ($25/user/month at capacity). Includes SAML/OIDC SSO, SCIM provisioning, private app embedding, dedicated support teams, custom integrations, increased SLAs, and enterprise security features. Custom pricing for larger deployments.",
+          "category": "Primary Product - Enterprise"
+        },
+        {
+          "product": "Appsmith Cloud (Managed Hosting)",
+          "description": "Fully managed cloud hosting of Appsmith instances, eliminating infrastructure management while providing automatic updates, backups, and uptime guarantees. Available across Business and Enterprise tiers.",
+          "category": "Hosting Service"
+        },
+        {
+          "product": "Self-Hosted Deployment",
+          "description": "Deploy Appsmith on your own infrastructure using Docker, Kubernetes, AWS, Azure, or Google Cloud. Includes deployment guides, architecture documentation, and best practices for production environments.",
+          "category": "Deployment Option"
+        },
+        {
+          "product": "Appsmith Agents (AI Platform)",
+          "description": "AI-powered agents platform for building intelligent automation and assistants with RAG (Retrieval Augmented Generation) and function calling capabilities. Integrates with LLMs including OpenAI, Claude, and others.",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Database Integrations",
+          "description": "Native connectors for 25+ databases including PostgreSQL, MongoDB, MySQL, MSSQL, Redis, Elasticsearch, DynamoDB, Snowflake, and more. Plus universal REST API integration and cURL importer.",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Pre-Built Widgets & Components",
+          "description": "Drag-and-drop UI components including tables, forms, charts, maps, buttons, inputs, and custom widgets. Fully customizable with JavaScript and CSS for tailored user experiences.",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Git-Based Version Control",
+          "description": "Native Git integration for version control, branch management, commit history, and CI/CD workflows. Supports GitHub, GitLab, Bitbucket, and other Git providers.",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Developer Documentation & Resources",
+          "description": "Comprehensive documentation, tutorials, sample apps, API references, and community guides available at docs.appsmith.com and community.appsmith.com.",
+          "category": "Support & Education"
+        },
+        {
+          "product": "Community Support",
+          "description": "Active Discord community with 9,278+ members providing 24/7 peer support, GitHub discussions, community forums, and direct access to Appsmith team members.",
+          "category": "Support & Education"
+        },
+        {
+          "product": "Premium Support",
+          "description": "Dedicated support channels for Business and Enterprise customers with faster response times, priority issue resolution, and access to solutions engineers.",
+          "category": "Support & Education"
+        }
+      ],
+      "locked": false
+    },
+    "uniqueSellingPropositions": {
+      "value": [
+        {
+          "usp": "Developer-First Open-Source Platform",
+          "description": "The only major low-code platform built specifically for developers with open-source transparency, no vendor lock-in, and full source code access—unlike proprietary competitors like Retool"
+        },
+        {
+          "usp": "Code-Level Control with Low-Code Speed",
+          "description": "Uniquely merges rapid drag-and-drop UI building with complete JavaScript customization, Git workflows, and developer control—providing 10x speed without compromising flexibility"
+        },
+        {
+          "usp": "No Vendor Lock-In Guarantee",
+          "description": "All applications built on any tier (including paid) are fully compatible with the open-source version, ensuring you can always self-host and retain complete control"
+        },
+        {
+          "usp": "True Self-Hosting Capabilities",
+          "description": "Deploy on your own infrastructure with full data control, inside your VPC, behind your firewall—not just a 'private cloud' option but genuine on-premises deployment"
+        },
+        {
+          "usp": "MVC Framework for Low-Code",
+          "description": "Built as the low-code equivalent of popular MVC frameworks developers trust, maintaining familiar development patterns while adding automation efficiency"
+        },
+        {
+          "usp": "Free Open-Source Edition",
+          "description": "Unlike competitors, offers a genuinely free open-source version with full features (not a limited trial), enabling unlimited users and applications at zero cost"
+        },
+        {
+          "usp": "Native Git Integration",
+          "description": "Only low-code platform with production-grade Git integration supporting branches, commits, merges, and standard CI/CD workflows that developers actually use"
+        },
+        {
+          "usp": "36,900+ GitHub Stars",
+          "description": "One of only 500 open-source projects globally to exceed 30,000 GitHub stars, demonstrating unmatched developer trust and community validation"
+        },
+        {
+          "usp": "Usage-Based Transparent Pricing",
+          "description": "Simple per-user pricing ($15/month business, $25/month enterprise) with no hidden fees, no complicated user tiers, and no charges for developers who build but don't use apps"
+        },
+        {
+          "usp": "25+ Native Database Integrations",
+          "description": "Most comprehensive database connectivity in the low-code space, plus any REST API integration and cURL importer for instant connection setup"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "businessSalesInsights": {
+    "ahaMoment": {
+      "value": "The aha moment for Appsmith users typically occurs when developers realize they can build a fully functional internal admin panel or CRUD application in hours instead of weeks—without sacrificing any of the control, flexibility, or development practices they're accustomed to. This revelation often happens during the first prototype build when they discover they can use drag-and-drop for the UI layer while writing JavaScript for business logic, connect to their existing databases with a few clicks, and then commit everything to Git just like any other code project. For engineering team leads, the moment crystallizes when they calculate the time savings: a dashboard that would take a backend developer 2-3 weeks to build from scratch can be prototyped in an afternoon and production-ready in a day. The breakthrough realization is that they're not choosing between speed and control—Appsmith provides both. For startups and budget-conscious teams, the aha moment comes when they realize the open-source version is genuinely free (not a limited trial) and they can self-host without licensing fees, yet still have an upgrade path to enterprise features if needed. The platform proves that developer-friendly and low-code aren't contradictions, fundamentally changing how teams approach internal tool development.",
+      "locked": false
+    },
+    "keyPurchaseTriggers": {
+      "value": [
+        "Internal tool development becoming a bottleneck for engineering teams, with backlogs of admin panels and dashboards needed",
+        "Developers spending excessive time building repetitive CRUD interfaces and UI code instead of core product features",
+        "Engineering leadership seeking to 10x team productivity on internal tools without hiring additional developers",
+        "Discovery that building custom internal tools from scratch takes weeks or months, delaying critical business operations",
+        "Frustration with no-code platforms that are too limiting, or full-code development that's too slow for internal tools",
+        "Need for rapid prototyping and iteration on internal tools to validate requirements before full development",
+        "Security and compliance requirements demanding self-hosted solutions with full data control",
+        "Budget constraints making expensive proprietary low-code platforms like Retool financially unfeasible",
+        "Open-source advocacy and desire to avoid vendor lock-in with proprietary closed-source platforms",
+        "Multiple teams needing different internal tools (admin panels, dashboards, workflows) requiring a unified platform",
+        "Existing internal tools built with disparate technologies becoming difficult to maintain and extend",
+        "GitHub discovery through developer community, seeing 36,900+ stars and active open-source development",
+        "Case study validation from companies like GSK, Twilio, and Dropbox using Appsmith for internal tools",
+        "Developer recommendations through communities (Reddit, Discord, Hacker News) praising the platform",
+        "Free trial of open-source version proving value quickly, leading to consideration of paid features",
+        "Enterprise needs for SSO, SCIM provisioning, and role-based access controls in internal tools",
+        "Cost comparison showing Appsmith saves tens of thousands annually versus custom development or alternatives",
+        "Migration from legacy internal tools or homegrown solutions needing modernization"
+      ],
+      "locked": false
+    },
+    "commonSalesObjections": {
+      "value": [
+        {
+          "objection": "We already have developers who can build internal tools from scratch",
+          "response": "Addresses through ROI calculation showing that even skilled developers spend 2-3 weeks building admin panels that Appsmith builds in hours. Emphasizes that developers should focus on core product features, not repetitive CRUD interfaces. Highlights that Appsmith doesn't replace developers—it makes them 10x more productive on internal tools."
+        },
+        {
+          "objection": "Low-code platforms are too limiting for our technical requirements",
+          "response": "Demonstrates that Appsmith is developer-first, not citizen-developer focused, with full JavaScript customization, REST API access, and source code transparency. Shows that developers maintain complete control while gaining speed. References MVC framework comparison and code-level flexibility."
+        },
+        {
+          "objection": "We're concerned about vendor lock-in and data security",
+          "response": "Highlights open-source foundation with full source code access and genuine self-hosting capabilities. Emphasizes that applications built on paid tiers are compatible with open-source version, ensuring no lock-in. Demonstrates deployment inside customer VPC and behind firewall for complete data control."
+        },
+        {
+          "objection": "The platform might not integrate with our specific tech stack",
+          "response": "Showcases 25+ native database integrations plus any REST API connectivity. Demonstrates cURL importer for instant integration setup. Shows customer examples with diverse tech stacks successfully integrated. Offers custom integration support for enterprise customers."
+        },
+        {
+          "objection": "Our team would need to learn a new platform and framework",
+          "response": "Emphasizes that Appsmith uses familiar technologies (JavaScript, Git, REST APIs) with no proprietary language to learn. Highlights that developers can be productive in hours, not weeks. References intuitive drag-and-drop UI requiring minimal training, and comprehensive documentation and community support."
+        },
+        {
+          "objection": "We're already using Retool and would need to migrate",
+          "response": "Provides migration guides and comparison content showing Appsmith's advantages (open-source, lower cost, no vendor lock-in). Highlights cost savings and additional flexibility. Offers migration support for enterprise customers. Emphasizes that open-source foundation provides future flexibility."
+        },
+        {
+          "objection": "UI/UX might not be polished enough for our needs",
+          "response": "Acknowledges honest feedback about UI improvements while highlighting recent platform investments in design. Demonstrates fully customizable styling with CSS. Shows enterprise customer examples with professional-looking applications. Emphasizes that internal tools prioritize functionality over consumer-grade design."
+        },
+        {
+          "objection": "Self-hosting adds operational complexity we want to avoid",
+          "response": "Offers Appsmith Cloud for fully managed hosting with automatic updates and backups. Provides deployment guides and Docker setup for simplified self-hosting. Shows that many customers successfully self-host with minimal overhead. Offers white-glove deployment support for enterprise customers."
+        },
+        {
+          "objection": "We need enterprise features and support guarantees",
+          "response": "Presents Enterprise plan with SAML/OIDC SSO, SCIM provisioning, dedicated support, custom SLAs, and priority issue resolution. Highlights that Appsmith serves 1,000+ enterprises including GSK, Twilio, and major organizations. Offers proof-of-concept support and custom contracts for large deployments."
+        },
+        {
+          "objection": "Free open-source might mean limited features or support",
+          "response": "Clarifies that open-source version has full feature set for building applications, not a limited trial. Explains transparent upgrade path to Business/Enterprise for SSO, audit logs, and premium support. Highlights active community support (9,278+ Discord members) for open-source users. Shows that open-source version is production-ready and used by major companies."
+        },
+        {
+          "objection": "Platform might be slow or buggy based on some user reviews",
+          "response": "Acknowledges honest user feedback while highlighting continuous performance improvements and stability investments. Shows architecture evolution from multi-container to optimized deployment. Demonstrates enterprise customers trusting platform for production workloads. Offers POC to prove performance meets requirements."
+        },
+        {
+          "objection": "We need mobile-responsive applications",
+          "response": "Addresses current mobile responsive capabilities while being honest about limitations compared to native mobile apps. Emphasizes that Appsmith focuses on internal tools primarily used on desktop. Shows workarounds for mobile access and ongoing improvements in responsive design."
+        }
+      ],
+      "locked": false
+    },
+    "mostProfitableSegments": {
+      "value": [
+        {
+          "segment": "Mid-Market Engineering Teams (100-1,000 employees)",
+          "rationale": "Sweet spot with clear internal tool needs, budget for paid plans, but not enterprise sales complexity. Teams large enough to need multiple internal tools but agile enough to adopt quickly. High LTV with Business plan ($15/user) for 20-100 developers. Strong expansion potential as more teams adopt."
+        },
+        {
+          "segment": "Enterprise IT & Platform Teams (1,000+ employees)",
+          "rationale": "Enterprise plan at $2,500+/month with 100+ user minimums generates highest revenue per account. Need enterprise security features (SSO, SCIM, audit logs) justifying premium pricing. Long sales cycles but high contract values with multi-year commitments. Strong reference customers for case studies and brand credibility."
+        },
+        {
+          "segment": "FinTech & Financial Services",
+          "rationale": "Strict security and compliance requirements driving Enterprise plan adoption. Need for self-hosted solutions inside secure infrastructure. Internal tool needs for operations, customer service, and back-office workflows. Higher willingness to pay for compliance features and dedicated support. Strong ROI from operational efficiency gains."
+        },
+        {
+          "segment": "SaaS & Software Companies",
+          "rationale": "High density of technical users appreciating developer-first approach. Need admin panels for customer support, internal dashboards for operations, and tools for all departments. Developer champions driving adoption from bottom-up. Strong community evangelism potential. Natural upgrade from open-source to paid as company grows."
+        },
+        {
+          "segment": "Consulting & Agency Partners",
+          "rationale": "Build internal tools for multiple clients, generating recurring usage across projects. High multiplier effect with one partner building for many end customers. Potential for white-label partnership arrangements. Strong word-of-mouth marketing to their client base. Premium support needs creating service revenue opportunities."
+        },
+        {
+          "segment": "DevOps & Infrastructure Teams",
+          "rationale": "Technical users who appreciate open-source, self-hosting, and Git integration. Need monitoring dashboards, deployment tools, and operational interfaces. Docker-savvy users can self-serve on setup, reducing support costs. Strong community contributors and evangelists. Enterprise plan adoption for team collaboration features."
+        },
+        {
+          "segment": "Open-Source to Paid Conversions",
+          "rationale": "Users already validated platform value with free version, reducing acquisition costs. Natural upgrade path when hitting team collaboration needs or requiring SSO/audit logs. Higher conversion rates than cold prospects. Lower CAC since users self-educated through community and documentation. Strong product-led growth motion."
+        },
+        {
+          "segment": "Former Retool Customers",
+          "rationale": "Proven willingness to pay for low-code internal tool platforms. Often seeking cost savings or avoiding vendor lock-in. Higher price sensitivity making Appsmith's pricing attractive. Pre-qualified need for internal tool solutions. Quick time-to-value due to platform familiarity."
+        }
+      ],
+      "locked": false
+    }
+  }
+}

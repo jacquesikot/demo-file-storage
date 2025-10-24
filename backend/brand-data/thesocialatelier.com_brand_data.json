@@ -1,0 +1,663 @@
+{
+  "brandInfo": {
+    "cdn": {
+      "value": "Cloudflare",
+      "locked": false
+    },
+    "cms": {
+      "value": "Custom/Unknown",
+      "locked": false
+    },
+    "keyHubs": {
+      "value": ["Digital/Remote Operations"],
+      "locked": false
+    },
+    "brandAssets": {
+      "value": ["https://thesocialatelier.us"],
+      "locked": false
+    },
+    "companyName": {
+      "value": "The Social Atelier",
+      "locked": false
+    },
+    "companyDomain": {
+      "value": "thesocialatelier.us",
+      "locked": false
+    },
+    "otherProfiles": {
+      "value": [
+        "https://www.facebook.com/thesocialatelierco",
+        "https://www.instagram.com/thesocial.atelier/",
+        "https://calendly.com/thesocialatelier"
+      ],
+      "locked": false
+    },
+    "analyticsTools": {
+      "value": ["Google Analytics", "Salesforce Account Engagement Analytics", "Social Media Analytics"],
+      "locked": false
+    },
+    "websiteBuiltIn": {
+      "value": "Custom web platform with booking integration (Calendly)",
+      "locked": false
+    },
+    "additionalNotes": {
+      "value": "Boutique marketing agency specializing in bespoke marketing solutions with a focus on luxury branding. Operating hours: Mon-Fri 8am-4pm, Sat 11am-2pm, Sun Closed. Offers free initial consultations with hourly consulting rates of $100-$150 depending on project complexity.",
+      "locked": false
+    },
+    "additionalTools": {
+      "value": ["Salesforce", "Account Engagement (Pardot)", "Calendly", "Email Marketing Platforms", "Social Media Management Tools"],
+      "locked": false
+    },
+    "brandDescription": {
+      "value": "The Social Atelier is a boutique marketing agency that transforms the way brands connect with their audience by offering bespoke marketing solutions that combine strategy, creativity, and luxury to elevate brands. With a tagline of 'Marketing, Elevated,' they specialize in sophisticated, strategic marketing approaches that emphasize quality over quantity. The agency provides comprehensive services including social media management, email marketing campaigns, brand development, bespoke event management, and expert Salesforce/Account Engagement administrative support. Their approach is characterized by elegance, professionalism, and a refined touch that appeals to brands seeking high-end marketing solutions.",
+      "locked": false
+    },
+    "brandPointOfView": {
+      "value": "The Social Atelier believes that marketing should be an art form that combines sophistication with strategy. They view brand development as a deep exploration into the essence of businesses to uncover unique stories and values. Their philosophy centers on quality over quantity, tailored solutions over templated approaches, and creating meaningful connections between brands and their audiences. They position marketing as an elevated experience, where creativity meets luxury to produce campaigns that resonate with sophistication and style. The agency champions the idea that every brand has a unique story worth telling in the most refined and strategic manner possible.",
+      "locked": false
+    },
+    "industryVertical": {
+      "value": "Marketing Services / Brand Development / Digital Marketing",
+      "locked": false
+    },
+    "companySubDomains": {
+      "value": [],
+      "locked": false
+    },
+    "socialMediaProfiles": {
+      "value": {
+        "x": "",
+        "reddit": [],
+        "tiktok": "",
+        "youtube": "",
+        "linkedin": "",
+        "instagram": "https://www.instagram.com/thesocial.atelier/",
+        "facebook": "https://www.facebook.com/thesocialatelierco"
+      },
+      "locked": false
+    }
+  },
+  "competitors": {
+    "competitors": {
+      "value": [
+        {
+          "name": "VMgroupe",
+          "description": "Full-service luxury branding and digital creative agency based in New York, specializing in beauty, fine jewelry, fashion, fine food, wines & spirits, real estate, and luxury lifestyle with comprehensive services encompassing branding, content creation, digital storytelling, and performance marketing.",
+          "type": "Direct Competitor"
+        },
+        {
+          "name": "The O Group",
+          "description": "New York City-based luxury marketing agency and branding consultancy that specializes in luxury brand marketing with a reputation for developing highly desirable and uniquely differentiated brands.",
+          "type": "Direct Competitor"
+        },
+        {
+          "name": "Luxury Branded",
+          "description": "Preferred choice for luxury brands worldwide, sought after to redefine and invigorate marketing strategies with expertise in outshining competitors on Google, strategically securing press coverage, and maximizing social media conversions.",
+          "type": "Direct Competitor"
+        },
+        {
+          "name": "Socially Powerful",
+          "description": "Global, award-winning social and influencer marketing agency founded in 2017 with offices in the UK, USA, Europe, China, and Dubai, specializing in delivering bold marketing campaigns for brands that expect marketing excellence.",
+          "type": "Direct Competitor"
+        },
+        {
+          "name": "Crème Brands",
+          "description": "Luxury brand design agency specializing in custom branding and high-end website development with a unique approach beginning with original pencil sketches, providing a complete brand identity system encompassing visual identity, storefront experiences, and premium packaging.",
+          "type": "Direct Competitor"
+        },
+        {
+          "name": "Quartz Agency",
+          "description": "Agency with expertise in brand development, social media marketing, and paid campaigns, helping luxury brands connect deeply with their target audiences and particularly skilled in refining brand messaging and identifying optimal marketing channels.",
+          "type": "Direct Competitor"
+        },
+        {
+          "name": "Mediaboom",
+          "description": "Luxury marketing agency with 20+ years of expertise serving high-end brands, providing comprehensive digital marketing services tailored to affluent consumer segments.",
+          "type": "Direct Competitor"
+        },
+        {
+          "name": "inBeat Agency",
+          "description": "Digital marketing agency specializing in luxury brand marketing with expertise in influencer marketing, social media strategy, and content creation for upscale brands.",
+          "type": "Direct Competitor"
+        },
+        {
+          "name": "MarCloud Consulting",
+          "description": "Salesforce Marketing Cloud consultancy that helps clients with Account Engagement's B2B lead generation and nurturing capabilities, configuring automation while marketing teams focus on creativity.",
+          "type": "Indirect Competitor"
+        },
+        {
+          "name": "HubSpot Marketing Hub",
+          "description": "Comprehensive inbound marketing platform and CRM integration that competes in the marketing automation space with similar services to Salesforce Account Engagement.",
+          "type": "Indirect Competitor"
+        },
+        {
+          "name": "Adobe Marketo Engage",
+          "description": "Enterprise-level marketing automation platform that competes directly with Pardot/Account Engagement, providing email marketing, lead nurturing, and marketing analytics with advanced ABM capabilities.",
+          "type": "Indirect Competitor"
+        },
+        {
+          "name": "Bespoke Luxury Marketing",
+          "description": "Specialized luxury marketing agency focusing on high-end brand positioning and sophisticated marketing campaigns for luxury consumer segments.",
+          "type": "Direct Competitor"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "targetAudience": {
+    "proofPoints": {
+      "value": [
+        "Free initial discovery consultations to understand business goals and brand positioning",
+        "Expert Salesforce Account Engagement administration ensuring CRM alignment with business objectives",
+        "Bespoke approach tailored to each client's unique needs and market positioning",
+        "Professional consulting services priced at $100-$150 per hour based on project complexity",
+        "Comprehensive service offering spanning brand development, social media, email marketing, and event management",
+        "Strategic approach combining creativity with luxury to elevate brand presence"
+      ],
+      "locked": false
+    },
+    "targetMarkets": {
+      "value": [
+        "United States (primary market)",
+        "Digital/remote client base",
+        "Urban and suburban markets with affluent business communities",
+        "B2B service markets seeking sophisticated marketing solutions"
+      ],
+      "locked": false
+    },
+    "customerPersonas": {
+      "value": [
+        {
+          "name": "Luxury Brand Owner",
+          "description": "Owner or marketing director of an established luxury brand (fashion, jewelry, hospitality, real estate) seeking to elevate their digital presence and refine their brand storytelling. Values sophistication, quality over quantity, and strategic marketing approaches. Budget-conscious but willing to invest in premium services.",
+          "painPoints": ["Inconsistent brand messaging across channels", "Difficulty connecting with affluent target audiences", "Need for sophisticated social media presence", "Lack of cohesive brand identity"],
+          "goals": ["Elevate brand perception", "Increase engagement with high-net-worth individuals", "Develop refined brand voice and visual identity", "Improve marketing ROI"]
+        },
+        {
+          "name": "Growing SMB Executive",
+          "description": "CEO, founder, or marketing leader of a small-to-medium business in growth phase looking to professionalize their marketing efforts and establish a stronger market position. Needs expert guidance but has limited internal marketing resources. Values strategic partnerships and measurable results.",
+          "painPoints": ["Limited marketing expertise in-house", "Overwhelmed by marketing tool options", "Struggling to generate quality leads", "Inconsistent marketing execution", "Need for CRM optimization"],
+          "goals": ["Build professional brand presence", "Generate qualified leads consistently", "Optimize marketing technology stack", "Scale marketing operations efficiently"]
+        },
+        {
+          "name": "Salesforce User Seeking Support",
+          "description": "Marketing manager or operations leader at a B2B company using Salesforce and Account Engagement (Pardot) who needs expert administrative support to optimize their CRM and streamline communication workflows. Technically competent but needs specialized expertise for platform optimization.",
+          "painPoints": ["Underutilizing Salesforce Account Engagement features", "Time-consuming manual processes", "Difficulty tracking and nurturing leads effectively", "Need for workflow automation", "Integration challenges"],
+          "goals": ["Optimize Salesforce platform performance", "Automate key marketing workflows", "Improve lead tracking and nurturing", "Better align sales and marketing", "Maximize ROI on Salesforce investment"]
+        },
+        {
+          "name": "Event-Focused Business",
+          "description": "Business owner or marketing professional who relies on events (virtual or in-person) as a key marketing channel and needs sophisticated event management with integrated marketing support. Values attention to detail, creativity, and seamless execution.",
+          "painPoints": ["Event planning consuming excessive time", "Difficulty creating cohesive event marketing", "Need for sophisticated event branding", "Challenges coordinating multiple event elements", "Limited event marketing expertise"],
+          "goals": ["Execute flawless branded events", "Increase event attendance and engagement", "Create memorable brand experiences", "Streamline event planning processes", "Measure event ROI effectively"]
+        }
+      ],
+      "locked": false
+    },
+    "targetCustomerSegments": {
+      "value": [
+        "Luxury brands (fashion, jewelry, hospitality, real estate, lifestyle)",
+        "Small-to-medium businesses (SMBs) in growth phase",
+        "B2B service companies using Salesforce",
+        "Professional services firms (legal, financial, consulting)",
+        "High-end retail and e-commerce brands",
+        "Boutique hospitality and travel companies",
+        "Premium wellness and beauty brands",
+        "Fine art galleries and dealers",
+        "Event-driven businesses requiring sophisticated marketing"
+      ],
+      "locked": false
+    },
+    "targetAudienceDescription": {
+      "value": "The Social Atelier primarily serves established and emerging luxury brands, growing small-to-medium businesses, and B2B companies seeking sophisticated, high-end marketing solutions. Their ideal clients are businesses that understand the value of quality marketing and are willing to invest in premium services to elevate their brand presence. The target audience includes brand owners, marketing directors, CEOs, and business leaders who value strategic thinking, creative excellence, and refined execution. These clients typically operate in industries such as luxury goods, hospitality, real estate, professional services, and premium retail. They are characterized by their appreciation for bespoke solutions tailored to their unique needs rather than templated approaches. Many are users of Salesforce and Account Engagement who need expert administrative support to optimize their CRM and marketing automation. The target demographic skews toward decision-makers aged 30-55 with purchasing authority and an understanding that sophisticated marketing requires specialized expertise. Geographically, they serve a primarily U.S.-based client roster with digital delivery enabling remote collaboration. These clients seek partners who can combine strategic thinking with creative execution, delivering marketing that resonates with sophistication and style while producing measurable business results.",
+      "locked": false
+    }
+  },
+  "contentStrategy": {
+    "contentPillars": {
+      "value": [
+        {
+          "pillar": "Brand Development & Strategy",
+          "description": "Content focused on brand identity creation, brand positioning, visual identity systems, brand voice definition, and strategic brand storytelling. Emphasizes the art of uncovering unique brand stories and values.",
+          "topics": ["Brand identity design", "Visual brand systems", "Brand voice and tone", "Brand positioning strategies", "Logo and brand assets", "Brand guidelines", "Rebranding and brand evolution"]
+        },
+        {
+          "pillar": "Luxury Marketing Excellence",
+          "description": "Content showcasing sophisticated marketing approaches for high-end brands, emphasizing quality over quantity, refined execution, and elevated brand experiences.",
+          "topics": ["Luxury brand marketing tactics", "High-end social media strategies", "Connecting with affluent audiences", "Premium content creation", "Luxury event marketing", "Sophisticated brand campaigns"]
+        },
+        {
+          "pillar": "Salesforce & Marketing Automation",
+          "description": "Educational and informative content about Salesforce Account Engagement (Pardot), CRM optimization, marketing automation workflows, and lead management best practices.",
+          "topics": ["Salesforce Account Engagement tips", "Marketing automation strategies", "Lead nurturing workflows", "CRM optimization", "Email marketing automation", "Integration best practices", "Data management"]
+        },
+        {
+          "pillar": "Social Media Strategy",
+          "description": "Content about creating curated social media strategies that resonate with sophistication and style, including platform-specific tactics and audience engagement approaches.",
+          "topics": ["Instagram strategy for luxury brands", "Social media content calendars", "Visual storytelling", "Audience engagement tactics", "Social media analytics", "Platform-specific best practices"]
+        },
+        {
+          "pillar": "Email Marketing & Lead Nurturing",
+          "description": "Content focused on strategic email marketing campaigns, segmentation, personalization, and lead nurturing sequences that convert and retain customers.",
+          "topics": ["Email campaign strategy", "Segmentation and personalization", "Lead nurturing sequences", "Email design best practices", "Conversion optimization", "Email analytics and metrics"]
+        },
+        {
+          "pillar": "Event Management & Experiential Marketing",
+          "description": "Content about planning and executing bespoke events that create memorable brand experiences and strengthen client relationships.",
+          "topics": ["Event planning strategies", "Experiential marketing", "Virtual and hybrid events", "Event branding", "Attendee engagement", "Event promotion", "Post-event follow-up"]
+        }
+      ],
+      "locked": false
+    },
+    "sourcesToRepurpose": {
+      "value": [
+        {
+          "source": "Client Case Studies",
+          "description": "Transform successful client projects into multiple content formats including blog posts, social media content, video testimonials, and email marketing examples"
+        },
+        {
+          "source": "Salesforce Documentation & Updates",
+          "description": "Repurpose Salesforce platform updates and feature releases into client-friendly guides, tips, and educational content"
+        },
+        {
+          "source": "Industry Reports & Trends",
+          "description": "Extract insights from luxury marketing reports, B2B marketing studies, and industry trend analyses to create original thought leadership content"
+        },
+        {
+          "source": "Client Consultations & Discovery Sessions",
+          "description": "Common questions, challenges, and insights from client meetings can be anonymized and transformed into educational blog content and FAQ resources"
+        },
+        {
+          "source": "Event Experiences",
+          "description": "Document event planning processes, behind-the-scenes content, and event outcomes to create compelling storytelling content"
+        },
+        {
+          "source": "Email Marketing Campaigns",
+          "description": "Successful email campaigns can be repurposed into case studies, template libraries, and best practice guides"
+        },
+        {
+          "source": "Social Media Content Performance",
+          "description": "High-performing social media posts can be expanded into blog articles, guides, or visual content series"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "writingGuidelines": {
+    "guidelines": {
+      "value": [
+        "Maintain an elegant, professional, and sophisticated tone across all communications",
+        "Emphasize quality over quantity in messaging and content creation",
+        "Use refined language that appeals to educated, affluent decision-makers",
+        "Balance creativity with strategic clarity - avoid being overly flowery while maintaining elegance",
+        "Lead with value and benefits rather than features",
+        "Incorporate storytelling elements to make brand narratives compelling",
+        "Keep sentences clear and concise while maintaining sophistication",
+        "Use active voice to convey confidence and expertise",
+        "Avoid jargon unless writing for technical audiences (e.g., Salesforce content)",
+        "Include specific examples and proof points to support claims",
+        "Structure content for easy scanning with clear headers and short paragraphs",
+        "End with clear calls-to-action that guide readers to next steps",
+        "Proofread meticulously - errors undermine credibility in luxury positioning"
+      ],
+      "locked": false
+    },
+    "toneOfVoice": {
+      "value": [
+        "Elegant: Use refined language and sophisticated phrasing that reflects luxury positioning",
+        "Professional: Maintain credibility and expertise while remaining approachable",
+        "Confident: Demonstrate authority and competence without arrogance",
+        "Strategic: Show thoughtful consideration and planning in all communications",
+        "Refined: Choose words carefully to convey sophistication and attention to detail",
+        "Warm: Be personable and human while maintaining professionalism",
+        "Empowering: Help clients feel confident in their marketing decisions",
+        "Insightful: Provide valuable perspectives that demonstrate deep understanding"
+      ],
+      "locked": false
+    },
+    "authorPersona": {
+      "value": "The Social Atelier speaks as a trusted luxury marketing advisor with deep expertise in brand development, digital marketing, and marketing technology. The voice is that of a seasoned professional who has worked with sophisticated brands and understands the nuances of high-end marketing. The author persona is consultative rather than sales-driven, positioning themselves as a strategic partner invested in client success. They speak from experience, offering actionable insights gleaned from real-world brand building. The persona balances expertise with accessibility - knowledgeable enough to guide complex strategy but approachable enough to make luxury marketing feel attainable. They understand that great marketing is both art and science, and this balance is reflected in their communication style. The author is detail-oriented, creative, and strategic, with a passion for uncovering and amplifying each brand's unique story.",
+      "locked": false
+    },
+    "examplePhrases": {
+      "value": [
+        "We believe in transforming the way brands connect with their audience",
+        "Marketing, Elevated",
+        "Bespoke marketing solutions that combine strategy, creativity, and luxury",
+        "Quality over quantity",
+        "We craft tailored campaigns that resonate with sophistication and style",
+        "Brand development is an art form",
+        "Delving deep into the essence of your business",
+        "Uncover your unique story and values",
+        "Ensuring your Salesforce platform is fully aligned with your business goals",
+        "From curated social media strategies to high-end branding",
+        "In-depth discovery process to learn about your business goals, values, and target audience",
+        "Elevate your brand presence",
+        "Strategic, sophisticated marketing approaches",
+        "Meaningful connections between brands and their audiences",
+        "Every brand has a unique story worth telling"
+      ],
+      "locked": false
+    },
+    "inspirationArticles": {
+      "value": [
+        {
+          "title": "The Secret to Scalable B2B Marketing? Content Pillars",
+          "url": "https://crimsonparkdigital.com/a-guide-to-content-pillars-for-b2b-strategy/",
+          "reason": "Demonstrates strategic content planning and framework development for B2B audiences"
+        },
+        {
+          "title": "Social Media for Luxury Brands: Strategy and Best Practices",
+          "url": "https://inbeat.agency/blog/social-media-for-luxury-brands",
+          "reason": "Exemplifies sophisticated approach to luxury brand marketing on social platforms"
+        },
+        {
+          "title": "Connect Pardot + Google Analytics (Beyond the First Click)",
+          "url": "https://www.salesforceben.com/connect-pardot-google-analytics-beyond-the-first-click/",
+          "reason": "Shows technical expertise presented in accessible, valuable format for Salesforce users"
+        },
+        {
+          "title": "Target Audience for Luxury Brands – Engaging Wealthy Clients",
+          "url": "https://mediaboom.com/news/target-audience-for-luxury-brands/",
+          "reason": "Demonstrates thought leadership in luxury marketing with actionable insights"
+        },
+        {
+          "title": "Proven B2B Email Marketing Strategies to Engage, Nurture & Convert",
+          "url": "https://www.sagefrog.com/blog/proven-b2b-email-marketing-strategies-to-engage-nurture-convert/",
+          "reason": "Shows data-driven approach to email marketing with strategic recommendations"
+        }
+      ],
+      "locked": false
+    },
+    "vocabularyPreferences": {
+      "value": [
+        {
+          "prefer": "bespoke",
+          "avoid": "custom",
+          "reason": "Bespoke conveys luxury and sophistication"
+        },
+        {
+          "prefer": "elevated",
+          "avoid": "improved",
+          "reason": "Elevated aligns with luxury positioning and brand tagline"
+        },
+        {
+          "prefer": "curated",
+          "avoid": "selected",
+          "reason": "Curated implies careful, expert selection"
+        },
+        {
+          "prefer": "sophisticated",
+          "avoid": "fancy",
+          "reason": "Sophisticated is refined; fancy can seem frivolous"
+        },
+        {
+          "prefer": "strategic",
+          "avoid": "planned",
+          "reason": "Strategic conveys higher-level thinking and expertise"
+        },
+        {
+          "prefer": "tailored",
+          "avoid": "customized",
+          "reason": "Tailored suggests precision and luxury craft"
+        },
+        {
+          "prefer": "refined",
+          "avoid": "polished",
+          "reason": "Refined conveys elegance and sophistication"
+        },
+        {
+          "prefer": "essence",
+          "avoid": "core",
+          "reason": "Essence is more evocative and brand-appropriate"
+        },
+        {
+          "prefer": "transform",
+          "avoid": "change",
+          "reason": "Transform implies significant, positive evolution"
+        },
+        {
+          "prefer": "resonate",
+          "avoid": "connect",
+          "reason": "Resonate suggests deeper emotional connection"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "companyPositioning": {
+    "useCases": {
+      "value": [
+        {
+          "useCase": "Salesforce Account Engagement Optimization",
+          "description": "B2B companies using Salesforce and Account Engagement (Pardot) need expert administrative support to optimize their CRM, automate workflows, manage data, track leads, and ensure the platform is fully aligned with business goals"
+        },
+        {
+          "useCase": "Luxury Brand Identity Development",
+          "description": "Luxury brands launching or rebranding need comprehensive brand identity systems including logo design, visual identity, brand voice definition, brand guidelines, and strategic positioning to stand out in competitive markets"
+        },
+        {
+          "useCase": "Social Media Strategy for High-End Brands",
+          "description": "Premium brands need curated social media strategies that maintain brand sophistication while engaging audiences, including content planning, visual storytelling, and platform-specific tactics"
+        },
+        {
+          "useCase": "B2B Email Marketing & Lead Nurturing",
+          "description": "Growing businesses need strategic email marketing campaigns with segmentation, personalization, automation workflows, and lead nurturing sequences to convert prospects into customers"
+        },
+        {
+          "useCase": "Bespoke Event Management & Promotion",
+          "description": "Brands hosting virtual or in-person events need end-to-end event management including planning, branding, promotion, attendee engagement, and post-event follow-up"
+        },
+        {
+          "useCase": "Marketing Technology Stack Integration",
+          "description": "Companies need help integrating and optimizing their marketing technology tools (Salesforce, Google Analytics, social media platforms, email marketing tools) for seamless workflows and better data insights"
+        },
+        {
+          "useCase": "SMB Marketing Department Augmentation",
+          "description": "Small-to-medium businesses without full marketing teams need fractional CMO-level strategic guidance combined with execution support across multiple marketing channels"
+        }
+      ],
+      "locked": false
+    },
+    "marketCategories": {
+      "value": [
+        "Boutique Marketing Agency",
+        "Luxury Brand Marketing",
+        "Salesforce Marketing Consulting",
+        "B2B Marketing Services",
+        "Brand Development & Identity Design",
+        "Social Media Marketing",
+        "Email Marketing Services",
+        "Marketing Automation Consulting",
+        "Event Management & Experiential Marketing",
+        "Digital Marketing for Luxury Brands"
+      ],
+      "locked": false
+    },
+    "coreProblemsSolved": {
+      "value": [
+        {
+          "problem": "Underutilized Marketing Technology",
+          "solution": "Expert Salesforce Account Engagement administration and optimization that ensures businesses fully leverage their CRM investment with proper automation, lead tracking, and workflow management"
+        },
+        {
+          "problem": "Inconsistent Brand Identity",
+          "solution": "Comprehensive brand development services that uncover unique brand stories, create cohesive visual identities, and define clear brand voice and positioning"
+        },
+        {
+          "problem": "Generic, Ineffective Marketing",
+          "solution": "Bespoke marketing strategies tailored to each business's unique needs, target audience, and market positioning rather than templated, one-size-fits-all approaches"
+        },
+        {
+          "problem": "Lack of Marketing Sophistication",
+          "solution": "Elevated marketing execution that helps brands compete in luxury and premium markets with refined messaging, sophisticated visuals, and strategic campaigns"
+        },
+        {
+          "problem": "Disconnected Marketing Efforts",
+          "solution": "Integrated marketing approach that aligns social media, email marketing, events, and brand development for cohesive, consistent brand experiences"
+        },
+        {
+          "problem": "Limited Internal Marketing Resources",
+          "solution": "Fractional marketing expertise that provides strategic guidance and execution support without the cost of full-time hires"
+        },
+        {
+          "problem": "Poor Lead Generation & Nurturing",
+          "solution": "Strategic email marketing campaigns and marketing automation that attract qualified leads and nurture them through the buyer journey"
+        },
+        {
+          "problem": "Ineffective Social Media Presence",
+          "solution": "Curated social media strategies with compelling content, visual storytelling, and engagement tactics that resonate with target audiences"
+        }
+      ],
+      "locked": false
+    },
+    "referenceCustomers": {
+      "value": [
+        "Luxury fashion brands",
+        "High-end hospitality businesses",
+        "Premium real estate agencies",
+        "B2B service companies using Salesforce",
+        "Boutique professional services firms",
+        "Fine art galleries and dealers",
+        "Premium wellness and beauty brands",
+        "Luxury lifestyle brands"
+      ],
+      "locked": false
+    },
+    "productsAndServices": {
+      "value": [
+        {
+          "service": "Brand Development",
+          "description": "Comprehensive brand identity creation including brand strategy, logo design, visual identity systems, brand voice definition, brand guidelines, and strategic positioning. Deep discovery process to uncover unique brand stories and values, craft distinct visual identities, and define brand voice that resonates with target audiences."
+        },
+        {
+          "service": "Social Media Management",
+          "description": "Curated social media strategies for luxury and premium brands including content planning, visual storytelling, platform-specific tactics (Instagram, Facebook, LinkedIn), audience engagement, analytics tracking, and ongoing management. Focus on sophisticated content that maintains brand elegance while driving engagement."
+        },
+        {
+          "service": "Email Marketing Campaigns",
+          "description": "Strategic email marketing services including campaign strategy, audience segmentation, content creation, design, automation workflows, lead nurturing sequences, A/B testing, and performance analytics. Emphasis on personalized, value-driven communications that convert and retain customers."
+        },
+        {
+          "service": "Salesforce Account Engagement Administration",
+          "description": "Expert Salesforce and Account Engagement (Pardot) administrative support including CRM optimization, workflow automation, lead tracking and management, data management, integration with other marketing tools, and platform configuration aligned with business goals. Ensures businesses fully leverage their Salesforce investment."
+        },
+        {
+          "service": "Bespoke Event Management",
+          "description": "End-to-end event planning and execution for virtual and in-person events including event strategy, branding, promotion, registration management, attendee engagement, day-of coordination, and post-event follow-up. Creates memorable brand experiences that strengthen client relationships."
+        },
+        {
+          "service": "Marketing Strategy Consulting",
+          "description": "Strategic marketing guidance and fractional CMO services including marketing audits, strategy development, channel selection, budget planning, and ongoing advisory support. Initial free discovery consultations followed by hourly consulting at $100-$150 depending on project complexity."
+        }
+      ],
+      "locked": false
+    },
+    "uniqueSellingPropositions": {
+      "value": [
+        {
+          "usp": "Luxury-Focused Boutique Approach",
+          "description": "Unlike large agencies with templated solutions, The Social Atelier offers truly bespoke marketing that combines sophistication, strategy, and creativity specifically tailored for luxury and premium brands"
+        },
+        {
+          "usp": "Salesforce Expertise + Creative Marketing",
+          "description": "Rare combination of deep Salesforce/Account Engagement technical expertise with high-level creative brand marketing, bridging the gap between marketing technology and brand storytelling"
+        },
+        {
+          "usp": "Quality Over Quantity Philosophy",
+          "description": "Commitment to refined, strategic marketing approaches rather than high-volume, low-impact tactics. Focus on meaningful connections and measurable results over vanity metrics"
+        },
+        {
+          "usp": "Consultative Partnership Model",
+          "description": "Free initial discovery consultations and transparent hourly consulting rates ($100-$150) create accessible entry point for businesses seeking premium marketing expertise without agency retainer commitments"
+        },
+        {
+          "usp": "Integrated Service Offering",
+          "description": "Comprehensive capabilities spanning brand development, social media, email marketing, Salesforce administration, and event management provide cohesive, consistent brand experiences across all touchpoints"
+        },
+        {
+          "usp": "Essence-Based Brand Development",
+          "description": "Deep discovery process that goes beyond surface aesthetics to uncover the true essence, unique stories, and authentic values of each brand, creating foundation for all marketing efforts"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "businessSalesInsights": {
+    "ahaMoment": {
+      "value": "The 'aha moment' for The Social Atelier's clients typically occurs during or shortly after the initial discovery consultation when they realize that their current marketing lacks strategic sophistication and cohesion. This moment happens when clients see how The Social Atelier's bespoke approach can uncover their unique brand story and translate it into refined, integrated marketing that resonates with their target audience. For Salesforce users, the moment comes when they understand how much untapped potential exists in their Account Engagement platform and how proper optimization can transform their lead generation and nurturing. The revelation that quality, strategic marketing produces better ROI than high-volume tactics represents the core 'aha' - it's not about doing more marketing, it's about doing the right marketing with sophistication and strategy.",
+      "locked": false
+    },
+    "keyPurchaseTriggers": {
+      "value": [
+        "Business growth phase requiring professional brand presence and marketing infrastructure",
+        "Rebranding initiative or brand refresh needed to stay competitive",
+        "Frustration with current marketing agency providing templated, generic solutions",
+        "Underutilizing Salesforce Account Engagement platform and need for expert optimization",
+        "Launching new product, service, or market expansion requiring sophisticated marketing",
+        "Inconsistent brand messaging across channels causing confusion in the market",
+        "Upcoming major event (virtual or in-person) requiring professional management",
+        "Marketing team departure or capacity constraints creating immediate need for support",
+        "Poor lead generation results from current email marketing and social media efforts",
+        "Competitive pressure from other luxury/premium brands with superior marketing",
+        "Recognition that DIY marketing lacks sophistication needed for luxury positioning",
+        "Recommendation from peer business owner or industry colleague"
+      ],
+      "locked": false
+    },
+    "commonSalesObjections": {
+      "value": [
+        {
+          "objection": "Price/Budget Concerns",
+          "response": "Emphasize ROI and quality over cost. Position free discovery consultation as risk-free way to understand value. Highlight transparent hourly rates and flexible engagement models versus large agency retainers. Share examples of how strategic marketing produces better results than high-volume, low-quality approaches."
+        },
+        {
+          "objection": "Can Handle Marketing In-House",
+          "response": "Acknowledge existing capabilities while highlighting specialized expertise. Position as augmentation rather than replacement. Emphasize time savings for leadership to focus on core business. Share specific examples of technical expertise (Salesforce optimization) or sophisticated brand development that requires specialized skills."
+        },
+        {
+          "objection": "Not Ready Yet / Bad Timing",
+          "response": "Offer free discovery consultation with no obligation to proceed. Emphasize that strategic foundation needs to be in place before growth initiatives. Position early engagement as preventive rather than reactive. Share risks of waiting (competitive disadvantage, missed opportunities)."
+        },
+        {
+          "objection": "Already Working With Another Agency",
+          "response": "Don't compete directly. Instead, position as potential complement for specialized needs (Salesforce optimization, luxury brand positioning). Acknowledge good agencies exist but emphasize boutique, bespoke approach versus large agency templated solutions. Offer to do brand audit or specific project to demonstrate differentiated value."
+        },
+        {
+          "objection": "Unsure of Results / ROI",
+          "response": "Share specific client case studies and proof points. Emphasize measurable metrics (lead quality, conversion rates, engagement) over vanity metrics. Offer phased approach starting with discovery consultation and specific project rather than large commitment. Provide clear success criteria and reporting approach."
+        },
+        {
+          "objection": "Don't Need Luxury Positioning",
+          "response": "Clarify that 'luxury' approach applies to sophistication and quality of execution, not just luxury goods industries. Position refined marketing as appropriate for any premium brand or B2B company seeking to stand out. Share examples from professional services, B2B, and other non-luxury industries."
+        },
+        {
+          "objection": "Too Small / Not Established Enough",
+          "response": "Emphasize that building proper brand foundation early prevents costly rebranding later. Position boutique size as advantage - provides personalized attention that growing businesses need. Highlight flexible hourly consulting model that scales with business growth."
+        }
+      ],
+      "locked": false
+    },
+    "mostProfitableSegments": {
+      "value": [
+        {
+          "segment": "Established Luxury Brands Requiring Ongoing Support",
+          "reason": "Higher budgets, value sophistication, understand marketing investment ROI, potential for long-term retainer relationships across multiple services (social media management, email marketing, Salesforce administration)"
+        },
+        {
+          "segment": "B2B Companies with Salesforce Account Engagement",
+          "reason": "Clear technical value proposition, recurring administrative support needs, typically have marketing budgets, less price-sensitive for specialized expertise, potential for expansion into broader marketing services"
+        },
+        {
+          "segment": "Growing SMBs in Professional Services",
+          "reason": "Recognize need for professional marketing as they scale, value strategic guidance, often lack internal marketing resources, willing to invest in brand development, potential for comprehensive service engagement"
+        },
+        {
+          "segment": "Brands Undertaking Rebranding Initiatives",
+          "reason": "Clear project scope with defined budget, comprehensive service needs (brand strategy, visual identity, messaging, implementation), demonstrates immediate value, potential for ongoing relationship post-rebrand"
+        }
+      ],
+      "locked": false
+    }
+  }
+}

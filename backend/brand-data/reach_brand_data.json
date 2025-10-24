@@ -1,0 +1,807 @@
+{
+  "brandInfo": {
+    "cdn": {
+      "value": "",
+      "locked": false
+    },
+    "cms": {
+      "value": "",
+      "locked": false
+    },
+    "keyHubs": {
+      "value": [
+        "United States",
+        "Portugal (Lisbon)",
+        "Global (Remote-first)"
+      ],
+      "locked": false
+    },
+    "brandAssets": {
+      "value": [],
+      "locked": false
+    },
+    "companyName": {
+      "value": "Reach",
+      "locked": false
+    },
+    "companyDomain": {
+      "value": "https://usereach.ai",
+      "locked": false
+    },
+    "otherProfiles": {
+      "value": [
+        "https://www.linkedin.com/in/zevelez/",
+        "https://www.shilling.vc/portfolio-founders/jose-velez"
+      ],
+      "locked": false
+    },
+    "analyticsTools": {
+      "value": ["Google Analytics"],
+      "locked": false
+    },
+    "websiteBuiltIn": {
+      "value": "Modern web application with AI agent infrastructure, cloud-based SaaS platform",
+      "locked": false
+    },
+    "additionalNotes": {
+      "value": "Founded by José Velez, former founder of Rely.io (raised $3.6M, went through Techstars NYC). One team member generated over 250M organic sessions and previously led the SEO & GEO department at Portugal's #1 eCommerce. Reach is positioned as the first AI agent that automates SEO and AI search optimization work. The company operates under REACH AI LABS INC. with associated entity ZEE VENTURES, UNIPESSOAL LDA. The platform was built from ZeeLabs AI studio experience working with customers on go-to-market AI applications.",
+      "locked": false
+    },
+    "additionalTools": {
+      "value": [
+        "AI Agent Infrastructure",
+        "Multi-LLM Integration (ChatGPT, Claude, Gemini, Perplexity)",
+        "Automated SEO Analysis",
+        "Cloud Infrastructure"
+      ],
+      "locked": false
+    },
+    "brandDescription": {
+      "value": "Reach is the first AI agent dedicated to automating SEO and AI search optimization for businesses. Operating at the intersection of traditional search engine optimization and generative engine optimization (GEO), Reach helps companies improve their visibility not just on Google, but across AI-powered platforms like ChatGPT, Claude, Gemini, and Perplexity. The platform provides enterprise-level SEO & GEO/AEO capabilities working around the clock, conducting deep business analysis, keyword and query research, competitor analysis, and delivering custom SEO & AI Search strategies. Founded by experienced entrepreneurs with a track record of building successful tech companies and generating over 250M organic sessions, Reach democratizes access to sophisticated search optimization that was previously only available to large enterprises with dedicated SEO teams.",
+      "locked": false
+    },
+    "brandPointOfView": {
+      "value": "Reach believes that the future of search is fundamentally changing as customers increasingly turn to AI platforms like ChatGPT and Perplexity to discover businesses instead of traditional search engines. The company's mission is to help businesses adapt to this seismic shift in how people find information online. Reach is anchored in automation, intelligence, and measurable results, with the promise that 'your growth is our mission.' They are committed to democratizing enterprise-level SEO capabilities for businesses of all sizes, making sophisticated search optimization accessible and effortless through AI automation. The brand advocates for a proactive, AI-first approach to search visibility rather than reactive manual SEO work.",
+      "locked": false
+    },
+    "industryVertical": {
+      "value": "B2B SaaS, Marketing Technology, AI-Powered SEO Tools, Generative Engine Optimization (GEO)",
+      "locked": false
+    },
+    "companySubDomains": {
+      "value": ["app.usereach.ai"],
+      "locked": false
+    },
+    "socialMediaProfiles": {
+      "value": {
+        "x": "",
+        "reddit": [],
+        "tiktok": "",
+        "youtube": "",
+        "linkedin": "https://www.linkedin.com/in/zevelez/",
+        "instagram": ""
+      },
+      "locked": false
+    }
+  },
+  "competitors": {
+    "competitors": {
+      "value": [
+        {
+          "name": "AthenaHQ",
+          "description": "Y Combinator-backed GEO platform with technical leadership from former Google Search and DeepMind experts. Premium pricing at $270-$595/month with 45% answer share gains in testing.",
+          "type": "Direct GEO competitor"
+        },
+        {
+          "name": "Peec AI (Rank Prompt)",
+          "description": "Built specifically for Answer Engine Optimization (AEO), showing visibility across ChatGPT, Gemini, Claude, Perplexity, and Grok. Starting at €89/month with 115+ language support.",
+          "type": "Direct GEO competitor"
+        },
+        {
+          "name": "Goodie AI",
+          "description": "End-to-end GEO tool helping brands boost AI search visibility across LLMs like ChatGPT, Gemini, Perplexity, Claude. Premium pricing starting at $495/month.",
+          "type": "Direct GEO competitor"
+        },
+        {
+          "name": "Profound",
+          "description": "Generative engine optimization platform with comprehensive visibility tracking. Priced at $499/month.",
+          "type": "Direct GEO competitor"
+        },
+        {
+          "name": "Scrunch AI",
+          "description": "Enterprise GEO platform with advanced AI search optimization capabilities",
+          "type": "Direct GEO competitor"
+        },
+        {
+          "name": "Rankscale",
+          "description": "Allows assessment of optimization effectiveness for AI search engines like Google AI and ChatGPT with visibility tracking",
+          "type": "Direct GEO competitor"
+        },
+        {
+          "name": "Otterly",
+          "description": "AI search optimization and monitoring platform",
+          "type": "Direct GEO competitor"
+        },
+        {
+          "name": "Knowatoa",
+          "description": "GEO platform for tracking AI search performance",
+          "type": "Direct GEO competitor"
+        },
+        {
+          "name": "KAI Footprint",
+          "description": "AI search visibility tracking and optimization platform",
+          "type": "Direct GEO competitor"
+        },
+        {
+          "name": "SEMrush",
+          "description": "Established SEO platform expanding into GEO capabilities, currently enterprise-only for GEO features",
+          "type": "Traditional SEO expanding to GEO"
+        },
+        {
+          "name": "Surfer SEO",
+          "description": "Content optimization platform with AI-powered SEO features",
+          "type": "AI-powered SEO tool"
+        },
+        {
+          "name": "Writesonic",
+          "description": "AI content creation and SEO optimization platform",
+          "type": "AI-powered SEO tool"
+        },
+        {
+          "name": "SEO.ai",
+          "description": "AI-driven SEO content optimization and strategy tool",
+          "type": "AI-powered SEO tool"
+        },
+        {
+          "name": "Persana AI",
+          "description": "AI outreach platform with SEO and search optimization capabilities",
+          "type": "AI marketing platform"
+        },
+        {
+          "name": "MarketingAid.io",
+          "description": "AI search optimization platform for Perplexity, ChatGPT and other generative engines",
+          "type": "Direct GEO competitor"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "targetAudience": {
+    "proofPoints": {
+      "value": [
+        "Founder previously built Rely.io, raising $3.6M and building team of 20+ with customers like ESPN Bet and Feedzai",
+        "Team member generated over 250M organic sessions across multiple industries",
+        "Went through prestigious Techstars NYC accelerator program",
+        "Former SEO & GEO department lead at Portugal's #1 eCommerce company",
+        "First AI agent specifically designed to automate SEO and AI search optimization",
+        "Enterprise-level capabilities accessible to businesses of all sizes",
+        "Automated analysis of business, products, and market positioning",
+        "24/7 automated SEO & GEO optimization working continuously",
+        "Multi-platform visibility tracking across ChatGPT, Claude, Gemini, and Perplexity",
+        "Custom strategy delivery based on deep competitive and keyword analysis"
+      ],
+      "locked": false
+    },
+    "targetMarkets": {
+      "value": [
+        "North America (primary market - United States, Canada)",
+        "Europe (Portugal, UK, Germany, France, Spain)",
+        "Global English-speaking markets (Australia, New Zealand, Singapore)",
+        "Remote-first digital businesses worldwide"
+      ],
+      "locked": false
+    },
+    "customerPersonas": {
+      "value": [
+        {
+          "name": "Growth-Focused B2B Marketers",
+          "title": "VP Marketing, Head of Growth, Marketing Director",
+          "companySize": "50-500 employees",
+          "characteristics": "Results-driven, data-focused, responsible for lead generation and pipeline growth",
+          "painPoints": "Struggling with declining Google traffic, need to adapt to AI search, limited SEO resources, unclear how to optimize for ChatGPT and Perplexity",
+          "valueProposition": "Automated enterprise-level SEO that increases visibility across both traditional and AI search platforms",
+          "goals": "Increase qualified organic traffic, improve search rankings, stay ahead of AI search trends"
+        },
+        {
+          "name": "SaaS Founders & CEOs",
+          "title": "Founder, CEO, Co-founder",
+          "companySize": "Seed to Series A startups (10-100 employees)",
+          "characteristics": "Technical or business background, growth-oriented, hands-on with marketing strategy",
+          "painPoints": "Can't afford full-time SEO expert, need scalable growth channels, uncertainty about AI search impact on business",
+          "valueProposition": "First AI agent that provides enterprise SEO capabilities without hiring expensive specialists",
+          "goals": "Build sustainable organic growth channel, maximize limited marketing budget, future-proof search strategy"
+        },
+        {
+          "name": "Digital Marketing Agency Leaders",
+          "title": "Agency Owner, Head of SEO, Digital Strategy Director",
+          "companySize": "10-100 employees",
+          "characteristics": "Managing multiple client accounts, need scalable solutions, early adopters of new technology",
+          "painPoints": "Time-consuming manual SEO work, clients asking about AI search optimization, need to demonstrate cutting-edge expertise",
+          "valueProposition": "White-label AI agent that handles client SEO work automatically, enabling agency scale and differentiation",
+          "goals": "Increase client retention, scale operations without hiring, offer innovative GEO services"
+        },
+        {
+          "name": "Enterprise Marketing Teams",
+          "title": "SEO Manager, Digital Marketing Manager, Content Marketing Lead",
+          "companySize": "500+ employees",
+          "characteristics": "Sophisticated marketing operations, established SEO practices, looking for optimization and efficiency",
+          "painPoints": "Manual SEO processes don't scale, need to optimize for AI platforms, difficulty staying current with algorithm changes",
+          "valueProposition": "Automated AI agent that augments existing SEO efforts and ensures visibility on emerging AI search platforms",
+          "goals": "Maintain search leadership position, optimize team efficiency, expand into GEO without additional headcount"
+        },
+        {
+          "name": "E-commerce & DTC Brand Managers",
+          "title": "E-commerce Manager, Brand Manager, Digital Marketing Lead",
+          "companySize": "20-500 employees",
+          "characteristics": "Performance-driven, focused on customer acquisition costs, need measurable ROI",
+          "painPoints": "Rising paid acquisition costs, declining organic traffic, customers discovering competitors through AI search",
+          "valueProposition": "Drive qualified organic traffic that converts, reduce reliance on expensive paid channels",
+          "goals": "Lower customer acquisition costs, increase organic revenue, build sustainable growth channel"
+        }
+      ],
+      "locked": false
+    },
+    "targetCustomerSegments": {
+      "value": [
+        "B2B SaaS companies seeking scalable organic growth channels",
+        "Digital marketing agencies needing to offer cutting-edge SEO and GEO services",
+        "E-commerce and DTC brands looking to reduce paid acquisition costs",
+        "Tech startups with limited marketing resources requiring enterprise-level SEO",
+        "Content-heavy businesses (publications, media, educational platforms) dependent on search traffic",
+        "Professional services firms (consulting, legal, financial) targeting high-value search queries",
+        "Marketing teams at mid-market and enterprise companies optimizing existing SEO investments",
+        "Growth-stage startups preparing for scaling with strong organic foundations",
+        "International businesses needing multi-market search optimization",
+        "Companies in competitive industries where AI search visibility is becoming critical"
+      ],
+      "locked": false
+    },
+    "targetAudienceDescription": {
+      "value": "Reach serves forward-thinking businesses and marketing professionals who recognize that the search landscape is fundamentally transforming with the rise of AI-powered platforms. The primary audience includes B2B SaaS companies, digital marketing agencies, and growth-focused startups ranging from 10 to 500+ employees. The sweet spot comprises three main personas: Growth-Focused B2B Marketers (VPs and Directors) seeking to maintain competitiveness as search evolves; SaaS Founders and CEOs needing enterprise-level SEO without enterprise budgets; and Digital Marketing Agency Leaders looking to scale operations and offer innovative GEO services. The audience is tech-savvy, results-oriented, and values automation and AI-powered solutions that deliver measurable ROI. They are early adopters who understand that traditional SEO alone is no longer sufficient, as 44% of users now prefer AI-powered search and traditional search volume is predicted to drop 25% by 2026 and 50% by 2028.",
+      "locked": false
+    }
+  },
+  "contentStrategy": {
+    "contentPillars": {
+      "value": [
+        {
+          "pillar": "GEO Education & Best Practices",
+          "description": "Educational content explaining Generative Engine Optimization, how AI search works, and best practices for optimizing visibility across ChatGPT, Claude, Gemini, and Perplexity.",
+          "topics": [
+            "What is GEO and why it matters",
+            "How ChatGPT and Perplexity search work",
+            "Optimizing content for AI visibility",
+            "GEO vs traditional SEO",
+            "AI search algorithm updates",
+            "Citation and source optimization"
+          ]
+        },
+        {
+          "pillar": "AI Search Trends & Industry Insights",
+          "description": "Thought leadership content analyzing the evolving search landscape, AI platform updates, and market shifts affecting organic visibility.",
+          "topics": [
+            "Future of search predictions",
+            "AI platform feature releases",
+            "Search behavior changes",
+            "Market research and data",
+            "Industry benchmarks",
+            "Competitive landscape analysis"
+          ]
+        },
+        {
+          "pillar": "How-To Guides & Tutorials",
+          "description": "Practical implementation guides helping businesses improve their search and AI visibility through actionable strategies.",
+          "topics": [
+            "Step-by-step GEO implementation",
+            "Keyword research for AI search",
+            "Content optimization techniques",
+            "Technical SEO for AI platforms",
+            "Measuring AI search performance",
+            "Competitor analysis methods"
+          ]
+        },
+        {
+          "pillar": "Use Cases & Customer Success",
+          "description": "Real-world examples, case studies, and success stories demonstrating the impact of AI search optimization across different industries and business types.",
+          "topics": [
+            "B2B SaaS success stories",
+            "Agency implementation guides",
+            "E-commerce optimization cases",
+            "ROI and performance metrics",
+            "Before/after comparisons",
+            "Industry-specific strategies"
+          ]
+        },
+        {
+          "pillar": "Platform Comparisons & Tool Reviews",
+          "description": "Comparative content analyzing different AI search platforms, optimization tools, and technologies in the GEO ecosystem.",
+          "topics": [
+            "ChatGPT vs Perplexity vs Claude",
+            "GEO tool comparisons",
+            "SEO tool evolution",
+            "Platform feature analysis",
+            "Technology stack recommendations",
+            "Integration options"
+          ]
+        },
+        {
+          "pillar": "Product Updates & Company News",
+          "description": "Announcements about Reach platform updates, new features, partnerships, and company milestones.",
+          "topics": [
+            "Feature launches",
+            "Product roadmap updates",
+            "Integration announcements",
+            "Company milestones",
+            "Team updates",
+            "Partnership news"
+          ]
+        },
+        {
+          "pillar": "Content Strategy & Marketing",
+          "description": "Strategic guidance on creating content that performs well in both traditional search and AI-powered platforms.",
+          "topics": [
+            "Content structure for AI visibility",
+            "Authority building strategies",
+            "Link building for GEO",
+            "Content distribution tactics",
+            "Multi-platform optimization",
+            "Thought leadership development"
+          ]
+        },
+        {
+          "pillar": "Technical SEO & Implementation",
+          "description": "Technical guidance on website optimization, structured data, and technical factors affecting both SEO and GEO performance.",
+          "topics": [
+            "Schema markup for AI",
+            "Site speed optimization",
+            "Mobile optimization",
+            "Technical audits",
+            "Crawlability and indexing",
+            "API integrations"
+          ]
+        }
+      ],
+      "locked": false
+    },
+    "sourcesToRepurpose": {
+      "value": [
+        "Founder's LinkedIn insights and thought leadership (José Velez)",
+        "Customer success stories and testimonials",
+        "Platform analytics and performance data",
+        "Competitive analysis insights from Reach platform",
+        "Industry research on AI search adoption",
+        "Techstars and startup ecosystem learnings",
+        "Rely.io founder journey and lessons learned",
+        "250M+ organic sessions experience and case studies",
+        "Portugal's #1 eCommerce SEO department insights",
+        "AI search platform documentation and updates (ChatGPT, Claude, Gemini, Perplexity)",
+        "Academic research on generative engine optimization",
+        "Y Combinator data on search behavior changes",
+        "Client implementation stories and results",
+        "Team expertise from ZeeLabs AI studio projects"
+      ],
+      "locked": false
+    }
+  },
+  "writingGuidelines": {
+    "guidelines": {
+      "value": [
+        {
+          "id": "technical-clarity",
+          "do": "Write with technical accuracy while maintaining accessibility. Use clear explanations for complex AI and SEO concepts. Include specific, actionable insights backed by data. Reference concrete platforms (ChatGPT, Perplexity, Claude) rather than vague 'AI tools.' Provide step-by-step guidance where applicable.",
+          "dont": "Don't oversimplify to the point of inaccuracy. Avoid jargon without explanation. Don't make claims without data backing. Avoid being overly promotional or salesy. Don't use buzzwords without substance."
+        },
+        {
+          "id": "data-driven-content",
+          "do": "Support claims with statistics, research, and real-world examples. Include performance metrics, ROI data, and measurable outcomes. Reference authoritative sources like Y Combinator data, academic research, and platform statistics. Use specific numbers and percentages.",
+          "dont": "Don't make vague claims about 'improving performance.' Avoid unsubstantiated superlatives. Don't cherry-pick data that doesn't represent full picture. Avoid outdated statistics."
+        },
+        {
+          "id": "forward-thinking-perspective",
+          "do": "Position content around the future of search, not just current state. Acknowledge the shift from traditional SEO to GEO as inevitable. Help readers understand and prepare for changes. Maintain urgency without fear-mongering. Focus on opportunity and adaptation.",
+          "dont": "Don't dismiss traditional SEO entirely. Avoid doom-and-gloom predictions without solutions. Don't present change as optional. Avoid suggesting it's too late to adapt."
+        },
+        {
+          "id": "actionability",
+          "do": "Provide clear next steps and actionable takeaways. Include specific tactics readers can implement immediately. Structure content with clear steps, processes, or frameworks. Offer both quick wins and long-term strategies.",
+          "dont": "Don't create purely theoretical content without practical application. Avoid vague advice like 'create better content.' Don't leave readers wondering 'now what?' after reading."
+        },
+        {
+          "id": "authority-building",
+          "do": "Demonstrate deep expertise through detailed insights. Share unique perspectives from team's 250M+ organic sessions experience. Reference Techstars, Rely.io, and founder background where relevant to establish credibility. Cite multiple authoritative sources.",
+          "dont": "Don't rely solely on common knowledge available everywhere. Avoid appearing as just another SEO blog. Don't over-reference company accomplishments. Avoid seeming inexperienced or uncertain."
+        }
+      ],
+      "locked": false
+    },
+    "toneOfVoice": {
+      "value": [
+        "Expert and authoritative, grounded in deep technical knowledge and real-world experience",
+        "Forward-thinking and innovative, focused on the evolution of search and AI",
+        "Clear and accessible, making complex AI and SEO concepts understandable for practitioners",
+        "Data-driven and analytical, backing claims with research and measurable outcomes",
+        "Confident but not arrogant, acknowledging complexity while providing clear direction",
+        "Pragmatic and solution-oriented, focused on actionable strategies over theory",
+        "Honest and transparent about challenges and realistic about effort required",
+        "Educational and empowering, helping readers build internal expertise",
+        "Conversational but professional, writing as knowledgeable peer rather than distant expert",
+        "Urgent but not alarmist, conveying importance of AI search optimization without fear tactics"
+      ],
+      "locked": false
+    },
+    "authorPersona": {
+      "value": "Reach speaks as a highly experienced technical expert who has been at the forefront of SEO evolution for years, generating over 250M organic sessions and now applying that expertise to the AI search revolution. The voice is that of a knowledgeable industry insider who has successfully built and scaled tech companies (Rely.io, through Techstars), understands both the technical and business sides of search optimization, and is genuinely excited about helping businesses adapt to the future of search. They're the person who saw this shift coming, built tools to address it, and now shares that knowledge to help others succeed. The tone balances technical depth with accessibility—capable of discussing algorithm details with SEO experts while also explaining fundamentals to founders new to search optimization.",
+      "locked": false
+    },
+    "examplePhrases": {
+      "value": [
+        "The search landscape is shifting faster than most businesses realize. By 2028, traditional search volume is predicted to drop 50%, replaced by AI platforms like ChatGPT and Perplexity.",
+        "Here's what most companies miss about GEO: it's not about ranking for keywords, it's about becoming the authoritative source that AI platforms cite.",
+        "We analyzed 10,000 queries across ChatGPT, Claude, and Perplexity. The pattern was clear: AI platforms prioritize depth, authority, and structured information over keyword density.",
+        "Traditional SEO isn't dead, but it's no longer enough. Your customers are already using ChatGPT to research solutions. The question isn't whether to optimize for AI search—it's how quickly you can adapt.",
+        "In our testing, companies that implemented proper GEO saw visibility increases of 40% or more across AI platforms within 30 days.",
+        "Think of GEO as SEO's evolution, not its replacement. The fundamentals of creating authoritative, well-structured content remain crucial—but the optimization targets have multiplied.",
+        "Here's the reality: 44% of users now prefer AI-powered search over traditional search engines. That percentage is only growing.",
+        "The companies winning in AI search right now aren't necessarily the ones with the biggest SEO budgets. They're the ones who understood the shift early and adapted their content strategy."
+      ],
+      "locked": false
+    },
+    "inspirationArticles": {
+      "value": [
+        "https://backlinko.com/generative-engine-optimization-geo",
+        "https://blog.hubspot.com/marketing/generative-engine-optimization",
+        "https://www.athenahq.ai/articles/generative-engine-optimization-tools",
+        "https://searchengineland.com/generative-engine-optimization-strategies-446723",
+        "https://www.siddharthbharath.com/generative-engine-optimization/"
+      ],
+      "locked": false
+    },
+    "vocabularyPreferences": {
+      "value": [
+        "Preferred terms: 'GEO' (Generative Engine Optimization), 'AEO' (Answer Engine Optimization), 'AI search platforms', 'LLM optimization', 'generative engines', 'AI visibility', 'search evolution', 'automated optimization', 'AI agent', 'multi-platform search', 'answer share', 'citation optimization', 'authority building'",
+        "Platform-specific: 'ChatGPT', 'Perplexity', 'Claude', 'Gemini', 'Google AI Overviews' (be specific, not vague 'AI tools')",
+        "Technical terms: 'structured data', 'schema markup', 'semantic optimization', 'source attribution', 'query intent', 'conversational search', 'zero-click results'",
+        "Terms to use carefully: 'traditional SEO' (acknowledge its continued importance), 'disruption' (avoid overuse), 'revolutionary' (use sparingly with data backing)",
+        "Avoid: Overly generic 'AI-powered' without specifics, 'game-changing' without evidence, 'secret strategy' or 'hack' framing, outdated SEO terminology without context, dismissive language about traditional SEO"
+      ],
+      "locked": false
+    }
+  },
+  "companyPositioning": {
+    "useCases": {
+      "value": [
+        {
+          "useCase": "B2B SaaS Organic Growth",
+          "description": "SaaS companies using Reach to build sustainable organic traffic channels, reduce CAC, and increase qualified lead generation through both traditional and AI search optimization"
+        },
+        {
+          "useCase": "Marketing Agency Service Expansion",
+          "description": "Digital agencies offering white-label GEO services to clients, scaling operations with AI automation, and differentiating from competitors with cutting-edge AI search optimization"
+        },
+        {
+          "useCase": "E-commerce Search Optimization",
+          "description": "E-commerce and DTC brands reducing paid acquisition costs by building strong organic presence across traditional search and AI platforms where customers research products"
+        },
+        {
+          "useCase": "Enterprise SEO Augmentation",
+          "description": "Large marketing teams using Reach to augment existing SEO efforts, automate routine optimization work, and ensure visibility on emerging AI search platforms"
+        },
+        {
+          "useCase": "Startup Growth on Limited Budget",
+          "description": "Early-stage startups accessing enterprise-level SEO and GEO capabilities without hiring expensive specialists or building internal teams"
+        },
+        {
+          "useCase": "Content Publisher Traffic Protection",
+          "description": "Media companies, blogs, and content platforms maintaining search traffic as users shift to AI-powered discovery, ensuring content is properly cited and attributed"
+        },
+        {
+          "useCase": "Multi-Market International SEO",
+          "description": "Global businesses optimizing search presence across multiple markets and languages on both traditional and AI search platforms"
+        },
+        {
+          "useCase": "Competitive Search Intelligence",
+          "description": "Companies using Reach for continuous competitor monitoring, keyword research, and strategic insights across traditional and AI search landscapes"
+        },
+        {
+          "useCase": "Future-Proofing Search Strategy",
+          "description": "Forward-thinking businesses proactively preparing for the shift to AI-dominated search by building visibility across ChatGPT, Perplexity, Claude, and Gemini"
+        },
+        {
+          "useCase": "Professional Services Lead Generation",
+          "description": "Consulting, legal, financial, and professional service firms optimizing for high-value queries on both traditional and AI search platforms"
+        }
+      ],
+      "locked": false
+    },
+    "marketCategories": {
+      "value": [
+        "Generative Engine Optimization (GEO)",
+        "Answer Engine Optimization (AEO)",
+        "AI Search Optimization",
+        "SEO Automation",
+        "Marketing Automation & AI",
+        "Search Engine Optimization (SEO) Software",
+        "Content Optimization Platforms",
+        "Marketing Technology (MarTech)",
+        "AI Agents & Autonomous Software",
+        "B2B SaaS Growth Tools",
+        "Digital Marketing Intelligence",
+        "Search Analytics & Monitoring"
+      ],
+      "locked": false
+    },
+    "coreProblemsSolved": {
+      "value": [
+        {
+          "problem": "Declining Traditional Search Visibility",
+          "solution": "Provides comprehensive optimization across both traditional search engines and emerging AI platforms, ensuring businesses maintain and grow organic visibility as search behavior evolves"
+        },
+        {
+          "problem": "AI Search Optimization Complexity",
+          "solution": "Automates the complex process of optimizing for multiple AI platforms (ChatGPT, Claude, Gemini, Perplexity) with different algorithms and ranking factors through a single AI agent"
+        },
+        {
+          "problem": "Manual SEO Work Doesn't Scale",
+          "solution": "Replaces time-consuming manual SEO tasks with 24/7 automated AI agent that handles analysis, optimization, and monitoring continuously without human intervention"
+        },
+        {
+          "problem": "Enterprise SEO Expertise Too Expensive",
+          "solution": "Delivers enterprise-level SEO and GEO capabilities at a fraction of the cost of hiring specialized experts, making sophisticated optimization accessible to startups and SMBs"
+        },
+        {
+          "problem": "Uncertainty About AI Search Impact",
+          "solution": "Provides clear visibility into brand performance across AI platforms with actionable insights and automated optimization, removing guesswork from AI search strategy"
+        },
+        {
+          "problem": "Fragmented Search Optimization Tools",
+          "solution": "Consolidates keyword research, competitor analysis, content optimization, and multi-platform monitoring into single AI agent, eliminating need for multiple subscriptions"
+        },
+        {
+          "problem": "Reactive Rather Than Proactive SEO",
+          "solution": "Continuously monitors algorithm changes, competitor movements, and search trends across platforms, automatically adjusting strategy to maintain competitive advantage"
+        },
+        {
+          "problem": "Difficulty Measuring AI Search ROI",
+          "solution": "Tracks leads, conversions, and revenue attribution from both traditional and AI search sources, providing clear ROI metrics for organic optimization efforts"
+        },
+        {
+          "problem": "Agency Scaling Limitations",
+          "solution": "Enables digital agencies to serve more clients with consistent quality by automating client SEO work, freeing team to focus on strategy and relationships"
+        },
+        {
+          "problem": "Lack of Competitive Intelligence",
+          "solution": "Provides deep competitor analysis showing exactly how competitors are performing on both traditional search and AI platforms, revealing optimization opportunities"
+        }
+      ],
+      "locked": false
+    },
+    "referenceCustomers": {
+      "value": [
+        {
+          "type": "Founder Credibility",
+          "description": "José Velez previously founded Rely.io, raising $3.6M and building team of 20+ with customers including ESPN Bet and Feedzai"
+        },
+        {
+          "type": "Track Record",
+          "description": "Team member generated over 250M organic sessions across multiple industries as former SEO & GEO department lead at Portugal's #1 eCommerce"
+        },
+        {
+          "type": "Accelerator Validation",
+          "description": "Founder went through prestigious Techstars NYC accelerator program"
+        },
+        {
+          "type": "Technical Expertise",
+          "description": "Built from ZeeLabs AI studio experience working with multiple companies on AI-powered go-to-market applications"
+        },
+        {
+          "type": "Innovation Leadership",
+          "description": "Recognized as first AI agent specifically designed to automate SEO and AI search optimization work"
+        }
+      ],
+      "locked": false
+    },
+    "productsAndServices": {
+      "value": [
+        {
+          "product": "Reach AI Agent - Core Platform",
+          "description": "Primary offering: Autonomous AI agent that handles SEO and GEO optimization 24/7, including business analysis, keyword research, competitor analysis, content optimization, and custom strategy delivery across traditional and AI search platforms",
+          "category": "Primary Service"
+        },
+        {
+          "product": "Multi-Platform Visibility Tracking",
+          "description": "Real-time monitoring and reporting on brand visibility across ChatGPT, Claude, Gemini, Perplexity, and traditional search engines with performance metrics and insights",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Automated Competitor Analysis",
+          "description": "Continuous competitor monitoring analyzing content strategies, backlinks, keyword targeting, and performance across both traditional and AI search platforms",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Custom Strategy Delivery",
+          "description": "AI-generated custom SEO & AI Search strategies based on deep analysis of business, products, market positioning, and competitive landscape",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Knowledge Base Integration",
+          "description": "Ability to input business information and documents or connect tools from tech stack to help AI agent understand business context and execute more effective strategies",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Automated Content Optimization",
+          "description": "AI agent makes authorized changes to digital properties including editing content, metadata, and technical files to improve search visibility",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Lead & Revenue Attribution",
+          "description": "Tracking and reporting of leads, conversions, and revenue generated from both traditional search and AI platform traffic sources",
+          "category": "Analytics Service"
+        },
+        {
+          "product": "Keyword & Query Research",
+          "description": "Automated discovery and analysis of high-value keywords and conversational queries relevant to both traditional and AI-powered search",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Technical SEO Automation",
+          "description": "Automated technical optimization including site structure, metadata, schema markup, and other technical factors affecting search visibility",
+          "category": "Platform Feature"
+        }
+      ],
+      "locked": false
+    },
+    "uniqueSellingPropositions": {
+      "value": [
+        {
+          "usp": "First AI Agent for SEO & GEO Automation",
+          "description": "The first autonomous AI agent specifically designed to automate both traditional SEO and generative engine optimization, working 24/7 without human intervention"
+        },
+        {
+          "usp": "Multi-Platform AI Search Coverage",
+          "description": "Only solution providing comprehensive visibility and optimization across ChatGPT, Claude, Gemini, Perplexity, and traditional search engines through single platform"
+        },
+        {
+          "usp": "Enterprise Capabilities, Startup Pricing",
+          "description": "Delivers enterprise-level SEO and GEO capabilities previously only accessible to large companies with dedicated teams, at price point accessible to startups and SMBs"
+        },
+        {
+          "usp": "Proven Team with 250M+ Sessions Experience",
+          "description": "Built by team with track record of generating over 250M organic sessions and leading SEO at Portugal's #1 eCommerce, bringing unparalleled expertise"
+        },
+        {
+          "usp": "Autonomous Strategy Development",
+          "description": "AI agent independently analyzes business, conducts research, develops custom strategies, and implements optimizations without requiring manual task delegation"
+        },
+        {
+          "usp": "Continuous Automated Optimization",
+          "description": "Unlike manual SEO or one-time audits, Reach works continuously around the clock, adapting to algorithm changes and competitor movements in real-time"
+        },
+        {
+          "usp": "Future-Proof Search Strategy",
+          "description": "Proactively prepares businesses for the shift to AI-dominated search predicted to reduce traditional search volume by 50% by 2028"
+        },
+        {
+          "usp": "Integrated Competitive Intelligence",
+          "description": "Built-in competitor analysis across both traditional and AI search platforms reveals exactly how competitors are winning and where opportunities exist"
+        },
+        {
+          "usp": "Measurable ROI Tracking",
+          "description": "Tracks leads, conversions, and revenue attribution from organic search sources, providing clear ROI metrics rather than just rankings and traffic vanity metrics"
+        },
+        {
+          "usp": "Knowledge Base Integration",
+          "description": "Unique ability to ingest business documentation and connect to existing tools, ensuring AI agent deeply understands specific business context for more effective optimization"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "businessSalesInsights": {
+    "ahaMoment": {
+      "value": "The aha moment for Reach customers typically occurs when they realize the profound shift happening in search behavior and see their visibility (or lack thereof) across AI platforms for the first time. For B2B marketers, it's often the realization that their carefully optimized website ranks well on Google but is completely invisible when prospects ask ChatGPT or Perplexity for solution recommendations—and their competitors ARE showing up. For founders, it's understanding they can access the same enterprise-level SEO capabilities that previously required hiring expensive specialists or agencies, automated by an AI agent that works continuously. For agencies, it's recognizing they can scale their service delivery and offer cutting-edge GEO optimization that most competitors don't even understand yet. The moment crystallizes when users see that traditional search volume is predicted to drop 50% by 2028, 44% of users already prefer AI-powered search, and businesses that aren't optimizing for AI platforms are becoming progressively invisible to their target customers.",
+      "locked": false
+    },
+    "keyPurchaseTriggers": {
+      "value": [
+        "Noticing declining Google traffic or rankings despite ongoing SEO efforts",
+        "Discovery that competitors are appearing in AI search results while they're not",
+        "Realization that increasing percentage of target audience uses ChatGPT, Perplexity, or Claude for research",
+        "Attending conference or reading article about AI search disruption and GEO importance",
+        "Frustration with high cost and limited availability of experienced SEO specialists",
+        "Agency clients specifically requesting AI search optimization capabilities",
+        "Rising paid acquisition costs making organic channels more critical",
+        "Leadership asking about company's AI search strategy and lack of clear answer",
+        "Seeing Y Combinator data about 25% drop in traditional search by 2026, 50% by 2028",
+        "Startup funding event creating urgency to build sustainable growth channels",
+        "Competitor product launch making search visibility more competitive",
+        "Manual SEO work becoming overwhelming and not scalable for team",
+        "Need to demonstrate ROI from marketing spend with clear attribution",
+        "Industry shift where AI adoption is becoming table stakes for competitiveness",
+        "Content team struggling to keep up with optimization across multiple platforms"
+      ],
+      "locked": false
+    },
+    "commonSalesObjections": {
+      "value": [
+        {
+          "objection": "We already have an SEO strategy/agency",
+          "response": "Reach augments rather than replaces existing SEO efforts. The AI agent handles the expanding scope of optimization across AI platforms that most traditional SEO agencies aren't yet equipped for, while your existing efforts continue focusing on traditional search. Think of it as adding GEO capabilities to your SEO stack, not replacing what works."
+        },
+        {
+          "objection": "AI search is too new/unproven to invest in",
+          "response": "44% of users already prefer AI-powered search, and Y Combinator data predicts 25% drop in traditional search volume by 2026. Early movers gain compound advantages as AI platforms learn to cite authoritative sources. The question isn't whether to optimize, but whether to be early or play catch-up when competitors already dominate AI search results."
+        },
+        {
+          "objection": "How is this different from other SEO tools?",
+          "response": "Traditional SEO tools provide data and recommendations—you still do the work. Reach is an autonomous AI agent that actually performs the optimization work 24/7. It's the difference between getting a report on what needs fixing versus having an expert continuously fix and optimize everything automatically."
+        },
+        {
+          "objection": "Can't we just do this in-house?",
+          "response": "Theoretically yes, but it requires hiring SEO specialists with cutting-edge GEO expertise (expensive and rare), manually optimizing for 4+ different AI platforms with different algorithms, and working around the clock to monitor changes. Reach automates what would require multiple full-time specialists at a fraction of the cost."
+        },
+        {
+          "objection": "We're too small for enterprise SEO",
+          "response": "That's exactly the point. Reach democratizes enterprise-level capabilities for companies at any stage. Startups and SMBs get the same sophisticated optimization that was previously only accessible to enterprises with large teams—automated by AI at startup-friendly pricing."
+        },
+        {
+          "objection": "How do I measure ROI?",
+          "response": "Reach tracks leads, conversions, and revenue attribution from organic sources across both traditional and AI search. You'll see exactly which queries drive qualified traffic, how visibility improves across platforms, and the direct business impact. Most clients see measurable improvements within 30 days."
+        },
+        {
+          "objection": "What if AI search doesn't take off?",
+          "response": "Reach optimizes for both traditional search AND AI platforms. Even if AI search adoption stalled (unlikely given current trajectory), you still get enterprise-level SEO automation. But given that ChatGPT alone processes 2 billion queries monthly, the risk is being left behind, not investing too early."
+        },
+        {
+          "objection": "We don't have time to implement another tool",
+          "response": "Reach requires minimal setup—connect your properties and knowledge base, then the AI agent runs autonomously. Unlike traditional tools requiring daily management, Reach actually saves time by automating work your team currently does manually or doesn't have capacity to address."
+        },
+        {
+          "objection": "Our industry doesn't use AI search yet",
+          "response": "AI search adoption is happening across all industries—B2B buyers use ChatGPT to research solutions, consumers use Perplexity to compare products, professionals use Claude for industry insights. The pattern is consistent regardless of vertical. Being early in your specific industry creates competitive advantage."
+        },
+        {
+          "objection": "Pricing concerns / too expensive",
+          "response": "Compare to hiring even one mid-level SEO specialist ($80-120K annually plus benefits) or agency retainer ($3-10K+ monthly). Reach delivers enterprise-level capabilities across both SEO and GEO at a fraction of either cost, with demonstrable ROI through lead and revenue tracking."
+        }
+      ],
+      "locked": false
+    },
+    "mostProfitableSegments": {
+      "value": [
+        {
+          "segment": "Series A-B B2B SaaS Companies",
+          "rationale": "High willingness to pay for growth tools, clear ROI metrics, strong need for scalable organic channels, typically $500-5M ARR range with marketing budget but limited headcount, understands value of automation, longer retention as core growth channel"
+        },
+        {
+          "segment": "Digital Marketing Agencies (10-100 employees)",
+          "rationale": "Multiple clients mean multiple subscriptions or seats, white-label opportunity, strong motivation to offer cutting-edge services for differentiation, can charge premium to clients while paying wholesale, built-in expansion as agency grows client base"
+        },
+        {
+          "segment": "E-commerce Brands ($5-50M revenue)",
+          "rationale": "High customer acquisition costs create strong ROI case, direct revenue attribution from organic traffic, significant existing content to optimize, competitive pressure to maintain visibility, seasonal traffic patterns create urgency"
+        },
+        {
+          "segment": "Enterprise Marketing Teams (500+ employees)",
+          "rationale": "Larger contract values, longer sales cycles but higher LTV, budget for enterprise features and support, multiple team seats and use cases, strategic partnerships possible, strong case study potential"
+        },
+        {
+          "segment": "Tech-Forward Professional Services",
+          "rationale": "High-value queries and conversions, understanding of AI's impact on their industry, strong content foundation to optimize, personal brand and thought leadership focus, premium pricing tolerance"
+        },
+        {
+          "segment": "Content Publishers & Media Companies",
+          "rationale": "Search traffic is existential concern, large content libraries to optimize, clear traffic and revenue metrics, AI search threat is immediate and visible, willing to invest to protect traffic"
+        },
+        {
+          "segment": "Fast-Growing Startups (Post-Funding)",
+          "rationale": "Funding creates buying capacity, urgency to deploy capital for growth, building foundational growth channels, early adoption mindset, potential for rapid expansion, strong case study and advocacy potential"
+        },
+        {
+          "segment": "International/Multi-Market Businesses",
+          "rationale": "Complex optimization needs across markets and languages, higher contract values for multi-region support, difficulty hiring specialists for each market, clear scale advantages of automation"
+        }
+      ],
+      "locked": false
+    }
+  }
+}

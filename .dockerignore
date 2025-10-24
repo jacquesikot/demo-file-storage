@@ -1,0 +1,57 @@
+# Node modules
+**/node_modules
+**/npm-debug.log
+
+# Python
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.Python
+**/*.so
+**/*.egg
+**/*.egg-info
+**/dist
+**/build
+
+# Environment
+.env
+.env.local
+.env.*.local
+**/.venv
+**/venv
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+Dockerfile*
+docker-compose*.yml
+
+# Logs
+**/logs/*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Frontend build
+frontend/dist
+frontend/build
+
+# Documentation
+*.md
+!README.md
+
+# Test files
+**/test-*.py
+**/test-*.js

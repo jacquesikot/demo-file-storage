@@ -1,0 +1,60 @@
+# Multi-stage build for efficient image
+FROM python:3.11-slim as base
+
+# Install system dependencies including Node.js
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    nodejs \
+    npm \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Claude Code CLI via npm
+RUN npm install -g @anthropic-ai/claude-code
+
+# Set working directory
+WORKDIR /app
+
+# Copy backend requirements
+COPY backend/requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy backend application
+COPY backend/ ./backend/
+
+# Create necessary directories with proper permissions
+RUN mkdir -p \
+    backend/brand-data \
+    backend/brief-outputs \
+    backend/draft-outputs \
+    backend/instructions \
+    backend/logs \
+    backend/data
+
+# Create a non-root user to run the application
+RUN useradd -m -u 1000 appuser && \
+    chown -R appuser:appuser /app
+
+# Create Claude Code settings file to allow all tools without prompts
+RUN mkdir -p /app/.claude && \
+    echo '{"permissions": {"allow": ["Bash(*)", "Read(*)", "Write(*)", "Edit(*)", "Glob(*)", "Grep(*)", "WebFetch(*)", "WebSearch(*)", "Task(*)", "Skill(*)", "TodoWrite(*)", "NotebookEdit(*)", "ExitPlanMode(*)", "BashOutput(*)", "KillShell(*)", "SlashCommand(*)"]}}' > /app/.claude/settings.local.json && \
+    chown -R appuser:appuser /app/.claude
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Switch to non-root user
+USER appuser
+
+# Expose port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/ || exit 1
+
+# Run the application
+CMD ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "8000"]

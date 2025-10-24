@@ -1,0 +1,801 @@
+{
+  "brandInfo": {
+    "cdn": {
+      "value": "",
+      "locked": false
+    },
+    "cms": {
+      "value": "WordPress",
+      "locked": false
+    },
+    "keyHubs": {
+      "value": [
+        "USA: Anchorage, Chicago, Denver, Las Vegas, Los Angeles, Miami, New York, Phoenix, Salt Lake City, San Diego, San Francisco, Seattle",
+        "Canada: Calgary, Toronto, Vancouver",
+        "Portugal: Lisbon, Porto, Faro",
+        "Spain: Barcelona, Bilbao, Madrid, Málaga, Palma de Mallorca, Seville, Valencia",
+        "France: Bordeaux, Lyon, Marseille, Nantes, Nice, Paris, Paris Orly, Toulouse",
+        "Italy: Bari, Bologna, Catania, Florence, Milan (Malpensa), Milan Bergamo, Naples, Olbia, Rome, Venice",
+        "Germany: Berlin, Düsseldorf–Essen, Frankfurt, Hamburg, Munich, Stuttgart",
+        "Switzerland: Geneva, Zurich",
+        "Netherlands: Amsterdam",
+        "Austria: Vienna",
+        "Belgium: Brussels",
+        "Sweden: Malmö, Stockholm",
+        "Norway: Bergen, Oslo, Tromsø, Trondheim",
+        "Finland: Helsinki",
+        "Iceland: Keflavík Airport, Reykjavík",
+        "Croatia: Split",
+        "Greece: Athens",
+        "United Kingdom: Bristol, London, Manchester, Edinburgh",
+        "Ireland: Dublin",
+        "Australia: Brisbane, Cairns, Darwin, Hobart, Melbourne, Perth, Sydney",
+        "New Zealand: Auckland, Christchurch, Queenstown"
+      ],
+      "locked": false
+    },
+    "brandAssets": {
+      "value": ["https://brandfetch.com/indiecampers.com"],
+      "locked": false
+    },
+    "companyName": {
+      "value": "Indie Campers",
+      "locked": false
+    },
+    "companyDomain": {
+      "value": "https://indiecampers.com",
+      "locked": false
+    },
+    "otherProfiles": {
+      "value": [
+        "https://blog.indiecampers.com/",
+        "https://help.indiecampers.com/",
+        "https://brandfetch.com/indiecampers.com"
+      ],
+      "locked": false
+    },
+    "analyticsTools": {
+      "value": ["Google Analytics", "Google Optimise", "Oribi Analytics", "Yahoo Web Analytics", "Autopilot", "Engage"],
+      "locked": false
+    },
+    "websiteBuiltIn": {
+      "value": "Ruby on Rails monolith (legacy), migrating to AWS cloud infrastructure with modern CI/CD processes",
+      "locked": false
+    },
+    "additionalNotes": {
+      "value": "Technology stack includes Snowflake for Data Lake/Warehouse, kleene.ai for data pipeline, and Metabase for reporting. Uses OpenX for advertising. Over 20,921 reviews on Trustpilot with mixed feedback - praised for friendly staff, easy booking, and vehicle quality, but some concerns about customer service coordination and unexpected charges.",
+      "locked": false
+    },
+    "additionalTools": {
+      "value": [
+        "Pipedrive (CRM)",
+        "Snowflake (Data Warehouse)",
+        "kleene.ai (Data Pipeline)",
+        "Metabase (Reporting)",
+        "OpenX (Advertising)",
+        "AWS (Cloud Infrastructure)"
+      ],
+      "locked": false
+    },
+    "brandDescription": {
+      "value": "Indie Campers is a leading global provider of campervan and RV rentals, offering travelers the flexibility to explore North America, Europe, and Oceania on their own terms. With a fleet of over 7,000 vehicles and more than 70 pick-up and drop-off locations, the company makes road trips accessible and convenient for adventurers of all experience levels. Founded in 2013, its mission is to democratize road trips by enhancing travel experiences and lowering prices for millions of travelers worldwide. Operating across three continents, Indie Campers is currently undergoing a significant transformation to set new industry standards for safety, transparency, and customer service.",
+      "locked": false
+    },
+    "brandPointOfView": {
+      "value": "Indie Campers believes in providing the freedom of movement and instilling the pleasure of road travel, inspiring and connecting travelers worldwide. The company is anchored in accessibility, reliability, and innovation, with the promise that 'your journey is our priority.' They are committed to keeping road travel accessible and effortless for all, democratizing the road trip experience through flexible, tech-enabled travel solutions.",
+      "locked": false
+    },
+    "industryVertical": {
+      "value": "Leisure, Travel & Tourism",
+      "locked": false
+    },
+    "companySubDomains": {
+      "value": ["blog.indiecampers.com", "help.indiecampers.com", "indiecampers.co.uk"],
+      "locked": false
+    },
+    "socialMediaProfiles": {
+      "value": {
+        "x": "https://twitter.com/indiecampers",
+        "reddit": [],
+        "tiktok": "",
+        "youtube": "",
+        "linkedin": "https://www.linkedin.com/company/indie-campers",
+        "instagram": "https://www.instagram.com/indie_campers/"
+      },
+      "locked": false
+    }
+  },
+  "competitors": {
+    "competitors": {
+      "value": [
+        {
+          "name": "Outdoorsy",
+          "description": "Major peer-to-peer RV rental marketplace with 923.8K monthly visits (top competitor by traffic)",
+          "type": "Peer-to-peer platform"
+        },
+        {
+          "name": "RVshare",
+          "description": "Leading peer-to-peer RV rental platform in North America",
+          "type": "Peer-to-peer platform"
+        },
+        {
+          "name": "roadsurfer",
+          "description": "Fast-growing campervan rental company operating thousands of campervans across Europe and the U.S.",
+          "type": "Direct fleet operator"
+        },
+        {
+          "name": "McRent",
+          "description": "One of Europe's biggest rental specialists, known for large, hotel-style motorhomes",
+          "type": "Direct fleet operator"
+        },
+        {
+          "name": "Bunk Campers",
+          "description": "Leading supplier of campervans across the United Kingdom with nine vehicle types available",
+          "type": "Direct fleet operator"
+        },
+        {
+          "name": "Escape Campervans",
+          "description": "Budget-friendly campervan rental company with distinctive painted vans",
+          "type": "Direct fleet operator"
+        },
+        {
+          "name": "Cruise America",
+          "description": "Largest RV rental company in North America with extensive coverage",
+          "type": "Direct fleet operator"
+        },
+        {
+          "name": "Apollo Motorhome",
+          "description": "Major motorhome rental company operating in multiple countries",
+          "type": "Direct fleet operator"
+        },
+        {
+          "name": "Yescapa",
+          "description": "Peer-to-peer platform for motorhomes and campervans, founded 2012 in France",
+          "type": "Peer-to-peer platform"
+        },
+        {
+          "name": "MyCamper",
+          "description": "Platform focused on rental of private campers and motorhomes",
+          "type": "Peer-to-peer platform"
+        },
+        {
+          "name": "Goboony",
+          "description": "Platform for renting private motorhomes, offering greener travel alternatives",
+          "type": "Peer-to-peer platform"
+        },
+        {
+          "name": "Motorhome Republic",
+          "description": "Aggregator platform with 136.5K monthly visits, accessing 200+ suppliers in 45 countries",
+          "type": "Aggregator"
+        },
+        {
+          "name": "Campanda",
+          "description": "Global RV rental booking platform with wide supplier network",
+          "type": "Aggregator"
+        },
+        {
+          "name": "Spaceships Rentals",
+          "description": "Affordable campervan rentals in UK, Ireland, and Europe",
+          "type": "Direct fleet operator"
+        },
+        {
+          "name": "Siesta Campers",
+          "description": "Campervan rental company specializing in Portugal and Spain",
+          "type": "Direct fleet operator"
+        },
+        {
+          "name": "FreewayCamper",
+          "description": "Direct competitor in the European campervan rental market",
+          "type": "Direct fleet operator"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "targetAudience": {
+    "proofPoints": {
+      "value": [
+        "Over 7,000 vehicles in fleet",
+        "70+ locations across three continents",
+        "Over 500,000 nights rented",
+        "100,000+ happy travelers from 130+ countries",
+        "20,921+ customer reviews on Trustpilot",
+        "€62.5 million in funding raised (€35M in July 2024 + €27.5M extension in May 2025)",
+        "Unlimited mileage included in rentals",
+        "24/7 roadside assistance and customer support",
+        "Largest selection of RVs and campervans with broadest geographical coverage"
+      ],
+      "locked": false
+    },
+    "targetMarkets": {
+      "value": [
+        "Europe (primary market - Portugal, Spain, France, Italy, Germany, UK, Nordic countries)",
+        "North America (USA and Canada - expanding market)",
+        "Oceania (Australia and New Zealand)"
+      ],
+      "locked": false
+    },
+    "customerPersonas": {
+      "value": [
+        {
+          "name": "Young Explorers",
+          "age": "Under 35 years old",
+          "groupSize": "Groups of 2",
+          "tripDuration": "Short trips",
+          "experience": "Low experience campervanning",
+          "characteristics": "Trendy, looking for unique experiences",
+          "valueProposition": "Price and freedom",
+          "channels": "Google, Facebook, Youtube, Bing, Instagram, TikTok, Yescapa, Outdoorsy"
+        },
+        {
+          "name": "Family Adventurers",
+          "age": "36-59 years old",
+          "groupSize": "Groups of 3-4",
+          "tripDuration": "1-2 weeks trips",
+          "experience": "Mid-high experience campervanning",
+          "characteristics": "Value family time, wellness and nature connection",
+          "valueProposition": "Category awareness via benefits for families, reliability and safety",
+          "channels": "Google, Facebook, Youtube, Bing, Instagram, TikTok, Yescapa, Outdoorsy"
+        },
+        {
+          "name": "Seasoned Travelers",
+          "age": "Over 60 years old",
+          "groupSize": "Groups of 2",
+          "tripDuration": "Longer trips",
+          "experience": "High experience campervanning",
+          "characteristics": "Enjoying comfort and long relaxed trips",
+          "valueProposition": "IC's RTBs and competitive superiorities",
+          "channels": "Offline agencies: Tui, Dertour"
+        }
+      ],
+      "locked": false
+    },
+    "targetCustomerSegments": {
+      "value": [
+        "Adventure enthusiasts seeking unique travel experiences",
+        "Families looking for flexible and personalized travel options",
+        "Digital nomads and remote workers combining work and travel",
+        "First-time campervan renters seeking accessible entry into vanlife",
+        "Experienced RV travelers looking for global coverage and flexibility",
+        "Budget-conscious travelers seeking affordable road trip options",
+        "Groups and friends planning multi-day adventures",
+        "Travelers from 130+ countries seeking authentic local experiences"
+      ],
+      "locked": false
+    },
+    "targetAudienceDescription": {
+      "value": "Indie Campers serves a diverse community of travelers from over 130 countries who value freedom, flexibility, and authentic travel experiences. The primary audience includes adventure enthusiasts, families, and groups ranging from first-time campervan renters to seasoned travelers. The sweet spot comprises three main personas: Young Explorers (under 35) seeking unique, budget-friendly experiences; Family Adventurers (36-59) prioritizing safety and reliability for quality family time; and Seasoned Travelers (60+) looking for comfort and extended journeys. The audience is tech-savvy, values convenience through digital booking, and seeks the freedom to explore at their own pace with start-anywhere, end-anywhere flexibility.",
+      "locked": false
+    }
+  },
+  "contentStrategy": {
+    "contentPillars": {
+      "value": [
+        {
+          "pillar": "Destination Guides",
+          "description": "Comprehensive guides covering best routes, sights, and overnight spots across regions. Features ready-made road trips and local tips with vivid, evocative descriptions.",
+          "topics": [
+            "Country guides",
+            "Regional road trips",
+            "City explorations",
+            "Scenic routes",
+            "Hidden gems",
+            "Seasonal destinations"
+          ]
+        },
+        {
+          "pillar": "How-to Guides",
+          "description": "Practical advice and tutorials for campervan travel, covering everything from first-time renter tips to advanced travel strategies.",
+          "topics": [
+            "Road trip tips for beginners",
+            "Campervan driving guides",
+            "Packing essentials",
+            "Trip planning strategies",
+            "Safety and regulations",
+            "Camping etiquette"
+          ]
+        },
+        {
+          "pillar": "Why Indie Campers",
+          "description": "Content highlighting the benefits, features, and unique value propositions of choosing Indie Campers for road trip adventures.",
+          "topics": [
+            "Service features",
+            "Vehicle fleet showcase",
+            "Customer testimonials",
+            "Flexibility benefits",
+            "Global coverage advantages"
+          ]
+        },
+        {
+          "pillar": "Trip Planning",
+          "description": "Resources and tools to help travelers plan their perfect road trip, from itinerary building to budgeting.",
+          "topics": [
+            "Itinerary planning",
+            "Budget calculators",
+            "Best times to visit",
+            "Route planning",
+            "Accommodation tips",
+            "Fuel planning"
+          ]
+        },
+        {
+          "pillar": "Vehicles & Equipment",
+          "description": "Information about different vehicle types, features, and equipment available for rental.",
+          "topics": [
+            "Vehicle comparisons",
+            "Equipment guides",
+            "Add-ons and extras",
+            "Vehicle features",
+            "Maintenance tips"
+          ]
+        },
+        {
+          "pillar": "Inspiration & Stories",
+          "description": "Real-life stories, travel inspiration, and customer experiences to motivate and engage potential travelers.",
+          "topics": [
+            "Customer stories",
+            "Travel inspiration",
+            "Photography showcases",
+            "Adventure narratives",
+            "Cultural experiences"
+          ]
+        },
+        {
+          "pillar": "Indie News",
+          "description": "Company updates, new features, expansion announcements, and industry news.",
+          "topics": ["Company news", "New locations", "Fleet updates", "Partnership announcements", "Feature launches"]
+        },
+        {
+          "pillar": "Become a Host",
+          "description": "Information for vehicle owners interested in listing their RVs/campervans on the Indie Campers platform.",
+          "topics": ["Host benefits", "Listing process", "Earnings potential", "Host guidelines", "Success stories"]
+        },
+        {
+          "pillar": "Trending",
+          "description": "Current trends in campervan travel, vanlife culture, and road trip experiences.",
+          "topics": [
+            "Vanlife trends",
+            "Travel trends",
+            "Popular destinations",
+            "Seasonal highlights",
+            "Remote work travel"
+          ]
+        }
+      ],
+      "locked": false
+    },
+    "sourcesToRepurpose": {
+      "value": [
+        "Customer testimonials and reviews from Trustpilot (20,921+ reviews)",
+        "Social media content from Instagram (@indie_campers - 203K followers)",
+        "Facebook community content (155,179+ likes)",
+        "User-generated content from travelers in 130+ countries",
+        "Help Center articles and FAQs",
+        "Travel guides and destination content from existing blog",
+        "Customer success stories and road trip narratives",
+        "Behind-the-scenes company content from LinkedIn",
+        "Seasonal travel tips and destination highlights",
+        "Vehicle showcases and feature demonstrations"
+      ],
+      "locked": false
+    }
+  },
+  "writingGuidelines": {
+    "guidelines": {
+      "value": [
+        {
+          "id": "1760347502056",
+          "do": "Avoid difficult/uncommon vocabulary (e.g., nimble campervans). Use simpler, conversational expressions. Avoid overuse of adjectives: Too many 'adjectivized' phrases (e.g., 'Spring brings wildflowers and mild temperatures…'). Prefer shorter, clearer phrasing. Add more connectors to sound more natural (e.g., also, however, as a result, first/then/finally). English should be easy to read for someone at a high school level. Use human, natural sounding language.",
+          "dont": "Don't use overly corporate buzzwords or superlatives like 'the best in the universe'. Avoid dashes (–). Use commas or full sentences. Don't use bullet points or lists unless absolutely necessary; use paragraphs for a natural flow."
+        },
+        {
+          "id": "article-length",
+          "do": "Articles must be between 3 and 6 minutes of reading time. Write with detail and depth (avoid thin content). Expand each paragraph (avoid being too tight). Use at least three or four fun entrances or hooks throughout the article to keep readers engaged.",
+          "dont": "Don't write promotional language or sales pitches. Avoid being too brief or superficial."
+        },
+        {
+          "id": "structure",
+          "do": "Always structure the text with a main title and subheadings, dividing into several paragraphs for readability. Write like a journal or travel blog with stories, tips, or experiences.",
+          "dont": "Don't write in a stiff, formal manner. Avoid lack of structure or poor organization."
+        },
+        {
+          "id": "usps-integration",
+          "do": "Mention Indie Campers' USPs and PoDs when relevant: Widest vehicle offer (from rugged 4x4s to Class A RVs), Global coverage with 80+ locations, Unlimited mileage included, Extras and add-ons to customize the trip (bed kit, surfboards, BBQ kits, chairs and table for outside, etc.). Phrase obligations, rules, or laws positively (e.g., instead of 'Don't forget to…', say 'It's a great idea to…').",
+          "dont": "Don't mention hidden fees or extra charges unless explicitly clarifying them. Avoid using 'luxury' unless context supports it."
+        },
+        {
+          "id": "tone-consistency",
+          "do": "Keep it enthusiastic, especially at the beginning of the article and whenever mentioning obligations, rules, or laws. Write in a cool, engaging blog style that feels authentic and inspiring. Aim for a persuasive travel guide style so it feels like an inspiring blog post from a reputable publication.",
+          "dont": "Don't use any negative sentences or negative sentiment. Avoid sounding like an advertisement."
+        }
+      ],
+      "locked": false
+    },
+    "toneOfVoice": {
+      "value": [
+        "Adventurous, inviting, and informative with an enthusiastic and engaging personality that inspires readers to explore and embrace new experiences",
+        "Fun, witty, and positive - avoid any negative sentences or negative sentiment",
+        "Communicates with vivid imagery, direct engagement, and clear explanations to guide and excite readers",
+        "Approachable and trustworthy - like a well-traveled explorer who's also your helpful friend",
+        "Inspirational and modern - someone who's curious, energetic, and spontaneous but grounded in responsibility",
+        "Speaks with warmth and encouragement, always offering practical tips and insider knowledge",
+        "Bold enough to go off the beaten path, but also dependable and organized behind the scenes",
+        "Uses lively and descriptive language to paint vivid pictures",
+        "Directly addresses the reader to create engagement",
+        "Includes clear and concise explanations",
+        "Encourages exploration and curiosity through enthusiastic language",
+        "Uses short, punchy sentences to maintain energy and momentum",
+        "Employs paragraphs for flow rather than lists and bullet points for easy digestibility"
+      ],
+      "locked": false
+    },
+    "authorPersona": {
+      "value": "Indie Campers as a person is like a well-traveled explorer who's also your helpful friend. They're someone who's curious, energetic, and spontaneous—but grounded in responsibility. They speak with warmth and encouragement, always offering practical tips and insider knowledge. They're bold enough to go off the beaten path, but also dependable and organized behind the scenes. This persona embodies values of enthusiasm, clarity, engagement, and inspiration.",
+      "locked": false
+    },
+    "examplePhrases": {
+      "value": [
+        "Your 20s are all about freedom, adventure, and making memories. The best way to experience Australia? An unforgettable Australia campervan adventure!",
+        "This is Australia's classic drive. The Great Ocean Road is famous worldwide, and for good reason. Start in Torquay, the home of Aussie surf culture, then chill in Lorne's cafés or swim in rock pools at Point Addis.",
+        "Imagine starting your day with mountain views instead of office walls. More and more people are embracing the freedom of remote work on the road, mixing the adventure of an RV trip with the freedom of a flexible job.",
+        "Australia was made for road trips. Every mile is a new story waiting to happen. Stop at local bakeries, jump in swimming holes, take random detours, and chat with locals, you will always find something unexpected.",
+        "Red rocks glow, slot canyons twist, and clear desert air turns every sunset into a watercolor painting.",
+        "Island roads were made for slow travel. They follow the water, slip through small towns and loop back to the place you began.",
+        "Aim for three to four hours on the road each travel day.",
+        "Sketch out your must see stops and reliable fuel points, but leave room to linger around."
+      ],
+      "locked": false
+    },
+    "inspirationArticles": {
+      "value": [
+        "https://blog.indiecampers.com/",
+        "https://indiecampers.com/blog/road-trip-tips",
+        "https://blog.indiecampers.com/7-essential-campervan-tips-for-first-time/",
+        "https://blog.indiecampers.com/category/destinations-en/",
+        "https://indiecampers.com/blog/travelers/how-to-guides-2/"
+      ],
+      "locked": false
+    },
+    "vocabularyPreferences": {
+      "value": [
+        "Preferred/encouraged terms: 'Road trip', 'adventure', 'journey', 'Flexible', 'seamless', 'freedom', 'discover', 'explore', 'Personalized', 'local', 'authentic', 'Start anywhere, end anywhere', 'Digital experience', 'mobile booking', 'easy pick-up/drop-off', 'campervan', 'RV', 'motorhome', 'vanlife'",
+        "Terms/phrases to avoid (or use carefully): 'Luxury' (unless context supports it) — the brand leans more toward accessible exploration, 'Mission critical' or overly corporate buzzwords, 'Hidden fees', 'extra charges' (unless you're explicitly clarifying them), Overuse of superlatives ('the best in the universe'), Difficult or uncommon vocabulary, Negative phrasing or sentiment"
+      ],
+      "locked": false
+    }
+  },
+  "companyPositioning": {
+    "useCases": {
+      "value": [
+        {
+          "useCase": "Weekend Getaways",
+          "description": "Short 2-4 day trips for couples or small groups seeking quick escapes and nature experiences"
+        },
+        {
+          "useCase": "Family Vacations",
+          "description": "1-2 week family road trips with flexible itineraries and comfortable accommodation for 3-4 people"
+        },
+        {
+          "useCase": "Extended Road Trips",
+          "description": "Long-term travel for retirees and seasoned travelers exploring multiple destinations over weeks or months"
+        },
+        {
+          "useCase": "Digital Nomad Travel",
+          "description": "Remote work on the road, combining professional responsibilities with travel freedom and changing scenery"
+        },
+        {
+          "useCase": "First-Time Campervan Experience",
+          "description": "Introduction to vanlife for novices with easy booking, support, and accessible vehicles"
+        },
+        {
+          "useCase": "International Road Trips",
+          "description": "Cross-border travel across Europe or multi-state journeys in North America with start-anywhere, end-anywhere flexibility"
+        },
+        {
+          "useCase": "Group Adventures",
+          "description": "Friend groups or multi-family trips with multiple vehicles or larger RV options"
+        },
+        {
+          "useCase": "Seasonal Exploration",
+          "description": "Destination-specific trips like summer coastal tours, autumn foliage viewing, or winter skiing adventures"
+        },
+        {
+          "useCase": "Vehicle Hosting",
+          "description": "RV owners listing their vehicles on the platform to generate passive income when not in use"
+        },
+        {
+          "useCase": "Long-term Subscriptions",
+          "description": "Extended rental periods for lifestyle changes, gap years, or temporary living situations"
+        }
+      ],
+      "locked": false
+    },
+    "marketCategories": {
+      "value": [
+        "RV Rental Marketplace",
+        "Campervan Rental",
+        "Motorhome Rental",
+        "Travel & Tourism Technology",
+        "Peer-to-Peer Vehicle Sharing",
+        "Road Trip Planning",
+        "Outdoor Recreation",
+        "Vanlife Enablement",
+        "Vehicle Subscription Services",
+        "RV Sales (Secondary)"
+      ],
+      "locked": false
+    },
+    "coreProblemsSolved": {
+      "value": [
+        {
+          "problem": "Limited Flexibility in Traditional Travel",
+          "solution": "Provides start-anywhere, end-anywhere flexibility with 70+ locations globally, eliminating the constraint of returning to origin point"
+        },
+        {
+          "problem": "High Cost of RV Ownership",
+          "solution": "Offers rental and subscription models that provide RV experiences without the financial burden of ownership, maintenance, and storage"
+        },
+        {
+          "problem": "Complex Booking and Planning",
+          "solution": "Delivers fully digital booking experience with 24/7 support, transparent pricing, and easy cancellation policies"
+        },
+        {
+          "problem": "Limited Vehicle Selection",
+          "solution": "Provides the widest portfolio of RVs and campervans (7,000+ vehicles) from rugged 4x4s to Class A RVs, accommodating all traveler types and preferences"
+        },
+        {
+          "problem": "Geographic Limitations",
+          "solution": "Operates as the only truly global player across Europe, North America, and Oceania, enabling international and cross-border travel"
+        },
+        {
+          "problem": "Lack of Travel Confidence for First-Timers",
+          "solution": "Offers comprehensive support, road trip guides, 24/7 roadside assistance, and beginner-friendly vehicles with unlimited mileage"
+        },
+        {
+          "problem": "Underutilized RV Assets",
+          "solution": "Creates a marketplace where vehicle owners can monetize their RVs when not in use through the hosting program"
+        },
+        {
+          "problem": "Hidden Fees and Unclear Pricing",
+          "solution": "Provides transparent breakdown of costs including preparation fee, service fee, and optional extras with clear refundable deposit structure"
+        },
+        {
+          "problem": "Trip Customization Challenges",
+          "solution": "Offers extensive add-ons and extras (bed kits, surfboards, BBQ kits, outdoor furniture) to personalize travel experiences"
+        },
+        {
+          "problem": "Inconsistent Service Quality",
+          "solution": "Maintains high standards through owned fleet management while undergoing transformation to set new industry standards for safety, transparency, and customer service"
+        }
+      ],
+      "locked": false
+    },
+    "referenceCustomers": {
+      "value": [
+        {
+          "type": "Volume Metrics",
+          "description": "100,000+ happy travelers from 130+ countries with 500,000+ nights rented"
+        },
+        {
+          "type": "Customer Reviews",
+          "description": "20,921+ reviews on Trustpilot with testimonials praising friendly staff, easy booking process, and vehicle quality"
+        },
+        {
+          "type": "Social Proof",
+          "description": "203K Instagram followers, 155,179+ Facebook likes, 22,974 LinkedIn followers demonstrating strong community engagement"
+        },
+        {
+          "type": "Geographic Diversity",
+          "description": "Travelers from over 130 countries across three continents (Europe, North America, Oceania)"
+        },
+        {
+          "type": "Positive Testimonials",
+          "description": "Customers appreciate friendly and supportive site teams, straightforward booking process, clean and modern vehicles, and overall travel experience quality"
+        }
+      ],
+      "locked": false
+    },
+    "productsAndServices": {
+      "value": [
+        {
+          "product": "Short-term RV & Campervan Rentals",
+          "description": "Core offering of daily/weekly rental of 7,000+ recreational vehicles including campervans, motorhomes, and RVs across 70+ locations. Includes unlimited mileage, preparation fee, and 10% service fee. Refundable deposits range €500-€2,000 depending on protection plan.",
+          "category": "Primary Service"
+        },
+        {
+          "product": "Long-term Subscriptions",
+          "description": "Extended rental periods for travelers seeking lifestyle changes, gap years, or temporary living solutions with flexible commitment terms",
+          "category": "Primary Service"
+        },
+        {
+          "product": "Marketplace Platform",
+          "description": "Hybrid model allowing private vehicle owners and professional hosts to list their RVs on the Indie Campers platform, expanding inventory beyond owned fleet",
+          "category": "Primary Service"
+        },
+        {
+          "product": "RV Sales",
+          "description": "Developing business unit focused on selling high-quality vehicles including refurbished and de-fleeted units across Europe, North America, and Oceania",
+          "category": "Secondary Service"
+        },
+        {
+          "product": "Trip Customization Add-ons",
+          "description": "Extensive extras including bed kits, surfboards, BBQ kits, outdoor chairs and tables, distance packages, and protection plans to personalize adventures",
+          "category": "Ancillary Service"
+        },
+        {
+          "product": "24/7 Roadside Assistance",
+          "description": "Around-the-clock customer support and emergency roadside assistance throughout rental period",
+          "category": "Support Service"
+        },
+        {
+          "product": "Digital Booking Platform",
+          "description": "Fully digital experience with mobile booking, flexible cancellation policies, and start-anywhere/end-anywhere options across global network",
+          "category": "Platform Feature"
+        },
+        {
+          "product": "Travel Resources & Guides",
+          "description": "Comprehensive blog with destination guides, how-to content, trip planning tools, and inspiration stories across blog.indiecampers.com",
+          "category": "Content Service"
+        },
+        {
+          "product": "Host Program",
+          "description": "Platform enabling RV owners to list vehicles for rent, generating passive income with remuneration calculations and hosting support",
+          "category": "Platform Feature"
+        }
+      ],
+      "locked": false
+    },
+    "uniqueSellingPropositions": {
+      "value": [
+        {
+          "usp": "Only Truly Global Player",
+          "description": "The only campervan rental company operating across three continents (Europe, North America, Oceania) with 70+ locations, able to think globally and act locally"
+        },
+        {
+          "usp": "Widest Vehicle Portfolio",
+          "description": "Largest selection of 7,000+ RVs and campervans ranging from rugged 4x4s to Class A motorhomes, accommodating all traveler types and group sizes"
+        },
+        {
+          "usp": "Broadest Geographical Coverage",
+          "description": "Most extensive network of pick-up and drop-off locations with start-anywhere, end-anywhere flexibility across multiple countries and continents"
+        },
+        {
+          "usp": "Unlimited Mileage Included",
+          "description": "No distance restrictions or per-mile charges, enabling spontaneous detours and extended exploration without additional costs"
+        },
+        {
+          "usp": "Fully Digital Experience",
+          "description": "Seamless mobile booking, transparent pricing breakdowns, and digital-first platform with 24/7 customer support and roadside assistance"
+        },
+        {
+          "usp": "Hybrid Fleet + Marketplace Model",
+          "description": "Unique combination of owned fleet quality control with marketplace flexibility, expanding availability beyond company-owned vehicles"
+        },
+        {
+          "usp": "Democratized Road Trips",
+          "description": "Mission-driven focus on making road trips accessible and affordable for all, lowering barriers to entry for first-time campervan renters"
+        },
+        {
+          "usp": "Extensive Customization Options",
+          "description": "Wide range of add-ons and extras (surfboards, BBQ kits, bed kits, outdoor furniture) allowing travelers to personalize their adventure"
+        },
+        {
+          "usp": "Comprehensive Travel Resources",
+          "description": "Expert destination guides, how-to content, and trip planning tools integrated with rental service for end-to-end travel support"
+        },
+        {
+          "usp": "Flexible Cancellation & Policies",
+          "description": "Customer-friendly cancellation policies and transparent terms providing peace of mind and booking confidence"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "businessSalesInsights": {
+    "ahaMoment": {
+      "value": "The aha moment for Indie Campers customers typically occurs when they realize the combination of freedom, flexibility, and accessibility they gain: being able to wake up in a new location every morning with mountain or ocean views, having the ability to change plans spontaneously without hotel bookings or rigid itineraries, and discovering that professional campervan rental is both more affordable and convenient than they expected. For first-timers, it's often the realization that they can experience vanlife without the commitment of purchasing and maintaining an RV. For families, it's understanding they can have quality bonding time in nature without sacrificing comfort. The start-anywhere, end-anywhere flexibility across 70+ locations eliminates the traditional constraint of circular routes, making even cross-border European adventures or multi-state North American road trips seamlessly achievable.",
+      "locked": false
+    },
+    "keyPurchaseTriggers": {
+      "value": [
+        "Desire for unique travel experiences and adventure beyond traditional hotels",
+        "Need for flexible, spontaneous travel without rigid itineraries or advance hotel bookings",
+        "Cost-effectiveness compared to multiple hotel nights, especially for families or groups",
+        "Life transitions: gap years, sabbaticals, retirement, remote work adoption",
+        "Seasonal inspiration: summer vacations, autumn foliage, winter ski trips",
+        "Social media influence: Instagram vanlife content and travel inspiration",
+        "First-time curiosity about campervan travel with low-risk trial opportunity",
+        "Geographic coverage enabling multi-country European tours or cross-continental North American trips",
+        "Unlimited mileage removing fear of distance-based charges",
+        "Peer recommendations and positive reviews (100,000+ travelers, 20,921+ Trustpilot reviews)",
+        "COVID-19 aftermath: continued preference for private, controlled accommodation over shared spaces",
+        "Remote work enablement: ability to work from anywhere while traveling",
+        "Family bonding: quality time in nature away from screens and daily routines",
+        "Bucket list destinations: Great Ocean Road, European road trips, National Parks tours"
+      ],
+      "locked": false
+    },
+    "commonSalesObjections": {
+      "value": [
+        {
+          "objection": "I've never driven a campervan before",
+          "response": "Addresses through beginner-friendly content, 24/7 roadside assistance, comprehensive how-to guides, and friendly staff support at pick-up locations. Vehicles are user-friendly with modern functionalities."
+        },
+        {
+          "objection": "It's too expensive compared to budget hotels",
+          "response": "Transparent pricing breakdown showing value: accommodation + transportation + unlimited mileage combined. No hidden fees when clearly explained. Flexibility to cook own meals reduces dining costs."
+        },
+        {
+          "objection": "What about hidden fees and insurance?",
+          "response": "Clear cost breakdown: Daily Rental + Preparation Fee + 10% Service Fee + Optional Extras. Refundable deposit €500-€2,000. Transparent protection plan options."
+        },
+        {
+          "objection": "What if something breaks down?",
+          "response": "24/7 roadside assistance and customer support. Modern, well-maintained fleet. Preparation fee covers pre-trip vehicle inspection and maintenance."
+        },
+        {
+          "objection": "I need to return to my starting point",
+          "response": "Start-anywhere, end-anywhere flexibility across 70+ locations eliminates circular route requirement. Enables true cross-border and multi-state travel."
+        },
+        {
+          "objection": "Limited vehicle availability in my destination",
+          "response": "Largest fleet (7,000+ vehicles) with broadest geographical coverage. Hybrid marketplace model expands availability beyond owned fleet."
+        },
+        {
+          "objection": "I'm concerned about cleanliness and vehicle condition",
+          "response": "Preparation fee covers thorough cleaning and facility preparation. Customer reviews praise vehicle cleanliness and quality. Company undergoing transformation to set new industry standards."
+        },
+        {
+          "objection": "What if my plans change?",
+          "response": "Flexible cancellation policies provide peace of mind. Digital booking platform makes modifications easy."
+        },
+        {
+          "objection": "I need specific equipment or add-ons",
+          "response": "Extensive customization options: bed kits, surfboards, BBQ kits, outdoor furniture, distance packages. Widest vehicle portfolio from 4x4s to Class A RVs."
+        },
+        {
+          "objection": "Customer service concerns from negative reviews",
+          "response": "Company actively transforming to set new standards for safety, transparency, and service. 24/7 support availability. Site teams praised for friendliness and responsiveness in many positive reviews."
+        }
+      ],
+      "locked": false
+    },
+    "mostProfitableSegments": {
+      "value": [
+        {
+          "segment": "Family Adventurers (36-59 years)",
+          "rationale": "Mid-high experience level, 1-2 week trips generate substantial rental revenue, likely to purchase protection plans and add-ons for safety, higher booking values per reservation, strong repeat customer potential"
+        },
+        {
+          "segment": "Long-term Subscribers",
+          "rationale": "Extended rental periods provide predictable recurring revenue, lower acquisition costs amortized over longer commitment, reduced fleet turnover and preparation frequency"
+        },
+        {
+          "segment": "International Travelers",
+          "rationale": "Cross-border and multi-country trips utilize start-anywhere/end-anywhere premium positioning, longer trip durations, higher willingness to pay for convenience and global coverage"
+        },
+        {
+          "segment": "Digital Nomads / Remote Workers",
+          "rationale": "Extended booking periods (weeks to months), consistent demand year-round rather than seasonal, higher comfort expectations leading to premium vehicle selection and add-ons"
+        },
+        {
+          "segment": "Marketplace Hosts",
+          "rationale": "Platform commission revenue without vehicle ownership costs, expands inventory without capital expenditure, enables coverage in new locations without direct investment"
+        },
+        {
+          "segment": "Seasoned Travelers (60+ years)",
+          "rationale": "Longer trip durations, preference for premium comfort vehicles (higher rental rates), lower price sensitivity, strong focus on reliability and service quality"
+        },
+        {
+          "segment": "Group Adventures",
+          "rationale": "Multiple vehicle rentals or larger RV options, higher total booking values, strong social proof and word-of-mouth marketing potential"
+        },
+        {
+          "segment": "North American Expansion Market",
+          "rationale": "Growing market with less mature competition, higher rental rates possible, large addressable market for RV culture, strategic growth priority with recent funding"
+        }
+      ],
+      "locked": false
+    }
+  }
+}

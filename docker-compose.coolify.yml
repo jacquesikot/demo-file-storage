@@ -1,0 +1,213 @@
+version: '3.8'
+
+# Coolify-optimized Docker Compose configuration
+# This file is specifically designed for deployment on Coolify
+# Documentation: See COOLIFY_DEPLOYMENT.md
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    restart: unless-stopped
+    environment:
+      # Required: Anthropic API key (set in Coolify UI)
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:?Please set your Anthropic API key in Coolify environment variables}
+
+      # Optional: Adjust based on server resources
+      - MAX_CONCURRENT_JOBS=${MAX_CONCURRENT_JOBS:-3}
+
+      # System configuration
+      - PYTHONUNBUFFERED=1
+
+      # Coolify magic variables (auto-generated)
+      - SERVICE_FQDN_BACKEND=${SERVICE_FQDN_BACKEND}
+      - SERVICE_URL_BACKEND=${SERVICE_URL_BACKEND}
+
+    volumes:
+      # Persistent storage for generated files
+      - brand-data:/app/backend/brand-data
+      - brief-outputs:/app/backend/brief-outputs
+      - draft-outputs:/app/backend/draft-outputs
+      - logs:/app/backend/logs
+
+      # Read-only instruction and data files
+      - ./backend/instructions:/app/backend/instructions:ro
+      - ./backend/data:/app/backend/data:ro
+
+      # Claude Code configuration (needs write access)
+      - claude-config:/home/appuser/.claude
+
+    networks:
+      - claude-network
+
+    # Coolify labels for Traefik proxy configuration
+    labels:
+      - "coolify.managed=true"
+      - "traefik.enable=true"
+
+      # API routing
+      - "traefik.http.routers.backend.rule=Host(`${SERVICE_FQDN_BACKEND}`)"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls=true"
+      - "traefik.http.routers.backend.tls.certresolver=letsencrypt"
+
+      # Load balancer configuration
+      - "traefik.http.services.backend.loadbalancer.server.port=8000"
+
+      # Health check endpoint
+      - "traefik.http.services.backend.loadbalancer.healthcheck.path=/health"
+      - "traefik.http.services.backend.loadbalancer.healthcheck.interval=30s"
+      - "traefik.http.services.backend.loadbalancer.healthcheck.timeout=10s"
+
+      # CORS middleware (if needed)
+      - "traefik.http.middlewares.backend-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE"
+      - "traefik.http.middlewares.backend-cors.headers.accesscontrolalloworiginlist=*"
+      - "traefik.http.middlewares.backend-cors.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.backend-cors.headers.addvaryheader=true"
+
+    # Health check for Coolify monitoring
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+    # Resource limits (adjust based on your server)
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 4G
+        reservations:
+          cpus: '2'
+          memory: 2G
+
+    # Log management
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      # Coolify magic variables (auto-generated)
+      - SERVICE_FQDN_FRONTEND=${SERVICE_FQDN_FRONTEND}
+      - SERVICE_URL_FRONTEND=${SERVICE_URL_FRONTEND}
+
+      # Backend URL for API calls (use internal Docker network)
+      - VITE_API_URL=${SERVICE_URL_BACKEND:-http://backend:8000}
+
+    networks:
+      - claude-network
+
+    # Coolify labels for Traefik proxy configuration
+    labels:
+      - "coolify.managed=true"
+      - "traefik.enable=true"
+
+      # Frontend routing
+      - "traefik.http.routers.frontend.rule=Host(`${SERVICE_FQDN_FRONTEND}`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls=true"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+
+      # Load balancer configuration
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+
+      # Security headers
+      - "traefik.http.middlewares.frontend-headers.headers.framedeny=true"
+      - "traefik.http.middlewares.frontend-headers.headers.sslredirect=true"
+      - "traefik.http.middlewares.frontend-headers.headers.stsincludesubdomains=true"
+      - "traefik.http.middlewares.frontend-headers.headers.stspreload=true"
+      - "traefik.http.middlewares.frontend-headers.headers.stsseconds=31536000"
+      - "traefik.http.middlewares.frontend-headers.headers.contenttypenosniff=true"
+      - "traefik.http.middlewares.frontend-headers.headers.browserxssfilter=true"
+
+    # Health check for Coolify monitoring
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+    # Log management
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  claude-network:
+    driver: bridge
+
+volumes:
+  # Named volumes for persistent storage
+  # Coolify automatically manages these volumes
+  brand-data:
+    driver: local
+  brief-outputs:
+    driver: local
+  draft-outputs:
+    driver: local
+  logs:
+    driver: local
+  claude-config:
+    driver: local
+
+# Notes for Coolify Deployment:
+#
+# 1. Port Configuration:
+#    - DO NOT expose ports using "ports:" directive
+#    - Coolify's Traefik proxy handles all external routing
+#    - Services communicate internally via Docker network
+#
+# 2. Domain Configuration:
+#    - Set SERVICE_FQDN_FRONTEND in Coolify UI (e.g., app.yourdomain.com)
+#    - Set SERVICE_FQDN_BACKEND in Coolify UI (e.g., api.yourdomain.com)
+#    - Coolify automatically configures SSL with Let's Encrypt
+#
+# 3. Environment Variables:
+#    - ANTHROPIC_API_KEY: Required, set in Coolify UI
+#    - MAX_CONCURRENT_JOBS: Optional, defaults to 3
+#    - Magic variables (SERVICE_FQDN_*, SERVICE_URL_*) are auto-generated
+#
+# 4. Volumes:
+#    - All volumes are persistent across deployments
+#    - Location: /var/lib/docker/volumes/coolify-*
+#    - Backup regularly (see COOLIFY_DEPLOYMENT.md)
+#
+# 5. Health Checks:
+#    - Backend: /health endpoint must return 200 OK
+#    - Frontend: Nginx must respond on port 80
+#    - Coolify monitors and restarts unhealthy containers
+#
+# 6. Resource Limits:
+#    - Adjust based on your server capacity
+#    - Monitor usage in Coolify dashboard
+#    - Backend: ~1GB RAM per concurrent job
+#
+# 7. Scaling:
+#    - Current setup: Single instance per service
+#    - For horizontal scaling: Implement Redis/PostgreSQL backend
+#    - See DEPLOYMENT.md for architecture improvements

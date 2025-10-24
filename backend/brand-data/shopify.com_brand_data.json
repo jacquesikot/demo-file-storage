@@ -1,0 +1,1101 @@
+{
+  "brandInfo": {
+    "cdn": {
+      "value": "Cloudflare, Shopify CDN",
+      "locked": false
+    },
+    "cms": {
+      "value": "Shopify (proprietary CMS)",
+      "locked": false
+    },
+    "keyHubs": {
+      "value": [
+        "Ottawa, Ontario, Canada (Headquarters - 150 Elgin Street)",
+        "Toronto, Ontario, Canada",
+        "Vancouver, British Columbia, Canada",
+        "Waterloo, Ontario, Canada",
+        "New York, United States",
+        "Dublin, Ireland",
+        "Vilnius, Lithuania",
+        "Singapore"
+      ],
+      "locked": false
+    },
+    "brandAssets": {
+      "value": [
+        "https://www.shopify.com/brand-assets",
+        "https://shopify.dev/docs/apps/launch/marketing/shopify-brand-assets",
+        "https://help.shopify.com/en/partners/partner-program/shopify-branding"
+      ],
+      "locked": false
+    },
+    "companyName": {
+      "value": "Shopify Inc.",
+      "locked": false
+    },
+    "companyDomain": {
+      "value": "shopify.com",
+      "locked": false
+    },
+    "otherProfiles": {
+      "value": [
+        "https://shopify.engineering (Engineering Blog)",
+        "https://www.shopify.com/partners (Partner Program)",
+        "https://community.shopify.com (Community Forums)",
+        "https://changelog.shopify.com (Product Updates)",
+        "https://www.shopify.com/plus (Enterprise Solution)"
+      ],
+      "locked": false
+    },
+    "analyticsTools": {
+      "value": [
+        "Google Analytics",
+        "Shopify Analytics (built-in)",
+        "Segment",
+        "Hotjar",
+        "Amplitude"
+      ],
+      "locked": false
+    },
+    "websiteBuiltIn": {
+      "value": "Ruby on Rails, React, TypeScript, MySQL, Redis, Kafka, GraphQL, Nginx, OpenResty, Amazon Web Services (AWS)",
+      "locked": false
+    },
+    "additionalNotes": {
+      "value": "Shopify is a leading global commerce company headquartered in Ottawa, Canada. Founded in 2006, the company has grown to power millions of businesses in over 175 countries. In 2024, Shopify processed 173 billion requests during Black Friday, peaked at 284 million requests per minute, and invested $1.4 billion into R&D. The platform is publicly traded (NYSE: SHOP, TSX: SHOP) and employs thousands of people globally. Shopify's technology architecture uses a pod-based system with isolated MySQL, Redis, and Memcached instances for infinite scalability.",
+      "locked": false
+    },
+    "additionalTools": {
+      "value": [
+        "Memcached (caching)",
+        "Redis (queue management)",
+        "Kafka (event streaming)",
+        "GraphQL (API)",
+        "Shopify Hydrogen (React framework for headless commerce)",
+        "Shopify Oxygen (hosting platform)",
+        "Rust (systems programming)",
+        "Batman.js (legacy frontend framework)"
+      ],
+      "locked": false
+    },
+    "brandDescription": {
+      "value": "Shopify is the all-in-one commerce platform that enables entrepreneurs, small businesses, and global brands to start, run, and grow their businesses. The platform provides trusted tools to start, grow, market, and manage a retail business of any size - from first sale to full scale. Shopify supports businesses selling online, in-person, locally, globally, direct-to-consumer, wholesale, and everywhere in between. With a mission to make commerce better for everyone, Shopify is engineered for reliability while delivering a superior shopping experience. The company is trusted by millions of merchants including Allbirds, Gymshark, Fashion Nova, PepsiCo, Staples, and many more. Shopify is the entrepreneurship company, empowering merchants at every stage of their journey.",
+      "locked": false
+    },
+    "brandPointOfView": {
+      "value": "Shopify believes that entrepreneurship should be accessible to everyone, regardless of technical expertise or business size. The company champions the idea that commerce is a fundamental force for good, enabling individuals and communities to build their own economic futures. Shopify takes a merchant-first approach, constantly innovating to remove barriers and simplify complexity so entrepreneurs can focus on what matters - building great products and serving customers. The company believes in leveling the playing field between small businesses and enterprise brands by providing world-class tools and infrastructure at accessible price points. Shopify's philosophy centers on empowering merchants with ownership, control, and flexibility over their business, rejecting the walled-garden approach of marketplaces in favor of direct customer relationships. The brand champions independence, creativity, and the transformative power of entrepreneurship to change lives and communities.",
+      "locked": false
+    },
+    "industryVertical": {
+      "value": "E-commerce Platform / SaaS / Commerce Technology / Retail Technology / Business Software",
+      "locked": false
+    },
+    "companySubDomains": {
+      "value": [
+        "help.shopify.com (Help Center & Documentation)",
+        "apps.shopify.com (Shopify App Store)",
+        "shopify.dev (Developer Documentation)",
+        "www.shopify.com/plus (Shopify Plus - Enterprise)",
+        "www.shopify.com/pos (Point of Sale)",
+        "shopify.engineering (Engineering Blog)",
+        "community.shopify.com (Community Forums)",
+        "changelog.shopify.com (Product Updates)",
+        "*.myshopify.com (Merchant Store Domains)",
+        "polaris.shopify.com (Design System)"
+      ],
+      "locked": false
+    },
+    "socialMediaProfiles": {
+      "value": {
+        "x": "https://twitter.com/shopify",
+        "reddit": [
+          "r/shopify"
+        ],
+        "tiktok": "https://www.tiktok.com/@shopify",
+        "youtube": "https://www.youtube.com/shopify",
+        "linkedin": "https://www.linkedin.com/company/shopify",
+        "instagram": "https://www.instagram.com/shopify"
+      },
+      "locked": false
+    }
+  },
+  "competitors": {
+    "competitors": {
+      "value": [
+        {
+          "name": "BigCommerce",
+          "description": "Enterprise e-commerce platform offering advanced SEO capabilities, multi-channel selling, robust B2B functionalities, and no transaction fees. Aligns closely with Shopify in pricing and targets businesses requiring scalability and advanced features.",
+          "type": "direct"
+        },
+        {
+          "name": "WooCommerce",
+          "description": "Open-source e-commerce plugin for WordPress providing complete control over source code and website customization. Popular among developers and businesses already using WordPress, offering flexibility but requiring more technical expertise.",
+          "type": "direct"
+        },
+        {
+          "name": "Wix",
+          "description": "Drag-and-drop website builder with e-commerce features on higher-tier plans. More of a general-purpose website builder compared to Shopify's e-commerce focus. Popular with small businesses wanting design flexibility and simplicity.",
+          "type": "direct"
+        },
+        {
+          "name": "Squarespace",
+          "description": "All-in-one, fully hosted website builder with strong design templates and cohesive brand experience. Ideal for artists, creatives, and brands where aesthetic design is paramount. Targets small to mid-sized businesses wanting strong on-brand stores without managing code.",
+          "type": "direct"
+        },
+        {
+          "name": "Adobe Commerce (Magento)",
+          "description": "Enterprise-level open-source e-commerce platform offering extensive customization and scalability. Requires significant technical resources but provides powerful features for large businesses with complex needs.",
+          "type": "direct"
+        },
+        {
+          "name": "Salesforce Commerce Cloud",
+          "description": "Enterprise e-commerce platform with deep CRM integration and AI-powered personalization. Targets large retailers and brands requiring sophisticated omnichannel capabilities and customer data integration.",
+          "type": "direct"
+        },
+        {
+          "name": "Shift4Shop (formerly 3dcart)",
+          "description": "E-commerce platform offering free plans with certain payment processing requirements. Provides built-in features without requiring extensive apps, targeting budget-conscious merchants.",
+          "type": "direct"
+        },
+        {
+          "name": "Ecwid",
+          "description": "E-commerce platform that integrates into existing websites and social media. Allows merchants to add online store functionality to their current web presence without rebuilding.",
+          "type": "direct"
+        },
+        {
+          "name": "PrestaShop",
+          "description": "Free, open-source e-commerce solution popular in Europe. Offers flexibility through modules and themes, targeting merchants who want control without subscription fees.",
+          "type": "direct"
+        },
+        {
+          "name": "Big Cartel",
+          "description": "Simple e-commerce platform designed for artists and makers selling small inventories. Focuses on simplicity and ease of use for creative entrepreneurs with limited product catalogs.",
+          "type": "direct"
+        },
+        {
+          "name": "Square Online",
+          "description": "E-commerce platform integrated with Square's payment processing and POS systems. Ideal for businesses selling both online and in-person who want unified commerce.",
+          "type": "direct"
+        },
+        {
+          "name": "Weebly",
+          "description": "Website builder with e-commerce capabilities, owned by Square. Offers drag-and-drop simplicity for small businesses wanting basic online selling features.",
+          "type": "indirect"
+        },
+        {
+          "name": "Amazon Seller Central",
+          "description": "Marketplace platform where merchants sell to Amazon's massive customer base. Different model from Shopify as merchants don't own customer relationships but gain access to Amazon's traffic.",
+          "type": "indirect"
+        },
+        {
+          "name": "Etsy",
+          "description": "Marketplace focused on handmade, vintage, and craft supplies. Provides built-in audience but limited branding and customization compared to standalone stores.",
+          "type": "indirect"
+        },
+        {
+          "name": "Webflow",
+          "description": "Visual web design platform with e-commerce capabilities. Appeals to designers and agencies wanting pixel-perfect control over design without code.",
+          "type": "indirect"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "targetAudience": {
+    "proofPoints": {
+      "value": [
+        "Powers millions of businesses in 175+ countries worldwide",
+        "Processed 173 billion requests during Black Friday 2024, peaking at 284 million requests per minute",
+        "Invested $1.4 billion into R&D in 2024 toward the future of e-commerce",
+        "Trusted by major brands including Allbirds, Gymshark, Fashion Nova, PepsiCo, Staples, Hasbro, Conde Nast",
+        "Average rating of 4.4-4.5/5 stars on G2 and Capterra from merchant users",
+        "Gymshark grew from garage startup to billion-dollar company on Shopify",
+        "UrbanStems increased conversions 7% YoY and cut TCO by 15% after migrating to Shopify Plus",
+        "Murad experienced 56% increase in conversion rates after migrating to Shopify",
+        "TileCloud achieved 24% surge in wholesale signups and 34% jump in average order value with Shopify B2B",
+        "Supports up to 1,000 domains and subdomains for Shopify Plus merchants",
+        "769K+ YouTube subscribers for educational content",
+        "2M+ Instagram followers",
+        "Comprehensive partner ecosystem with thousands of apps and integrations"
+      ],
+      "locked": false
+    },
+    "targetMarkets": {
+      "value": [
+        "North America (United States, Canada)",
+        "Europe (United Kingdom, Ireland, Germany, France, Spain, Netherlands, Lithuania)",
+        "Asia-Pacific (Australia, New Zealand, Singapore, Japan, India)",
+        "Latin America (Brazil, Mexico)",
+        "Middle East",
+        "175+ countries globally"
+      ],
+      "locked": false
+    },
+    "customerPersonas": {
+      "value": [
+        {
+          "name": "First-Time Entrepreneur",
+          "description": "Individual starting their first online business, possibly as a side hustle. Limited technical skills but passionate about their product idea. Needs simple, guided setup and educational resources. Budget-conscious, likely starting on Basic Shopify plan.",
+          "painPoints": [
+            "Overwhelmed by technical complexity",
+            "Limited budget",
+            "Uncertain about which features they need",
+            "Need to make first sale quickly to validate business"
+          ],
+          "goals": [
+            "Launch online store quickly",
+            "Make first sale",
+            "Learn e-commerce fundamentals",
+            "Keep costs low while testing business idea"
+          ]
+        },
+        {
+          "name": "Small Business Owner",
+          "description": "Established local business (retail, restaurant, services) expanding online or adding e-commerce to existing operations. May have physical location using Shopify POS. Revenue typically under $1M annually.",
+          "painPoints": [
+            "Managing inventory across online and offline channels",
+            "Integrating e-commerce with existing operations",
+            "Limited time to manage technology",
+            "Need reliable payment processing"
+          ],
+          "goals": [
+            "Expand revenue through online sales",
+            "Unified inventory and customer data",
+            "Professional online presence",
+            "Seamless omnichannel experience"
+          ]
+        },
+        {
+          "name": "Direct-to-Consumer (DTC) Brand Founder",
+          "description": "Digitally-native brand selling unique products directly to consumers, typically in fashion, beauty, health, or lifestyle categories. Heavy focus on brand storytelling, social media marketing, and customer experience. Revenue $500K-$10M.",
+          "painPoints": [
+            "Standing out in crowded markets",
+            "Managing customer acquisition costs",
+            "Building brand loyalty and repeat purchases",
+            "Scaling infrastructure as they grow"
+          ],
+          "goals": [
+            "Build strong brand identity",
+            "Create excellent customer experience",
+            "Scale rapidly",
+            "Leverage data for personalization",
+            "Multi-channel selling (website, Instagram, TikTok, etc.)"
+          ]
+        },
+        {
+          "name": "Dropshipper / Online Arbitrage Seller",
+          "description": "Entrepreneur selling products without holding inventory, using dropshipping or print-on-demand models. Focused on marketing and traffic generation rather than product creation. Often runs multiple stores testing different niches.",
+          "painPoints": [
+            "Managing supplier relationships",
+            "Handling longer shipping times",
+            "Thin profit margins",
+            "Quality control challenges"
+          ],
+          "goals": [
+            "Quick store setup",
+            "Easy supplier integration",
+            "Automation of order processing",
+            "Testing multiple products/niches efficiently"
+          ]
+        },
+        {
+          "name": "Growing E-commerce Merchant",
+          "description": "Established online business with proven product-market fit, looking to scale operations. Revenue $1M-$10M annually. Needs more advanced features, integrations, and potentially considering Shopify Plus.",
+          "painPoints": [
+            "Outgrowing current platform capabilities",
+            "Need for better automation",
+            "Managing international expansion",
+            "Integrating with ERP, CRM, and other systems",
+            "Transaction fees eating into margins"
+          ],
+          "goals": [
+            "Scale to 8-figure revenue",
+            "Improve operational efficiency",
+            "Expand to new markets",
+            "Advanced analytics and reporting",
+            "Better wholesale/B2B capabilities"
+          ]
+        },
+        {
+          "name": "Enterprise Retail Brand",
+          "description": "Large established brand or retailer with $10M+ revenue, complex operations, multiple brands or stores, international presence. Requires Shopify Plus with custom solutions and dedicated support.",
+          "painPoints": [
+            "Legacy system limitations",
+            "Need for headless/composable architecture",
+            "Complex B2B and wholesale requirements",
+            "Multi-brand, multi-region management",
+            "High development and maintenance costs"
+          ],
+          "goals": [
+            "Modernize commerce infrastructure",
+            "Reduce total cost of ownership",
+            "Improve time-to-market for campaigns",
+            "Unified commerce across channels",
+            "Enterprise-grade security and compliance"
+          ]
+        },
+        {
+          "name": "Creative Professional / Artist",
+          "description": "Individual creator, artist, or maker selling handmade goods, art, jewelry, or creative products. Values design aesthetics and brand expression. Often transitions from Etsy or craft markets.",
+          "painPoints": [
+            "Limited by marketplace constraints",
+            "Want to own customer relationships",
+            "Need beautiful, portfolio-style presentation",
+            "Small inventory, unique pieces"
+          ],
+          "goals": [
+            "Showcase work beautifully",
+            "Build independent brand",
+            "Own customer data",
+            "Simple inventory management",
+            "Focus on creating, not technology"
+          ]
+        },
+        {
+          "name": "B2B Wholesaler",
+          "description": "Business selling wholesale to other businesses, trade customers, or retailers. Needs custom pricing, bulk ordering, payment terms, and separate B2B and DTC storefronts.",
+          "painPoints": [
+            "Managing different price lists for different customers",
+            "Offering payment terms and credit",
+            "Complex quoting and approval workflows",
+            "Need for separate wholesale and retail experiences"
+          ],
+          "goals": [
+            "Streamline wholesale operations",
+            "Provide DTC-style B2B experience",
+            "Automate order processing",
+            "Grow wholesale revenue alongside DTC",
+            "Better customer self-service"
+          ]
+        }
+      ],
+      "locked": false
+    },
+    "targetCustomerSegments": {
+      "value": [
+        "First-time entrepreneurs and solo founders",
+        "Side-hustle e-commerce beginners",
+        "Small to medium-sized businesses (SMBs)",
+        "Direct-to-consumer (DTC) brands",
+        "Dropshipping and print-on-demand merchants",
+        "Fashion and apparel retailers",
+        "Beauty and cosmetics brands",
+        "Health and wellness companies",
+        "Food and beverage businesses",
+        "Home goods and furniture retailers",
+        "Artists, makers, and creative professionals",
+        "B2B wholesalers and distributors",
+        "Retail stores adding online channels",
+        "Multi-brand enterprises",
+        "Global brands requiring multi-market support",
+        "High-growth scale-ups",
+        "Agencies and developers building for clients"
+      ],
+      "locked": false
+    },
+    "targetAudienceDescription": {
+      "value": "Shopify's target audience spans the entire spectrum of commerce, from first-time entrepreneurs launching their initial online store to billion-dollar enterprises managing complex global operations. The primary audience includes entrepreneurs, retailers, and brands who want to sell products or services online, in-person, or through multiple channels. Geographically, Shopify serves merchants in 175+ countries, with strong presence in North America, Europe, Asia-Pacific, and growing markets worldwide. Demographically, the audience ranges from young digital natives starting DTC brands to established business owners modernizing their retail operations. Psychographically, Shopify merchants are typically independent-minded, growth-oriented, and value ownership of their customer relationships over marketplace dependency. They seek simplicity without sacrificing power, wanting sophisticated features delivered through intuitive interfaces. The common thread across all segments is the desire to focus on their business - products, customers, marketing - rather than wrestling with technology. Shopify's tagline 'the entrepreneurship company' reflects its positioning as the champion of business builders at every stage, from 'first sale to full scale.' The platform particularly resonates with merchants who value speed-to-market, reliability, comprehensive features, and the ability to scale seamlessly as they grow.",
+      "locked": false
+    }
+  },
+  "contentStrategy": {
+    "contentPillars": {
+      "value": [
+        {
+          "name": "Entrepreneurship & Business Starting",
+          "description": "Content focused on helping people start businesses, including business ideas, validation, planning, and launching. Covers topics like finding products to sell, market research, business models, and taking the first steps into entrepreneurship."
+        },
+        {
+          "name": "Business Growth & Scaling",
+          "description": "Advice and strategies for growing established businesses, including scaling operations, hiring, expanding to new markets, wholesale and B2B, and leveling up from small business to enterprise."
+        },
+        {
+          "name": "Marketing & Customer Acquisition",
+          "description": "Comprehensive marketing education covering SEO, content marketing, social media, email marketing, paid advertising, influencer partnerships, and customer acquisition strategies across all channels."
+        },
+        {
+          "name": "E-commerce Operations",
+          "description": "Practical guidance on running online stores, including inventory management, order fulfillment, shipping, returns, payment processing, fraud prevention, and operational efficiency."
+        },
+        {
+          "name": "Product & Platform Education",
+          "description": "Content explaining Shopify features, updates, integrations, and best practices. Includes tutorials, case studies, product announcements, and how-to guides for maximizing the platform."
+        },
+        {
+          "name": "Industry Trends & Insights",
+          "description": "Thought leadership on the future of commerce, retail trends, technology shifts, consumer behavior, and macro forces shaping e-commerce. Positions Shopify as industry authority."
+        },
+        {
+          "name": "Inspiration & Success Stories",
+          "description": "Merchant case studies, entrepreneur interviews, and success stories showcasing what's possible. Motivational content that inspires and provides social proof through real examples."
+        }
+      ],
+      "locked": false
+    },
+    "sourcesToRepurpose": {
+      "value": [
+        {
+          "source": "Shopify Blog (www.shopify.com/blog)",
+          "description": "Main blog with thousands of articles on entrepreneurship, marketing, operations, and platform education. Core content hub for repurposing into social media, email, videos, and guides."
+        },
+        {
+          "source": "Shopify Engineering Blog (shopify.engineering)",
+          "description": "Technical content about Shopify's engineering practices, architecture, and technology decisions. Can be repurposed for developer audience and technical thought leadership."
+        },
+        {
+          "source": "Shopify Partners Blog (www.shopify.com/partners/blog)",
+          "description": "Content for agencies, developers, and partners building on Shopify. Can be adapted for general business audience or technical segments."
+        },
+        {
+          "source": "YouTube Channel (youtube.com/shopify)",
+          "description": "Video content including tutorials, entrepreneur interviews, and educational series. Can be clipped for social media, transcribed for blog posts, and expanded into guides."
+        },
+        {
+          "source": "Webinars & Events",
+          "description": "Educational webinars, Unite conference content, and virtual events. Recording can be edited into shorter videos, key insights extracted for blog posts, and slides repurposed."
+        },
+        {
+          "source": "Case Studies (www.shopify.com/case-studies)",
+          "description": "In-depth merchant success stories. Can be repurposed into social proof for sales materials, blog posts highlighting specific strategies, and testimonial videos."
+        },
+        {
+          "source": "Help Center & Documentation (help.shopify.com)",
+          "description": "Detailed product documentation. Can be simplified and repurposed into beginner-friendly tutorials, video walkthroughs, and quick-start guides."
+        },
+        {
+          "source": "Shopify Plus Content",
+          "description": "Enterprise-focused content including white papers, reports, and advanced guides. Can be adapted for growing merchants aspiring to scale."
+        },
+        {
+          "source": "Podcasts & Audio Content",
+          "description": "Shopify Masters and other podcast series featuring entrepreneur interviews. Can be transcribed for blog posts, clipped for social media, and quoted in articles."
+        },
+        {
+          "source": "Research & Data Reports",
+          "description": "Original research, surveys, and data about e-commerce trends. Can be visualized into infographics, broken into multiple blog posts, and shared as thought leadership."
+        }
+      ],
+      "locked": false
+    }
+  },
+  "writingGuidelines": {
+    "guidelines": {
+      "value": [
+        "Write in clear, simple language at a United States grade 7 reading level to ensure accessibility",
+        "Put merchants at the center - write in a way that puts merchants in control and provides them with knowledge for making the best decisions",
+        "Be action-oriented - start sentences with verbs so they feel like actionable instructions; use strong verbs that describe the action",
+        "Focus on the one thing merchants need to know or do next - prioritize the most important information",
+        "Use active voice to clarify the subject and action (e.g., 'add apps' not 'you can add apps')",
+        "Read content out loud to check if it sounds like something a human would say - aim for conversational, natural tone",
+        "Every word adds noise to the experience, so weigh every word carefully",
+        "Break complicated tasks into steps that focus on individual actions",
+        "Avoid jargon and overly complex vocabulary that might confuse readers",
+        "Use everyday language to ensure clarity and accessibility",
+        "Adopt a conversational tone as if talking to a friend",
+        "Beware of filler, overly familiar phrasing, and rhetorical questions",
+        "When writing about products, include the name and type with descriptors that highlight what makes it unique",
+        "Use strategic, SEO-friendly words and phrases to help content rank higher in search",
+        "Include search-optimized meta title, meta description, and clear calls to action",
+        "Focus on the 'why' of actions and decisions, not just the 'what'",
+        "Provide enough information for merchants to make the right decision on their own",
+        "Design principles: clarity, simplicity, and merchant-centricity guide all content decisions"
+      ],
+      "locked": false
+    },
+    "toneOfVoice": {
+      "value": [
+        "Human and conversational - sounds like something a real person would say",
+        "Empowering and supportive - giving merchants tools and confidence to succeed",
+        "Clear and direct - no unnecessary complexity or corporate speak",
+        "Practical and actionable - focused on what merchants can do right now",
+        "Encouraging but realistic - optimistic about possibilities while acknowledging challenges",
+        "Educational yet accessible - teaching without being condescending",
+        "Merchant-centric - always from the perspective of helping the merchant",
+        "Professional but not stuffy - authoritative without being formal",
+        "Inclusive and welcoming - for entrepreneurs at all skill levels",
+        "Inspiring - celebrating entrepreneurship and what's possible"
+      ],
+      "locked": false
+    },
+    "authorPersona": {
+      "value": "The Shopify voice speaks as a knowledgeable business advisor and entrepreneurship champion who has deep expertise in e-commerce but communicates in accessible, practical terms. This persona is like a successful entrepreneur-mentor who has built businesses, understands the challenges firsthand, and genuinely wants to help others succeed. They're optimistic about entrepreneurship's power to change lives but realistic about the work required. They respect merchants' intelligence and time, providing actionable information without fluff. This voice is confident but never arrogant, educational but never condescending, and always focused on empowering merchants to make their own informed decisions. The persona embodies Shopify's mission as 'the entrepreneurship company' - not just a software provider, but a true partner in the merchant's journey from first sale to full scale.",
+      "locked": false
+    },
+    "examplePhrases": {
+      "value": [
+        "From first sale to full scale",
+        "The entrepreneurship company",
+        "Start, run, and grow your business",
+        "Make commerce better for everyone",
+        "Trusted by millions of merchants",
+        "Sell anywhere, manage everywhere",
+        "The all-in-one commerce platform",
+        "Built for entrepreneurs",
+        "Your business, your way",
+        "Everything you need to start, market, sell, and manage",
+        "Turn your idea into a business",
+        "The next big thing starts with you",
+        "Entrepreneurship should be accessible to everyone",
+        "Own your customer relationships",
+        "Scale without limits",
+        "Commerce without compromise",
+        "Build your empire",
+        "Start your business journey",
+        "Grow with confidence",
+        "The platform that adapts as you grow",
+        "Sell online, in-person, and everywhere in between",
+        "Many entrepreneurs struggle because it takes time, care, and effort to get it right",
+        "Don't worry too much - just focus on what matters to your customers",
+        "Entrepreneurship is about building your own path",
+        "Level the playing field",
+        "Put your customers at the center"
+      ],
+      "locked": false
+    },
+    "inspirationArticles": {
+      "value": [
+        "https://www.shopify.com/blog/what-is-shopify - Platform explainer demonstrating clear, benefit-focused writing",
+        "https://www.shopify.com/blog/unique-selling-proposition - Educational content with practical frameworks and examples",
+        "https://www.shopify.com/blog/business-model - Comprehensive guides that combine theory with actionable advice",
+        "https://www.shopify.com/blog/brand-guidelines - Detailed how-to content with templates and examples",
+        "https://www.shopify.com/blog/content-pillars - Strategic marketing education with clear frameworks",
+        "https://polaris.shopify.com/content/voice-and-tone - Official brand voice and tone documentation",
+        "https://www.shopify.com/blog/contributor-guidelines - Writing standards for external contributors",
+        "https://shopify.engineering/e-commerce-at-scale-inside-shopifys-tech-stack - Technical thought leadership balancing depth with accessibility",
+        "https://www.shopify.com/enterprise/blog/direct-to-consumer-ecommerce - Industry insights and trend analysis for specific segments",
+        "https://www.shopify.com/case-studies - Success story format showcasing results and merchant voice"
+      ],
+      "locked": false
+    },
+    "vocabularyPreferences": {
+      "value": [
+        {
+          "prefer": "merchant",
+          "avoid": "user, client, customer (when referring to Shopify customers)"
+        },
+        {
+          "prefer": "entrepreneur",
+          "avoid": "vendor, seller (in general context)"
+        },
+        {
+          "prefer": "start your business",
+          "avoid": "launch your venture, commence operations"
+        },
+        {
+          "prefer": "first sale",
+          "avoid": "initial transaction, first conversion"
+        },
+        {
+          "prefer": "grow",
+          "avoid": "expand, scale up (unless specifically about scaling)"
+        },
+        {
+          "prefer": "online store",
+          "avoid": "e-commerce site, digital storefront"
+        },
+        {
+          "prefer": "customer",
+          "avoid": "consumer, buyer, end-user"
+        },
+        {
+          "prefer": "Add apps to your store",
+          "avoid": "You can add apps to your store"
+        },
+        {
+          "prefer": "Click Save",
+          "avoid": "You should click Save"
+        },
+        {
+          "prefer": "Build",
+          "avoid": "Construct, develop (in simple contexts)"
+        },
+        {
+          "prefer": "Help",
+          "avoid": "Assist, facilitate"
+        },
+        {
+          "prefer": "Show",
+          "avoid": "Display, exhibit"
+        },
+        {
+          "prefer": "Use",
+          "avoid": "Utilize, leverage (unless specifically about leverage)"
+        },
+        {
+          "prefer": "Buy",
+          "avoid": "Purchase, procure"
+        },
+        {
+          "prefer": "Simple, easy",
+          "avoid": "User-friendly, intuitive (overused)"
+        }
+      ],
+      "locked": false
+    }
+  },
+  "companyPositioning": {
+    "useCases": {
+      "value": [
+        "Direct-to-Consumer (DTC) online stores selling products directly to customers",
+        "Omnichannel retail combining online stores with physical locations using Shopify POS",
+        "Dropshipping businesses selling products without holding inventory",
+        "Print-on-demand stores for custom merchandise and apparel",
+        "B2B and wholesale operations with custom pricing and payment terms",
+        "Subscription and recurring revenue businesses",
+        "Multi-brand enterprises managing multiple stores and brands",
+        "International commerce with multi-currency and multi-language support",
+        "Social commerce selling on Instagram, TikTok, Facebook, and other platforms",
+        "Mobile commerce with mobile-optimized shopping experiences",
+        "Marketplaces connecting multiple vendors on a single platform",
+        "Digital products and services (downloads, courses, memberships)",
+        "Service-based businesses booking appointments and services",
+        "Crowdfunding and pre-order campaigns",
+        "Affiliate and influencer storefronts",
+        "Pop-up shops and temporary retail experiences",
+        "Brick-and-mortar retail modernization",
+        "Hybrid wholesale-retail operations on single platform"
+      ],
+      "locked": false
+    },
+    "marketCategories": {
+      "value": [
+        "E-commerce Platform",
+        "SaaS (Software-as-a-Service)",
+        "Commerce Technology",
+        "Point of Sale (POS) Systems",
+        "Payment Processing",
+        "Multi-channel Commerce",
+        "Headless Commerce",
+        "Retail Technology",
+        "Small Business Software",
+        "Enterprise Commerce Solutions",
+        "Mobile Commerce",
+        "Social Commerce",
+        "B2B E-commerce",
+        "Business Management Software",
+        "Entrepreneurship Tools"
+      ],
+      "locked": false
+    },
+    "coreProblemsSolved": {
+      "value": [
+        "Complexity of launching and running an online business - Shopify simplifies the technical barriers to starting e-commerce",
+        "Fragmented commerce operations across multiple channels - unified platform for online, offline, social, and marketplace selling",
+        "High upfront costs and technical requirements - accessible pricing and no-code setup eliminates traditional e-commerce barriers",
+        "Scaling challenges as businesses grow - architecture that scales seamlessly from first sale to billions in revenue",
+        "Lack of ownership and control on marketplaces - merchants own their customer data and relationships",
+        "Integration complexity - extensive app ecosystem and APIs connect all business tools",
+        "Payment processing hassles - built-in Shopify Payments with competitive rates and no transaction fees",
+        "Inventory management across channels - synchronized inventory across all sales channels",
+        "Poor mobile shopping experiences - mobile-first design and responsive themes",
+        "International selling complexity - multi-currency, multi-language, and localization features",
+        "Development and maintenance costs - managed infrastructure eliminates server management and updates",
+        "Slow time-to-market for changes - no-code customization and fast deployment",
+        "Limited business financing - Shopify Capital provides funding based on sales",
+        "Order fulfillment inefficiency - Shopify Fulfillment Network handles storage and shipping",
+        "Security and compliance concerns - PCI compliance, SSL, and enterprise-grade security built-in",
+        "Customer support and community - extensive documentation, forums, and support resources",
+        "B2B complexity alongside DTC - unified platform for both business models",
+        "Limited marketing capabilities - integrated marketing tools and channel partnerships"
+      ],
+      "locked": false
+    },
+    "referenceCustomers": {
+      "value": [
+        {
+          "name": "Gymshark",
+          "industry": "Fitness Apparel",
+          "description": "Started in 2012 in a garage, grew into billion-dollar fitness brand using Shopify. Known for influencer marketing and community building."
+        },
+        {
+          "name": "Fashion Nova",
+          "industry": "Fashion & Apparel",
+          "description": "Fast-fashion brand leveraging social media and influencer partnerships. Manages inventory, customer service, and shipping through Shopify."
+        },
+        {
+          "name": "Allbirds",
+          "industry": "Sustainable Footwear",
+          "description": "Sustainable shoe company using Shopify POS for unified retail experience across 20+ stores globally."
+        },
+        {
+          "name": "PepsiCo",
+          "industry": "Food & Beverage",
+          "description": "Global food and beverage corporation using Shopify for direct-to-consumer initiatives."
+        },
+        {
+          "name": "Staples",
+          "industry": "Office Supplies & Retail",
+          "description": "Major retailer migrated to Shopify to modernize commerce operations and improve customer experience."
+        },
+        {
+          "name": "Hasbro",
+          "industry": "Toys & Games",
+          "description": "Global toy company leveraging Shopify for e-commerce and omnichannel retail."
+        },
+        {
+          "name": "Steve Madden",
+          "industry": "Fashion & Footwear",
+          "description": "Unified 30 global commerce sites across three brands with custom Shopify theme implementation."
+        },
+        {
+          "name": "Murad",
+          "industry": "Beauty & Skincare",
+          "description": "Experienced 56% increase in conversion rates after migrating to Shopify."
+        },
+        {
+          "name": "UrbanStems",
+          "industry": "Floral & Gifting",
+          "description": "Grew subscriptions 7% YoY and cut total cost of ownership by 15% after migrating from Salesforce to Shopify Plus."
+        },
+        {
+          "name": "Colourpop",
+          "industry": "Beauty & Cosmetics",
+          "description": "Started as small shop, grew to become one of most popular makeup brands globally on Shopify."
+        },
+        {
+          "name": "Kith",
+          "industry": "Fashion & Lifestyle",
+          "description": "Lifestyle brand successful since 2011, known for unique storytelling and community building approach."
+        },
+        {
+          "name": "TileCloud",
+          "industry": "Home Improvement",
+          "description": "Launched dedicated B2B store achieving 24% surge in wholesale signups and 34% jump in average order value."
+        },
+        {
+          "name": "BLK & Bold",
+          "industry": "Coffee & Beverages",
+          "description": "Leverages both wholesale and DTC channels from single Shopify platform."
+        },
+        {
+          "name": "Venus et Fleur",
+          "industry": "Luxury Florals",
+          "description": "Expanded from e-commerce to physical retail using Shopify's omnichannel platform."
+        },
+        {
+          "name": "Subtle Asian Treats",
+          "industry": "Novelty & Gifts",
+          "description": "Top dropshipping business selling plushies and cases, leveraging social trends."
+        }
+      ],
+      "locked": false
+    },
+    "productsAndServices": {
+      "value": [
+        {
+          "name": "Shopify Core Plans",
+          "description": "Basic, Shopify, and Advanced plans for small to medium businesses. Includes online store, blog, unlimited products, sales channels, inventory management, and basic analytics. Pricing from $39-$399/month."
+        },
+        {
+          "name": "Shopify Plus",
+          "description": "Enterprise plan for high-growth and large businesses. Includes advanced features, API capabilities, dedicated support, B2B tools, Launchpad, POS Pro, and multi-store management. Starting at $2,000/month."
+        },
+        {
+          "name": "Shopify POS",
+          "description": "Point-of-sale system for in-person retail. Includes hardware options (POS Go), inventory sync between online and offline, staff management, and unified customer data. Supports omnichannel commerce."
+        },
+        {
+          "name": "Shopify Payments",
+          "description": "Built-in payment processing with no transaction fees for Shopify users. Competitive credit card rates (2.9% + 30¢ for Basic plan). Fast payouts and support for popular payment methods."
+        },
+        {
+          "name": "Shopify Capital",
+          "description": "Business funding based on sales performance. Offers merchant cash advances with factor rates of 1.1-1.3%. Helps merchants stock inventory and fund marketing."
+        },
+        {
+          "name": "Shopify Credit",
+          "description": "Business credit card offering 3% cash back on eligible marketing, shipping, and wholesale purchases."
+        },
+        {
+          "name": "Shopify Fulfillment Network",
+          "description": "Warehousing and fulfillment service handling inventory storage, order packing, shipping, and returns. AI-powered network for optimized fulfillment."
+        },
+        {
+          "name": "Shopify Audiences",
+          "description": "Targeting tool for Shopify Plus merchants using first-party data to improve ad performance on platforms like Facebook and Google."
+        },
+        {
+          "name": "Shopify Email",
+          "description": "Built-in email marketing tool for creating and sending branded campaigns directly from Shopify admin."
+        },
+        {
+          "name": "Shopify Markets",
+          "description": "International selling features including multi-currency, localization, international domains, and duties/import tax calculation."
+        },
+        {
+          "name": "Shopify B2B",
+          "description": "Wholesale and B2B commerce features including custom price lists, payment terms, company accounts, and quantity rules. Can run alongside DTC on same platform."
+        },
+        {
+          "name": "Shop App",
+          "description": "Consumer shopping app providing order tracking, shop discovery, and personalized shopping experiences. Helps merchants reach new customers."
+        },
+        {
+          "name": "Shopify Hydrogen",
+          "description": "React-based framework for building custom headless storefronts with performance optimization."
+        },
+        {
+          "name": "Shopify Oxygen",
+          "description": "Hosting platform designed to run custom storefronts built with Shopify Hydrogen."
+        },
+        {
+          "name": "App Store",
+          "description": "Ecosystem of 8,000+ apps for extending Shopify functionality including marketing, SEO, reviews, inventory, shipping, and more."
+        },
+        {
+          "name": "Theme Store",
+          "description": "Marketplace of professionally designed themes for customizing store appearance without coding."
+        },
+        {
+          "name": "Shopify Partner Program",
+          "description": "Program for agencies, developers, and affiliates to build solutions on Shopify and earn revenue through referrals and app sales."
+        }
+      ],
+      "locked": false
+    },
+    "uniqueSellingPropositions": {
+      "value": [
+        "All-in-one platform handling entire business from first sale to full scale - no need for multiple disconnected tools",
+        "Scales seamlessly from solo entrepreneur to enterprise without platform migration - same platform serves $0 to billions in revenue",
+        "True omnichannel commerce - sell online, in-person, social media, marketplaces from single unified platform",
+        "Merchant ownership of customer data and relationships - no intermediary between business and customers unlike marketplaces",
+        "Ease of use without sacrificing power - intuitive for beginners but sophisticated enough for enterprises",
+        "Extensive app ecosystem with 8,000+ integrations - customize and extend functionality without custom development",
+        "Reliability and performance at massive scale - processes billions of requests, engineered for 99.99% uptime",
+        "Shopify Payments eliminates transaction fees - unlike competitors charging 0.5-2% for third-party payment gateways",
+        "Continuous innovation with hundreds of platform updates annually - features improve without merchant action required",
+        "Global commerce enablement - 175+ countries, multi-currency, multi-language, localized experiences",
+        "Unified B2B and DTC on single platform - no need for separate systems for wholesale and retail",
+        "No technical expertise required - no-code setup with optional code-level customization for developers",
+        "Comprehensive financial services - payments, capital, credit all integrated",
+        "Managed infrastructure - no servers, security, updates, or maintenance burden",
+        "Fast time-to-market - launch store in hours/days instead of months",
+        "Enterprise capabilities at SMB prices - advanced features accessible to businesses of all sizes",
+        "Strong merchant community and educational resources - not just software but entrepreneurship partner",
+        "Headless/composable commerce option - flexibility for custom architectures without abandoning Shopify ecosystem"
+      ],
+      "locked": false
+    }
+  },
+  "businessSalesInsights": {
+    "ahaMoment": {
+      "value": "The critical 'aha moment' for Shopify merchants occurs when they make their first sale. This milestone validates their business idea, proves the platform works, and transforms them from someone 'setting up a store' to someone 'running a business.' Shopify has designed its entire onboarding experience to guide merchants toward this moment as quickly as possible, recognizing that merchants who achieve their first sale are significantly more likely to remain active subscribers and grow their business. The platform uses tools like Kit for automated marketing, educational content on making the first sale, and simplified setup flows to reduce time-to-first-sale. This focus stems from Shopify's understanding that 'not selling anything is one of the reasons that could determine merchants to churn' - if merchants don't reach their aha moment, they don't see the value and are less likely to renew their subscription. Secondary aha moments include: first repeat customer (proving retention), first $1K revenue day (proving scalability), successful omnichannel sale (proving unified commerce), and first wholesale order for B2B merchants.",
+      "locked": false
+    },
+    "keyPurchaseTriggers": {
+      "value": [
+        "Starting a new business or side hustle - entrepreneur ready to launch their idea and needs platform immediately",
+        "Outgrowing current platform (Etsy, WooCommerce, etc.) - experiencing limitations in features, scalability, or control",
+        "Platform migration pain - frustrated with current solution's costs, complexity, downtime, or poor support",
+        "Opening physical retail location - need POS system that integrates with online store for unified commerce",
+        "Expanding to international markets - require multi-currency, multi-language, and localized payment options",
+        "Adding B2B/wholesale channel - need custom pricing, payment terms, and separate wholesale experience alongside DTC",
+        "Social commerce opportunity - want to sell on Instagram, TikTok, Facebook without managing separate systems",
+        "Funding or investment received - capital available to invest in proper e-commerce infrastructure",
+        "Seasonal business preparation - need to scale up quickly for holiday season or peak demand period",
+        "Product launch or rebrand - fresh start opportunity to move to better platform",
+        "Transaction fees eating into margins - seeking platform without additional fees on third-party payments",
+        "Technical debt accumulation - current custom solution requires too much maintenance and development",
+        "Recommendation from peer - another entrepreneur vouches for Shopify in their network",
+        "Security or compliance concerns - need PCI-compliant, secure platform for peace of mind",
+        "Poor mobile experience - current platform doesn't provide good mobile shopping experience",
+        "Agency or developer recommendation - consultant advises migration to Shopify",
+        "Acquisition or merger - need to consolidate multiple brands/stores on single platform",
+        "Subscription/recurring revenue model - need built-in subscription management capabilities"
+      ],
+      "locked": false
+    },
+    "commonSalesObjections": {
+      "value": [
+        {
+          "objection": "Transaction fees are too high, especially for third-party payment gateways",
+          "reality": "Shopify charges 0.5-2% additional fee if not using Shopify Payments. For $100 sale with PayPal, total fees are ~$5.20 vs ~$3.20 with Shopify Payments. This 'forces' merchants into Shopify Payments even when better alternatives exist.",
+          "response": "Use Shopify Payments to avoid transaction fees entirely. 85% of merchants choose Shopify Payments where available, saving on fees and receiving payouts in as little as two days. Credit card processing rates decrease with higher-tier plans (2.9% to 2.5%)."
+        },
+        {
+          "objection": "Pricing is rigid with no volume discounts for high-revenue merchants",
+          "reality": "Fixed rates regardless of sales volume prevents leveraging growth for better terms. Business processing $50,000 monthly pays $12,000 extra annually for using preferred processor. Traditional merchant accounts offer rates as low as 1.8% + $0.20 for $100K+ monthly volume.",
+          "response": "Shopify Plus offers custom pricing and rate negotiations for high-volume merchants. Total cost of ownership is 15% lower than alternatives like Salesforce when factoring in development, maintenance, and operational efficiency."
+        },
+        {
+          "objection": "Too expensive with subscription costs plus app costs",
+          "reality": "While base plan is $39-399/month, most serious merchants spend $50-150/month on essential apps for email marketing, reviews, SEO, upselling. Apps add up quickly.",
+          "response": "Many essential features are built into Shopify reducing need for apps. App costs reflect choosing best-of-breed tools. Alternative platforms have hidden costs in development, hosting, security, and maintenance that exceed Shopify's transparent pricing."
+        },
+        {
+          "objection": "Shopify is too simple/limited for my complex business needs",
+          "reality": "Perception that Shopify is 'for small businesses' persists despite enterprise customers like Staples, Hasbro, PepsiCo. Can be seen as lacking advanced features.",
+          "response": "Shopify Plus serves enterprises with $10M+ revenue including Fortune 500 brands. Platform is 'simple to start, powerful to scale.' Headless commerce options, extensive APIs, and customization capabilities support most complex requirements. Reference enterprise case studies."
+        },
+        {
+          "objection": "Switching costs and migration complexity seem too high",
+          "reality": "Fear of downtime, data loss, SEO impact, and retraining staff during migration. Established businesses hesitant to disrupt operations.",
+          "response": "Shopify Partner ecosystem includes migration specialists. Tools exist for automated data migration. Stores typically launch in 4 months for enterprise (UrbanStems example). Can run parallel during transition. SEO redirects preserve rankings. Benefits outweigh short-term transition."
+        },
+        {
+          "objection": "Customer support is poor based on Trustpilot reviews",
+          "reality": "Trustpilot shows 1.3-1.5/5 stars, though this primarily reflects consumer complaints about merchant fraud, not merchant satisfaction with platform. G2 and Capterra show 4.4-4.5/5 from actual merchants.",
+          "response": "Professional merchant reviews on G2 and Capterra rate Shopify 4.4-4.5/5. Shopify Plus includes dedicated support. Extensive documentation, community forums, and partner ecosystem provide additional support resources. 24/7 support available."
+        },
+        {
+          "objection": "I need specific customization/integration that Shopify doesn't support",
+          "reality": "Perceived platform limitations for unique business requirements or legacy system integrations.",
+          "response": "8,000+ apps in app store cover most needs. Extensive APIs enable custom integrations. Shopify Partner ecosystem includes developers for custom solutions. Headless commerce with Hydrogen/Oxygen supports fully custom front-ends. Global ERP Program supports enterprise system integration."
+        },
+        {
+          "objection": "Already invested heavily in current platform, hard to justify change",
+          "reality": "Sunk cost fallacy and fear of abandoning existing investment in custom development, themes, integrations.",
+          "response": "Calculate total cost of ownership including development, maintenance, hosting, and opportunity costs. Merchants report 15-56% improvements in key metrics post-migration. Staying on limited platform costs more long-term than strategic migration. Future growth potential justifies transition investment."
+        },
+        {
+          "objection": "Don't want to be 'locked into' another platform",
+          "reality": "Platform lock-in concerns, especially after bad experiences with previous providers.",
+          "response": "Shopify owns data is exportable. Strong API and developer ecosystem prevents true lock-in. Unlike marketplaces, merchants own customer relationships. Shopify's alignment is merchant success, not platform dependency. Can run headless with Shopify as backend."
+        },
+        {
+          "objection": "Competitors offer lower base prices or 'free' plans",
+          "reality": "WooCommerce is 'free' (but requires hosting, security, maintenance). Other platforms advertise lower entry prices.",
+          "response": "Free/cheaper options have hidden costs in hosting, security, development time, and opportunity cost. Shopify's managed service eliminates technical burden. Time saved vs. WooCommerce pays for subscription many times over. Compare total cost including apps, development, and time investment."
+        },
+        {
+          "objection": "Can't get approval/buy-in from technical team or executives",
+          "reality": "Internal resistance from developers who prefer custom solutions or executives concerned about costs.",
+          "response": "Share case studies of similar companies achieving measurable results. Offer pilot program or proof of concept. Emphasize reduced technical debt and development burden. Show ROI calculations and total cost of ownership comparisons. Leverage Shopify Plus dedicated support for enterprise sales cycles."
+        },
+        {
+          "objection": "Shopify doesn't support my country/currency/payment methods",
+          "reality": "Some markets have limited Shopify Payments availability or preferred local payment methods not supported.",
+          "response": "175+ countries supported. Can use third-party payment gateways for markets without Shopify Payments. Shopify Markets handles multi-currency and localization. International expansion is core platform capability. Continuously expanding payment and country coverage."
+        }
+      ],
+      "locked": false
+    },
+    "mostProfitableSegments": {
+      "value": [
+        {
+          "segment": "Shopify Plus Enterprise Customers",
+          "description": "Large merchants on Shopify Plus plans paying $2,000+/month with high transaction volumes. These customers generate significant recurring revenue, high payment processing volumes, and often purchase additional services like Shopify Capital and Fulfillment Network.",
+          "profitability": "Very High",
+          "characteristics": [
+            "$10M+ annual revenue",
+            "Multi-brand or multi-store operations",
+            "High monthly recurring revenue",
+            "Large payment processing volumes",
+            "Long customer lifetime value",
+            "Lower churn rates"
+          ]
+        },
+        {
+          "segment": "High-Volume DTC Brands ($1M-$10M revenue)",
+          "description": "Fast-growing direct-to-consumer brands processing significant transaction volume. These merchants are on mid-to-high tier plans and drive substantial payment processing revenue through Shopify Payments.",
+          "profitability": "High",
+          "characteristics": [
+            "High payment processing volumes",
+            "Frequent app purchases",
+            "Strong growth trajectory toward Plus",
+            "Active users of marketing and fulfillment services",
+            "Moderate to low churn"
+          ]
+        },
+        {
+          "segment": "Omnichannel Retailers Using POS",
+          "description": "Businesses using both online store and Shopify POS for physical retail. Generate revenue from both e-commerce and POS subscriptions, hardware sales, and in-person payment processing.",
+          "profitability": "High",
+          "characteristics": [
+            "Multiple revenue streams (online + POS)",
+            "Hardware purchases",
+            "Higher-tier plan adoption",
+            "Unified commerce stickiness",
+            "Lower churn due to operational integration"
+          ]
+        },
+        {
+          "segment": "B2B/Wholesale Merchants",
+          "description": "Businesses running both B2B wholesale and DTC operations on Shopify. Often on Plus plans with high order values and strong retention due to complex operational integration.",
+          "profitability": "High",
+          "characteristics": [
+            "Higher average order values",
+            "Shopify Plus adoption",
+            "Complex business logic increases switching costs",
+            "Long sales cycles but high retention",
+            "Multiple revenue streams"
+          ]
+        },
+        {
+          "segment": "International/Multi-Market Merchants",
+          "description": "Businesses selling across multiple countries using Shopify Markets. Higher-tier plans, currency conversion fees, and complex operations drive revenue and retention.",
+          "profitability": "Medium-High",
+          "characteristics": [
+            "Higher-tier plan requirements",
+            "Currency conversion revenue",
+            "Complex operations increase stickiness",
+            "Growing segment",
+            "Premium feature adoption"
+          ]
+        },
+        {
+          "segment": "App Developers and Partners",
+          "description": "Developers building apps and themes in Shopify ecosystem. Generate revenue through partner program, drive merchant acquisition through referrals, and extend platform capabilities.",
+          "profitability": "Medium-High",
+          "characteristics": [
+            "Recurring app revenue sharing",
+            "Merchant referral commissions",
+            "Ecosystem network effects",
+            "Low direct costs",
+            "Drive platform adoption"
+          ]
+        },
+        {
+          "segment": "Growing Merchants ($100K-$1M revenue)",
+          "description": "Established merchants with proven business model actively growing. Moving from Basic to Shopify or Advanced plans, increasing app usage, and trajectory toward Plus.",
+          "profitability": "Medium",
+          "characteristics": [
+            "Plan upgrade path",
+            "Increasing transaction volumes",
+            "Growing app ecosystem spend",
+            "Lower churn than early-stage",
+            "Future Plus prospects"
+          ]
+        },
+        {
+          "segment": "Fashion and Apparel Brands",
+          "description": "Large and profitable vertical on Shopify with high transaction volumes, frequent launches, and strong social commerce integration. Often high-growth DTC brands.",
+          "profitability": "Medium-High",
+          "characteristics": [
+            "High transaction frequency",
+            "Strong growth rates",
+            "Heavy app ecosystem usage",
+            "Social commerce integration",
+            "Brand loyalty to platform"
+          ]
+        },
+        {
+          "segment": "Subscription/Recurring Revenue Businesses",
+          "description": "Merchants selling subscriptions or recurring products. High customer lifetime value and predictable revenue for merchant translates to stable, recurring Shopify revenue.",
+          "profitability": "Medium",
+          "characteristics": [
+            "Predictable recurring transactions",
+            "Lower merchant churn",
+            "Subscription app revenue",
+            "Growing business model",
+            "Strong retention"
+          ]
+        },
+        {
+          "segment": "First-Time Entrepreneurs/Starter Stores",
+          "description": "New merchants on Basic Shopify plans. While individually lower revenue, massive volume and growth potential. High churn but large acquisition funnel feeding higher segments.",
+          "profitability": "Low individually, Medium at scale",
+          "characteristics": [
+            "Large segment volume",
+            "Lower monthly fees",
+            "Lower transaction volumes initially",
+            "High churn rate",
+            "Upgrade potential",
+            "Referral generation"
+          ]
+        }
+      ],
+      "locked": false
+    }
+  }
+}
