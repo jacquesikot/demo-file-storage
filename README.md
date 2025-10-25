@@ -46,6 +46,19 @@ This is **safe for local development** but understand that Claude Code will have
 
 See [PERMISSIONS_FIX.md](PERMISSIONS_FIX.md) for detailed security information.
 
+## Quick Start
+
+### Local Development
+See installation instructions below.
+
+### Deploy to Coolify (Recommended for Production)
+See [COOLIFY_QUICKSTART.md](COOLIFY_QUICKSTART.md) for a streamlined deployment guide.
+
+For detailed deployment information:
+- **Quick Start**: [COOLIFY_QUICKSTART.md](COOLIFY_QUICKSTART.md)
+- **Full Guide**: [COOLIFY_DEPLOYMENT.md](COOLIFY_DEPLOYMENT.md)
+- **Deployment Checklist**: [COOLIFY_CHECKLIST.md](COOLIFY_CHECKLIST.md)
+
 ## Installation
 
 ### Backend Setup
