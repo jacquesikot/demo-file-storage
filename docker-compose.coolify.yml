@@ -10,11 +10,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
+    container_name: backend
     restart: unless-stopped
 
-    # Expose port internally (Coolify will detect this)
+    # Direct port mapping (bypasses Traefik, accessible at server-ip:8000)
     expose:
       - "8000"
+    ports:
+      - "8000:8000"
 
     environment:
       # Required: Set in Coolify UI Environment Variables
@@ -49,10 +52,6 @@ services:
 
     labels:
       - "coolify.managed=true"
-      # Workaround for Coolify bug #6233: manually specify loadbalancer port
-      # Service names must match what the routers expect
-      - "traefik.http.services.http-0-zgswcw804wgccs80c8g8gs4k-backend.loadbalancer.server.port=8000"
-      - "traefik.http.services.https-0-zgswcw804wgccs80c8g8gs4k-backend.loadbalancer.server.port=8000"
 
     deploy:
       resources:
@@ -67,13 +66,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.frontend
+    container_name: frontend
     restart: unless-stopped
     depends_on:
       - backend
 
-    # Expose port internally (Coolify will detect this)
+    # Direct port mapping (bypasses Traefik, accessible at server-ip:3000)
+    # Using port 3000 instead of 80 to avoid conflict with Traefik
     expose:
       - "80"
+    ports:
+      - "3000:80"
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
@@ -84,10 +87,6 @@ services:
 
     labels:
       - "coolify.managed=true"
-      # Workaround for Coolify bug #6233: manually specify loadbalancer port
-      # Service names must match what the routers expect
-      - "traefik.http.services.http-0-zgswcw804wgccs80c8g8gs4k-frontend.loadbalancer.server.port=80"
-      - "traefik.http.services.https-0-zgswcw804wgccs80c8g8gs4k-frontend.loadbalancer.server.port=80"
 
     deploy:
       resources:
@@ -107,19 +106,27 @@ volumes:
 
 # IMPORTANT DEPLOYMENT NOTES:
 #
-# 1. Port configuration: Both 'expose:' and 'ports:' are required for Coolify
-#    to properly generate Traefik service labels
-# 2. DO NOT add custom Traefik labels - Coolify generates them automatically
-# 3. Configure domains in Coolify UI after deployment:
-#    - Frontend: Assign domain (port 80 auto-detected)
-#    - Backend: Assign domain (port 8000 auto-detected)
-# 4. Environment variables:
-#    - ANTHROPIC_API_KEY: Required, set in Coolify UI
+# This configuration uses DIRECT PORT MAPPING (bypasses Traefik proxy):
+#
+# 1. Access URLs:
+#    - Backend API: http://YOUR-SERVER-IP:8000
+#    - Frontend: http://YOUR-SERVER-IP:3000
+#
+# 2. Port configuration:
+#    - Backend: Host port 8000 -> Container port 8000
+#    - Frontend: Host port 3000 -> Container port 80
+#
+# 3. Environment variables (set in Coolify UI):
+#    - ANTHROPIC_API_KEY: Required
 #    - MAX_CONCURRENT_JOBS: Optional, defaults to 3
-# 5. Coolify will automatically:
-#    - Create and manage Docker networks
-#    - Configure Traefik routing and SSL certificates
-#    - Handle health checks and container restarts
-#    - Manage persistent volumes
+#
+# 4. For SSL/Custom domains:
+#    - Set up reverse proxy (nginx/caddy) on your server
+#    - OR use Cloudflare tunnel
+#    - OR configure Traefik manually with working routers
+#
+# 5. Firewall configuration:
+#    - Open ports 8000 and 3000 on your server firewall
+#    - Configure security groups if on cloud (AWS/GCP/Azure)
 #
 # For detailed deployment instructions, see COOLIFY_DEPLOYMENT.md
