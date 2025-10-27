@@ -12,6 +12,10 @@ services:
       dockerfile: Dockerfile.backend
     restart: unless-stopped
 
+    # Expose port internally (Coolify will detect this)
+    expose:
+      - "8000"
+
     environment:
       # Required: Set in Coolify UI Environment Variables
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:?Please set ANTHROPIC_API_KEY in Coolify environment variables}
@@ -43,6 +47,9 @@ services:
       retries: 3
       start_period: 40s
 
+    labels:
+      - "coolify.managed=true"
+
     deploy:
       resources:
         limits:
@@ -60,12 +67,19 @@ services:
     depends_on:
       - backend
 
+    # Expose port internally (Coolify will detect this)
+    expose:
+      - "80"
+
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      test: ["CMD", "curl", "-f", "http://localhost/"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 10s
+
+    labels:
+      - "coolify.managed=true"
 
     deploy:
       resources:
