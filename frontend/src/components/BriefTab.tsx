@@ -8,7 +8,7 @@ import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
 import { Select } from './ui/select';
 import { Badge } from './ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose, DialogBody } from './ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle,  } from './ui/dialog';
 import MarkdownViewer from './MarkdownViewer';
 import type { FileInfo, Job, BriefFormData } from '../types';
 
@@ -350,12 +350,12 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
               >
                 <Download className="w-4 h-4" />
               </Button>
-              <DialogClose onClick={() => setViewingFile(null)} />
+              
             </div>
           </DialogHeader>
-          <DialogBody className="overflow-auto">
+          <div className="mt-4 overflow-auto max-h-[60vh]">
             {viewingFile && <MarkdownViewer content={viewingFile.content} />}
-          </DialogBody>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

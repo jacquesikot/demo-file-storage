@@ -1,6 +1,6 @@
 # Claude Workflow Manager
 
-A web-based application for managing Claude Code workflows including brand data generation, content brief creation, and draft generation.
+A modern, scalable workflow management system powered by Claude AI for brand data generation, content brief creation, and draft generation. Features independently deployable frontend and backend services with clean architecture.
 
 ## Features
 
@@ -9,76 +9,242 @@ A web-based application for managing Claude Code workflows including brand data 
 - **Draft Generation**: Generate full content drafts based on briefs and brand data
 - **Real-time Monitoring**: Watch job progress with live log streaming
 - **File Management**: Upload, view, download, and delete files through the UI
+- **Independent Deployment**: Deploy frontend and backend separately for maximum flexibility
+
+## Architecture
+
+- **Frontend**: React + TypeScript + Vite, served via Nginx
+- **Backend**: FastAPI + Python with Claude Code CLI integration
+- **Deployment**: Independent Docker containers for easy scaling
 
 ## Quick Start
 
-### Local Development
+### Prerequisites
 
-1. **Prerequisites**:
-   - Python 3.9+
-   - Node.js 18+
-   - Claude Code CLI installed and configured
+- Docker (for containerized deployment)
+- Node.js 20+ (for local development)
+- Python 3.11+ (for local development)
+- Anthropic API Key ([get one here](https://console.anthropic.com/))
 
-2. **Backend Setup**:
-   ```bash
-   cd backend
-   python3 -m venv venv
-   source venv/bin/activate  # Windows: venv\Scripts\activate
-   pip install -r requirements.txt
-   python app.py
-   ```
+### Installation
 
-3. **Frontend Setup** (in a new terminal):
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
+```bash
+# 1. Clone the repository
+git clone <your-repo-url>
+cd claude-workflow-manager
 
-4. **Access**: Open http://localhost:5173
+# 2. Set up environment variables
+make setup
 
-### Deploy to Production
+# 3. Edit .env and add your ANTHROPIC_API_KEY
+nano .env
 
-For production deployment to Coolify or other platforms, see **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**.
-
-**Quick Coolify Deploy**:
-1. Create Docker Compose resource in Coolify
-2. Connect your Git repository
-3. Set `ANTHROPIC_API_KEY` environment variable
-4. Deploy
-
-Access your application at:
-- Frontend: `http://YOUR-SERVER-IP:3000`
-- Backend API: `http://YOUR-SERVER-IP:8000`
-
-## Documentation
-
-- **[Deployment Guide](docs/DEPLOYMENT.md)** - Complete deployment instructions for Coolify and other platforms
-- **[Architecture](docs/ARCHITECTURE.md)** - System design, data flow, and technical details
-- **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Common issues and solutions
+# 4. Build Docker images
+make build
+```
 
 ## Usage
 
-### Brand Data Generation
+### Docker Deployment (Recommended)
 
-1. Navigate to the "Brand Data" tab
-2. Enter brand URLs (space-separated)
-3. Click "Generate Brand Data"
-4. Monitor progress and view generated files
+#### Run Both Services
 
-### Brief Generation
+```bash
+# Build images
+make build
 
-1. Navigate to the "Brief Generation" tab
-2. Fill in title, keywords, and select brand data
-3. Click "Generate Brief"
-4. View and download generated briefs
+# Run backend (requires ANTHROPIC_API_KEY)
+ANTHROPIC_API_KEY=your_key_here make run-backend
 
-### Draft Generation
+# Run frontend
+make run-frontend
+```
 
-1. Navigate to the "Draft Generation" tab
-2. Select brief and brand data files
-3. Click "Generate Draft"
-4. View generated drafts with word count
+Access the application:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000
+- API Docs: http://localhost:8000/docs
+
+#### Deploy Services Independently
+
+**Backend Only:**
+```bash
+# Build backend image
+make build-backend
+
+# Run with your API key
+ANTHROPIC_API_KEY=your_key_here make run-backend
+
+# Or manually with custom configuration
+docker run -d \
+  --name claude-workflow-manager-backend \
+  -p 8000:8000 \
+  -e ANTHROPIC_API_KEY=your_key \
+  -v $(pwd)/backend/brand-data:/app/brand-data \
+  -v $(pwd)/backend/brief-outputs:/app/brief-outputs \
+  -v $(pwd)/backend/draft-outputs:/app/draft-outputs \
+  -v $(pwd)/backend/logs:/app/logs \
+  claude-workflow-manager-backend:latest
+```
+
+**Frontend Only:**
+```bash
+# Build frontend with custom backend URL
+docker build \
+  --build-arg VITE_API_URL=https://your-backend.com/api \
+  -t claude-workflow-manager-frontend:latest \
+  -f frontend/Dockerfile ./frontend
+
+# Run frontend
+docker run -d \
+  --name claude-workflow-manager-frontend \
+  -p 3000:80 \
+  claude-workflow-manager-frontend:latest
+```
+
+### Local Development
+
+Run services locally without Docker for faster development:
+
+```bash
+# Terminal 1 - Backend
+make dev-backend
+
+# Terminal 2 - Frontend
+make dev-frontend
+```
+
+For local development, create `frontend/.env.local`:
+```env
+VITE_API_URL=http://localhost:8000/api
+```
+
+## Makefile Commands
+
+### Build Commands
+- `make build` - Build both frontend and backend images
+- `make build-frontend` - Build frontend image only
+- `make build-backend` - Build backend image only
+
+### Run Commands
+- `make run` - Run both services in Docker
+- `make run-frontend` - Run frontend container
+- `make run-backend` - Run backend container (requires ANTHROPIC_API_KEY)
+
+### Development Commands
+- `make dev` - Instructions for local development
+- `make dev-frontend` - Run frontend locally
+- `make dev-backend` - Run backend locally
+
+### Management Commands
+- `make stop` - Stop all containers
+- `make stop-frontend` - Stop frontend container
+- `make stop-backend` - Stop backend container
+- `make logs-frontend` - Show frontend logs
+- `make logs-backend` - Show backend logs
+
+### Maintenance Commands
+- `make clean` - Stop and remove containers
+- `make clean-images` - Remove Docker images
+- `make clean-logs` - Clean log files
+- `make prune` - Remove unused Docker resources
+
+### Utility Commands
+- `make health` - Check service health
+- `make test` - Run backend tests
+- `make backup` - Backup generated files
+- `make restore FILE=backup.tar.gz` - Restore from backup
+
+## Deployment Examples
+
+### Deploy to Cloud (AWS, GCP, Azure, etc.)
+
+**Backend:**
+```bash
+# Build and push to registry
+docker build -t your-registry/backend:latest -f backend/Dockerfile ./backend
+docker push your-registry/backend:latest
+
+# Deploy with environment variables
+docker run -d \
+  --name backend \
+  -p 8000:8000 \
+  -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
+  -e MAX_CONCURRENT_JOBS=3 \
+  -v /data/brand-data:/app/brand-data \
+  -v /data/brief-outputs:/app/brief-outputs \
+  -v /data/draft-outputs:/app/draft-outputs \
+  -v /data/logs:/app/logs \
+  --restart unless-stopped \
+  your-registry/backend:latest
+```
+
+**Frontend:**
+```bash
+# Build with production backend URL
+docker build \
+  --build-arg VITE_API_URL=https://api.yourdomain.com/api \
+  -t your-registry/frontend:latest \
+  -f frontend/Dockerfile ./frontend
+
+# Push to registry
+docker push your-registry/frontend:latest
+
+# Deploy
+docker run -d \
+  --name frontend \
+  -p 80:80 \
+  --restart unless-stopped \
+  your-registry/frontend:latest
+```
+
+### Platform-Specific Deployment
+
+See detailed deployment guides in the `docs/` directory:
+- **Kubernetes**: `docs/kubernetes.md`
+- **AWS ECS**: `docs/aws-ecs.md`
+- **Google Cloud Run**: `docs/gcp-cloud-run.md`
+
+## Environment Variables
+
+### Backend
+- `ANTHROPIC_API_KEY` (required) - Your Anthropic API key
+- `MAX_CONCURRENT_JOBS` (optional, default: 3) - Maximum concurrent Claude jobs
+
+### Frontend
+- `VITE_API_URL` (build-time) - Backend API URL
+  - Development: `http://localhost:8000/api`
+  - Production: Set during Docker build with `--build-arg`
+
+## Project Structure
+
+```
+claude-workflow-manager/
+├── backend/
+│   ├── Dockerfile              # Backend Docker configuration
+│   ├── .dockerignore           # Docker ignore patterns
+│   ├── app.py                  # FastAPI application
+│   ├── requirements.txt        # Python dependencies
+│   ├── brand-data/             # Generated brand data
+│   ├── brief-outputs/          # Generated briefs
+│   ├── draft-outputs/          # Generated drafts
+│   ├── logs/                   # Application logs
+│   ├── instructions/           # Prompt instructions
+│   └── data/                   # Reference data
+├── frontend/
+│   ├── Dockerfile              # Frontend Docker configuration
+│   ├── .dockerignore           # Docker ignore patterns
+│   ├── src/
+│   │   ├── api.ts              # API client with env config
+│   │   ├── components/         # React components
+│   │   ├── App.tsx             # Main application
+│   │   └── main.tsx            # Entry point
+│   ├── package.json
+│   └── vite.config.js
+├── Makefile                    # Automation scripts
+├── .env.example                # Environment template
+└── README.md                   # This file
+```
 
 ## API Endpoints
 
@@ -106,70 +272,29 @@ Access your application at:
 - `GET /api/jobs/{job_id}/logs` - Stream logs (SSE)
 
 ### Health
-- `GET /health` - Service health check
+- `GET /` or `GET /health` - Service health check
 
-## Technology Stack
+## Best Practices
 
-**Frontend**:
-- React 18 + Vite
-- TailwindCSS
-- Lucide React Icons
-- React Markdown
+### Security
+- Never commit `.env` files with secrets
+- Use environment variables for sensitive data
+- Run containers as non-root users (handled in Dockerfiles)
+- Keep dependencies updated
+- Review Claude Code permissions in production
 
-**Backend**:
-- FastAPI (Python)
-- Uvicorn (ASGI server)
-- AsyncIO for concurrent jobs
-- Claude Code CLI integration
+### Development
+- Use `make dev-*` commands for local development
+- Test changes locally before building Docker images
+- Run `make health` to verify services are running
+- Use `make logs-*` to debug issues
 
-**Deployment**:
-- Docker + Docker Compose
-- Coolify (recommended)
-- Direct port mapping
-
-## Project Structure
-
-```
-claude-workflow-manager/
-├── backend/
-│   ├── app.py                 # Main FastAPI application
-│   ├── requirements.txt       # Python dependencies
-│   ├── brand-data/           # Generated brand files
-│   ├── brief-outputs/        # Generated briefs
-│   ├── draft-outputs/        # Generated drafts
-│   ├── instructions/         # Instruction templates
-│   └── logs/                 # Job logs
-├── frontend/
-│   ├── src/
-│   │   ├── components/       # React components
-│   │   ├── api.js           # API client
-│   │   ├── App.jsx          # Main app
-│   │   └── main.jsx         # Entry point
-│   ├── package.json
-│   └── vite.config.js
-├── docs/                     # Documentation
-│   ├── DEPLOYMENT.md        # Deployment guide
-│   ├── ARCHITECTURE.md      # System architecture
-│   └── TROUBLESHOOTING.md   # Problem solving
-├── docker-compose.coolify.yml  # Production compose file
-├── Dockerfile.backend       # Backend container
-├── Dockerfile.frontend      # Frontend container
-└── README.md               # This file
-```
-
-## Configuration
-
-### Environment Variables
-
-**Backend** (`backend/.env` or Coolify UI):
-```bash
-ANTHROPIC_API_KEY=your-api-key-here
-MAX_CONCURRENT_JOBS=3
-```
-
-**Frontend** (configured at build time):
-- API URL defaults to `http://localhost:8000` for development
-- Production API URL is auto-configured based on deployment
+### Deployment
+- Build frontend with correct `VITE_API_URL` for your environment
+- Use persistent volumes for backend data directories
+- Set up health checks and monitoring
+- Use `--restart unless-stopped` for production containers
+- Consider using a reverse proxy (nginx/traefik) for SSL/TLS
 
 ### Resource Limits
 
@@ -182,28 +307,49 @@ MAX_CONCURRENT_JOBS=3
 - CPU: 0.5 cores
 - Memory: 256-512MB
 
-## Limitations
+## Troubleshooting
 
-- Maximum 3 concurrent jobs
-- File uploads limited to 10MB
-- No user authentication (single-user system)
-- Job logs retained during execution only
+### Frontend can't connect to backend
+- Verify `VITE_API_URL` was set correctly during build
+- Check CORS settings in backend
+- Ensure backend is accessible from frontend container
+- Use `make health` to verify services are running
 
-## Development
+### Backend API key errors
+- Verify `ANTHROPIC_API_KEY` is set correctly
+- Check the key is valid at https://console.anthropic.com/
+- Ensure environment variable is passed to container
 
-### Backend Development
-- Auto-reload enabled by default
-- Modify `app.py` and save - server reloads automatically
-- API documentation at http://localhost:8000/docs
+### Container won't start
+- Check logs: `make logs-backend` or `make logs-frontend`
+- Verify port availability: `lsof -i :8000` or `lsof -i :3000`
+- Check disk space and Docker resources
+- Review Docker logs for errors
 
-### Frontend Development
-- Hot Module Replacement (HMR) via Vite
-- Changes reflect immediately in browser
-- Build for production: `npm run build`
+### Permission errors
+- Ensure volumes have correct permissions
+- Backend runs as user `appuser` (uid 1000)
+- Check file ownership in mounted volumes
+
+### Quick health checks
+```bash
+# Check backend health
+curl http://localhost:8000/
+
+# Check frontend
+curl http://localhost:3000
+
+# View container status
+docker ps
+
+# View logs
+make logs-backend
+make logs-frontend
+```
 
 ## Security Notes
 
-This application uses `--dangerously-skip-permissions` flag for Claude Code CLI to enable automation. This means:
+This application uses Claude Code CLI with auto-approved permissions. This means:
 - ✅ Web searches and fetches happen automatically
 - ✅ File writes happen without prompts
 - ⚠️ All tool usage is auto-approved
@@ -216,39 +362,34 @@ This application uses `--dangerously-skip-permissions` flag for Claude Code CLI 
 **Not recommended for**:
 - Multi-tenant systems
 - Untrusted user input
-- Public-facing deployments
-
-## Troubleshooting
-
-For common issues and solutions, see **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)**.
-
-Quick checks:
-```bash
-# Check backend health
-curl http://localhost:8000/health
-
-# Check frontend
-curl http://localhost:3000
-
-# View logs
-docker logs backend
-docker logs frontend
-```
+- Public-facing deployments without authentication
 
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Test locally
-5. Submit a pull request
+4. Test locally with `make dev-*`
+5. Build and test Docker images with `make build && make run`
+6. Submit a pull request
+
+## Documentation
+
+- **Architecture**: See `docs/ARCHITECTURE.md` for system design
+- **Deployment**: See `docs/DEPLOYMENT.md` for detailed deployment guides
+- **Troubleshooting**: See `docs/TROUBLESHOOTING.md` for common issues
 
 ## Support
 
-- Documentation: [docs/](docs/)
-- Issues: GitHub Issues
-- Architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+For issues and questions:
+- GitHub Issues: [Your repo issues URL]
+- Documentation: See `docs/` directory
+- Email: [Your support email]
 
 ## License
 
-This project is part of the content generation workflow system.
+[Your License Here]
+
+---
+
+Built with ❤️ using Claude AI, FastAPI, and React

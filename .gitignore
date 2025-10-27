@@ -7,6 +7,7 @@ __pycache__/
 venv/
 env/
 ENV/
+backend/venv/
 
 # Node
 node_modules/
@@ -41,4 +42,20 @@ backend/logs/*.log
 *.tmp
 *.temp
 .cache/
-stacks
+
+# Docker
+*.dockerfile.bak
+
+# Data directories (keep structure, ignore content)
+backend/brand-data/*
+!backend/brand-data/.gitkeep
+backend/brief-outputs/*
+!backend/brief-outputs/.gitkeep
+backend/draft-outputs/*
+!backend/draft-outputs/.gitkeep
+
+# Backups
+backups/
+
+# Stacks (monitoring configs)
+stacks/

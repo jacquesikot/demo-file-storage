@@ -1,6 +1,7 @@
 import type { FileListResponse, BrandDataResponse, JobResponse, BrandDataFormData } from './types';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+// Use environment variable for API URL, with fallback to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 // Brand Data API
 export const brandDataAPI = {

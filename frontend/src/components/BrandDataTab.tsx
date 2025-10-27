@@ -6,7 +6,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Badge } from './ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose, DialogBody } from './ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import JsonViewer from './JsonViewer';
 import type { FileInfo, Job } from '../types';
 
@@ -265,14 +265,13 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
 
       {/* View Modal */}
       <Dialog open={!!viewingFile} onOpenChange={() => setViewingFile(null)}>
-        <DialogContent>
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-auto">
           <DialogHeader>
             <DialogTitle>{viewingFile?.filename}</DialogTitle>
-            <DialogClose onClick={() => setViewingFile(null)} />
           </DialogHeader>
-          <DialogBody>
+          <div className="mt-4">
             {viewingFile && <JsonViewer data={viewingFile.data} />}
-          </DialogBody>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
