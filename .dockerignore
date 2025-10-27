@@ -36,6 +36,8 @@
 .dockerignore
 Dockerfile*
 docker-compose*.yml
+# Allow Koyeb docker-compose file (negation pattern must come after exclusion)
+!docker-compose.koyeb.yml
 
 # Logs
 **/logs/*.log
