@@ -34,10 +34,15 @@
 
 # Docker
 .dockerignore
-Dockerfile*
-docker-compose*.yml
-# Allow Koyeb docker-compose file (negation pattern must come after exclusion)
+# Exclude only Dockerfile.koyeb (used for building the wrapper image)
+Dockerfile.koyeb
+# Exclude compose files except Koyeb (they'll be available in /app after COPY)
+docker-compose.yml
+docker-compose.coolify.yml
+# Allow files needed inside the container
 !docker-compose.koyeb.yml
+!Dockerfile.backend
+!Dockerfile.frontend
 
 # Logs
 **/logs/*.log
