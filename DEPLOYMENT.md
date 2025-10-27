@@ -328,6 +328,46 @@ Deploy:
 doctl apps create --spec app.yaml
 ```
 
+### Koyeb
+
+**Backend:**
+```bash
+# Koyeb builds from the repository root
+# The Dockerfile is configured to work with root build context
+# In Koyeb dashboard:
+# 1. Create a new Web Service
+# 2. Connect your GitHub repository
+# 3. Configure:
+#    - Dockerfile: backend/Dockerfile
+#    - Build context: / (repository root)
+#    - Port: 8000
+# 4. Add environment variables:
+#    - ANTHROPIC_API_KEY (secret)
+#    - MAX_CONCURRENT_JOBS=3
+# 5. Instance type: Medium or Large (for Claude Code workloads)
+# 6. Deploy
+```
+
+**Frontend:**
+```bash
+# In Koyeb dashboard:
+# 1. Create a new Web Service
+# 2. Connect your GitHub repository
+# 3. Configure:
+#    - Dockerfile: frontend/Dockerfile
+#    - Build context: / (repository root)
+#    - Build args: VITE_API_URL=https://your-backend.koyeb.app/api
+#    - Port: 80
+# 4. Instance type: Small
+# 5. Deploy
+```
+
+**Important Notes:**
+- The backend Dockerfile is configured to work with the repository root as build context
+- It uses `COPY backend/requirements.txt .` and `COPY backend/ .` to copy files from the backend directory
+- Make sure to set the ANTHROPIC_API_KEY as a secret environment variable
+- The health check is configured with a 5s start period, suitable for most deployments
+
 ## Environment Configuration
 
 ### Backend Environment Variables

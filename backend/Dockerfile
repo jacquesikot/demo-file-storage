@@ -16,7 +16,7 @@ RUN npm install -g @anthropic-ai/claude-code
 WORKDIR /app
 
 # Copy requirements first for better layer caching
-COPY requirements.txt .
+COPY backend/requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -25,7 +25,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN useradd -m -u 1000 appuser
 
 # Copy application code
-COPY . .
+COPY backend/ .
 
 # Create necessary directories with proper permissions
 RUN mkdir -p \
