@@ -50,7 +50,9 @@ services:
     labels:
       - "coolify.managed=true"
       # Workaround for Coolify bug #6233: manually specify loadbalancer port
-      - "traefik.http.services.zgswcw804wgccs80c8g8gs4k-backend.loadbalancer.server.port=8000"
+      # Service names must match what the routers expect
+      - "traefik.http.services.http-0-zgswcw804wgccs80c8g8gs4k-backend.loadbalancer.server.port=8000"
+      - "traefik.http.services.https-0-zgswcw804wgccs80c8g8gs4k-backend.loadbalancer.server.port=8000"
 
     deploy:
       resources:
@@ -83,7 +85,9 @@ services:
     labels:
       - "coolify.managed=true"
       # Workaround for Coolify bug #6233: manually specify loadbalancer port
-      - "traefik.http.services.zgswcw804wgccs80c8g8gs4k-frontend.loadbalancer.server.port=80"
+      # Service names must match what the routers expect
+      - "traefik.http.services.http-0-zgswcw804wgccs80c8g8gs4k-frontend.loadbalancer.server.port=80"
+      - "traefik.http.services.https-0-zgswcw804wgccs80c8g8gs4k-frontend.loadbalancer.server.port=80"
 
     deploy:
       resources:
