@@ -15,6 +15,8 @@ services:
     # Expose port internally (Coolify will detect this)
     expose:
       - "8000"
+    ports:
+      - "8000:8000"
 
     environment:
       # Required: Set in Coolify UI Environment Variables
@@ -70,6 +72,8 @@ services:
     # Expose port internally (Coolify will detect this)
     expose:
       - "80"
+    ports:
+      - "80:80"
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
@@ -99,11 +103,12 @@ volumes:
 
 # IMPORTANT DEPLOYMENT NOTES:
 #
-# 1. DO NOT add 'ports:' to services - Coolify's Traefik proxy handles all routing
+# 1. Port configuration: Both 'expose:' and 'ports:' are required for Coolify
+#    to properly generate Traefik service labels
 # 2. DO NOT add custom Traefik labels - Coolify generates them automatically
 # 3. Configure domains in Coolify UI after deployment:
-#    - Frontend: Set port to 80, assign domain
-#    - Backend: Set port to 8000, assign domain
+#    - Frontend: Assign domain (port 80 auto-detected)
+#    - Backend: Assign domain (port 8000 auto-detected)
 # 4. Environment variables:
 #    - ANTHROPIC_API_KEY: Required, set in Coolify UI
 #    - MAX_CONCURRENT_JOBS: Optional, defaults to 3
