@@ -1,18 +1,20 @@
+import type { FileListResponse, BrandDataResponse, JobResponse, BrandDataFormData } from './types';
+
 const API_BASE_URL = 'http://localhost:8000/api';
 
 // Brand Data API
 export const brandDataAPI = {
-  list: async () => {
+  list: async (): Promise<FileListResponse> => {
     const response = await fetch(`${API_BASE_URL}/brand-data`);
     return response.json();
   },
 
-  get: async (filename) => {
+  get: async (filename: string): Promise<BrandDataResponse> => {
     const response = await fetch(`${API_BASE_URL}/brand-data/${filename}`);
     return response.json();
   },
 
-  upload: async (file) => {
+  upload: async (file: File): Promise<{ message: string }> => {
     const formData = new FormData();
     formData.append('file', file);
     const response = await fetch(`${API_BASE_URL}/brand-data/upload`, {
@@ -22,14 +24,14 @@ export const brandDataAPI = {
     return response.json();
   },
 
-  delete: async (filename) => {
+  delete: async (filename: string): Promise<{ message: string }> => {
     const response = await fetch(`${API_BASE_URL}/brand-data/${filename}`, {
       method: 'DELETE',
     });
     return response.json();
   },
 
-  generate: async (data) => {
+  generate: async (data: BrandDataFormData): Promise<JobResponse> => {
     const response = await fetch(`${API_BASE_URL}/brand-data/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -41,17 +43,17 @@ export const brandDataAPI = {
 
 // Briefs API
 export const briefsAPI = {
-  list: async () => {
+  list: async (): Promise<FileListResponse> => {
     const response = await fetch(`${API_BASE_URL}/briefs`);
     return response.json();
   },
 
-  get: async (filename) => {
+  get: async (filename: string): Promise<{ content: string }> => {
     const response = await fetch(`${API_BASE_URL}/briefs/${filename}`);
     return response.json();
   },
 
-  upload: async (file) => {
+  upload: async (file: File): Promise<{ message: string }> => {
     const formData = new FormData();
     formData.append('file', file);
     const response = await fetch(`${API_BASE_URL}/briefs/upload`, {
@@ -61,14 +63,14 @@ export const briefsAPI = {
     return response.json();
   },
 
-  delete: async (filename) => {
+  delete: async (filename: string): Promise<{ message: string }> => {
     const response = await fetch(`${API_BASE_URL}/briefs/${filename}`, {
       method: 'DELETE',
     });
     return response.json();
   },
 
-  generate: async (data) => {
+  generate: async (data: any): Promise<JobResponse> => {
     const response = await fetch(`${API_BASE_URL}/briefs/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -80,17 +82,17 @@ export const briefsAPI = {
 
 // Drafts API
 export const draftsAPI = {
-  list: async () => {
+  list: async (): Promise<FileListResponse> => {
     const response = await fetch(`${API_BASE_URL}/drafts`);
     return response.json();
   },
 
-  get: async (filename) => {
+  get: async (filename: string): Promise<{ content: string }> => {
     const response = await fetch(`${API_BASE_URL}/drafts/${filename}`);
     return response.json();
   },
 
-  upload: async (file) => {
+  upload: async (file: File): Promise<{ message: string }> => {
     const formData = new FormData();
     formData.append('file', file);
     const response = await fetch(`${API_BASE_URL}/drafts/upload`, {
@@ -100,14 +102,14 @@ export const draftsAPI = {
     return response.json();
   },
 
-  delete: async (filename) => {
+  delete: async (filename: string): Promise<{ message: string }> => {
     const response = await fetch(`${API_BASE_URL}/drafts/${filename}`, {
       method: 'DELETE',
     });
     return response.json();
   },
 
-  generate: async (data) => {
+  generate: async (data: any): Promise<JobResponse> => {
     const response = await fetch(`${API_BASE_URL}/drafts/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -119,32 +121,37 @@ export const draftsAPI = {
 
 // Jobs API
 export const jobsAPI = {
-  list: async (status) => {
+  list: async (status?: string): Promise<{ jobs: any[] }> => {
     const url = status ? `${API_BASE_URL}/jobs?status=${status}` : `${API_BASE_URL}/jobs`;
     const response = await fetch(url);
     return response.json();
   },
 
-  get: async (jobId) => {
+  get: async (jobId: string): Promise<any> => {
     const response = await fetch(`${API_BASE_URL}/jobs/${jobId}`);
     return response.json();
   },
 
-  streamLogs: (jobId, onLog, onComplete, onError) => {
+  streamLogs: (
+    jobId: string,
+    onLog: (message: string) => void,
+    onComplete: (data: any) => void,
+    onError: (error: Event) => void
+  ): EventSource => {
     const eventSource = new EventSource(`${API_BASE_URL}/jobs/${jobId}/logs`);
 
-    eventSource.addEventListener('log', (event) => {
+    eventSource.addEventListener('log', (event: MessageEvent) => {
       const data = JSON.parse(event.data);
       onLog(data.message);
     });
 
-    eventSource.addEventListener('complete', (event) => {
+    eventSource.addEventListener('complete', (event: MessageEvent) => {
       const data = JSON.parse(event.data);
       onComplete(data);
       eventSource.close();
     });
 
-    eventSource.addEventListener('error', (event) => {
+    eventSource.addEventListener('error', (event: Event) => {
       onError(event);
       eventSource.close();
     });
