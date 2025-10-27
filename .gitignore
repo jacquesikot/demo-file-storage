@@ -41,3 +41,4 @@ backend/logs/*.log
 *.tmp
 *.temp
 .cache/
+stacks
