@@ -1,4 +1,3 @@
 FROM koyeb/docker-compose
+COPY docker-compose.koyeb.yml /app/docker-compose.yaml
 COPY . /app
-WORKDIR /app
-ENV COMPOSE_FILE=docker-compose.koyeb.yml
