@@ -1,4 +1,6 @@
 FROM koyeb/docker-compose
 COPY . /app
 WORKDIR /app
+# Explicitly copy docker-compose file (excluded by .dockerignore)
+COPY docker-compose.koyeb.yml /app/docker-compose.koyeb.yml
 ENV COMPOSE_FILE=docker-compose.koyeb.yml
