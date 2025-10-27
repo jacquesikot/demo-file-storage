@@ -32,12 +32,14 @@ Claude Workflow Manager is a full-stack web application for managing content gen
 
 ## Components
 
-### Frontend (React + Vite)
+### Frontend (React + Vite + shadcn/ui)
 
 **Technology Stack**:
-- React 18
+- React 18 + TypeScript
 - Vite (build tool)
 - TailwindCSS (styling)
+- shadcn/ui (UI components)
+- Radix UI (primitives)
 - Lucide React (icons)
 - React Markdown (rendering)
 - EventSource API (SSE)
@@ -48,20 +50,34 @@ Claude Workflow Manager is a full-stack web application for managing content gen
 - File upload/download/delete
 - Markdown rendering for previews
 - Active jobs monitoring panel
+- Modular shadcn/ui components
+- Dark mode support (via CSS variables)
 
 **Component Structure**:
 ```
 src/
 ├── components/
-│   ├── BrandDataTab.jsx    # Brand data generation UI
-│   ├── BriefTab.jsx         # Brief generation UI
-│   ├── DraftTab.jsx         # Draft generation UI
-│   ├── ActiveJobsPanel.jsx  # Job monitoring sidebar
-│   └── LogViewer.jsx        # SSE log streaming component
-├── api.js                   # API client wrapper
-├── App.jsx                  # Main app with tab navigation
-└── main.jsx                 # Entry point
+│   ├── ui/                  # shadcn/ui components (button, card, dialog, etc.)
+│   ├── BrandDataTab.tsx     # Brand data generation UI
+│   ├── BriefTab.tsx         # Brief generation UI
+│   ├── DraftTab.tsx         # Draft generation UI
+│   ├── ActiveJobsPanel.tsx  # Job monitoring sidebar
+│   ├── LogViewer.tsx        # SSE log streaming component
+│   ├── JsonViewer.tsx       # JSON data viewer
+│   └── MarkdownViewer.tsx   # Markdown renderer
+├── lib/
+│   └── utils.ts             # Utility functions (cn, etc.)
+├── api.ts                   # API client wrapper
+├── types.ts                 # TypeScript types
+├── App.tsx                  # Main app with tab navigation
+└── main.tsx                 # Entry point
 ```
+
+**shadcn/ui Configuration**:
+- Path alias: `@/` → `./src/`
+- CSS variables for theming
+- Components installed: button, card, dialog, tabs, input, label, textarea, badge, select
+- Add new components: `npx shadcn@latest add <component-name>`
 
 ### Backend (FastAPI + Python)
 
@@ -256,28 +272,65 @@ process = await asyncio.create_subprocess_exec(
 
 ## Deployment Architecture
 
-### Coolify Deployment
+### Independent Service Deployment
+
+**Architecture Model**:
+- Frontend and backend are **independently deployable**
+- No Docker Compose required
+- Each service has its own Dockerfile
+- Services communicate via HTTP API (no shared network required)
+- Can be deployed to different platforms
 
 ```
-GitHub Repository
-    ↓ (Git push)
-Coolify Auto-Deploy
-    ↓
-Docker Build
-    ↓
-├── Backend Container (8000:8000)
-└── Frontend Container (3000:80)
-    ↓
-Direct Port Mapping
-    ↓
-Server IP:8000 (API)
-Server IP:3000 (UI)
+┌─────────────────────┐
+│  Frontend Service   │
+│   (Port 3000/80)    │
+│   - Static Build    │
+│   - Nginx Server    │
+│   - VITE_API_URL    │
+└──────────┬──────────┘
+           │ HTTP API Calls
+           ▼
+┌─────────────────────┐
+│  Backend Service    │
+│   (Port 8000)       │
+│   - FastAPI         │
+│   - Claude Code CLI │
+│   - Data Volumes    │
+└─────────────────────┘
 ```
 
-**Network Configuration**:
-- Containers on same bridge network
-- Direct host port mapping (bypasses Traefik)
-- Inter-container communication via container names
+### Deployment Options
+
+**1. Same Host Deployment**:
+```bash
+# Build images
+docker build -t backend:latest -f backend/Dockerfile ./backend
+docker build --build-arg VITE_API_URL=http://localhost:8000/api \
+  -t frontend:latest -f frontend/Dockerfile ./frontend
+
+# Run independently
+docker run -d -p 8000:8000 --name backend backend:latest
+docker run -d -p 3000:80 --name frontend frontend:latest
+```
+
+**2. Separate Hosts**:
+```bash
+# Host 1: Backend (api.example.com)
+docker run -d -p 8000:8000 backend:latest
+
+# Host 2: Frontend (app.example.com)
+docker build --build-arg VITE_API_URL=https://api.example.com/api \
+  -t frontend:latest -f frontend/Dockerfile ./frontend
+docker run -d -p 80:80 frontend:latest
+```
+
+**3. Cloud Platform Deployment**:
+- AWS: ECS/Fargate for containers, CloudFront for frontend
+- GCP: Cloud Run for both services
+- Azure: Container Instances or App Service
+- DigitalOcean: App Platform or Droplets
+- Railway/Render: Direct Git deployment
 
 ### Scaling Considerations
 

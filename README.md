@@ -13,9 +13,10 @@ A modern, scalable workflow management system powered by Claude AI for brand dat
 
 ## Architecture
 
-- **Frontend**: React + TypeScript + Vite, served via Nginx
+- **Frontend**: React + TypeScript + Vite + shadcn/ui, served via Nginx
 - **Backend**: FastAPI + Python with Claude Code CLI integration
 - **Deployment**: Independent Docker containers for easy scaling
+- **UI Components**: shadcn/ui with Radix UI primitives and Tailwind CSS
 
 ## Quick Start
 
@@ -200,10 +201,12 @@ docker run -d \
 
 ### Platform-Specific Deployment
 
-See detailed deployment guides in the `docs/` directory:
-- **Kubernetes**: `docs/kubernetes.md`
-- **AWS ECS**: `docs/aws-ecs.md`
-- **Google Cloud Run**: `docs/gcp-cloud-run.md`
+See detailed deployment guides in `docs/DEPLOYMENT.md` for:
+- AWS ECS/Fargate
+- Google Cloud Run
+- Azure Container Instances
+- DigitalOcean App Platform
+- Railway / Render
 
 ## Environment Variables
 
@@ -376,6 +379,7 @@ This application uses Claude Code CLI with auto-approved permissions. This means
 ## Documentation
 
 - **Architecture**: See `docs/ARCHITECTURE.md` for system design
+- **Frontend**: See `frontend/README.md` for frontend development guide
 - **Deployment**: See `docs/DEPLOYMENT.md` for detailed deployment guides
 - **Troubleshooting**: See `docs/TROUBLESHOOTING.md` for common issues
 
