@@ -274,26 +274,45 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
               {files.map((file) => (
                 <div
                   key={file.name}
-                  className="border border-gray-200 rounded-lg p-4 hover:border-gray-300 hover:shadow-sm transition-all"
+                  className="group border border-gray-200 rounded-lg p-5 hover:border-primary/40 hover:shadow-md transition-all duration-200 bg-white"
                 >
-                  <h3 className="font-medium text-gray-900 mb-2 truncate">{file.preview || file.name}</h3>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Badge variant="outline" className="text-xs">
-                      {new Date(file.created_at * 1000).toLocaleDateString()}
-                    </Badge>
-                    {file.size && (
-                      <Badge variant="secondary" className="text-xs">
-                        {file.size} words
-                      </Badge>
-                    )}
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center group-hover:from-primary/20 group-hover:to-primary/10 transition-colors">
+                      <FileText className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-900 leading-tight mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                        {file.preview || file.name}
+                      </h3>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <Badge variant="outline" className="text-xs font-normal">
+                          {new Date(file.created_at * 1000).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric',
+                          })}
+                        </Badge>
+                        {file.size && (
+                          <Badge variant="secondary" className="text-xs font-normal">
+                            {file.size.toLocaleString()} words
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" onClick={() => handleView(file.name)} className="flex-1">
-                      <Eye className="w-4 h-4 mr-1" />
+                    <Button variant="default" size="sm" onClick={() => handleView(file.name)} className="flex-1 h-8">
+                      <Eye className="w-3.5 h-3.5 mr-1.5" />
                       View
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={() => handleDelete(file.name)} title="Delete brief">
-                      <Trash2 className="w-4 h-4 text-error" />
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleDelete(file.name)}
+                      className="h-8 hover:bg-error/5 hover:border-error/30 hover:text-error"
+                    >
+                      <Trash2 className="w-3.5 h-3.5 mr-1.5" />
+                      Delete
                     </Button>
                   </div>
                 </div>
