@@ -40,7 +40,8 @@ app.add_middleware(
         "http://localhost",
         "http://localhost:80",
         "http://localhost:5173",
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "https://many-virgie-jacquesikot-9433b132.koyeb.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],

@@ -356,16 +356,26 @@ doctl apps create --spec app.yaml
 # 3. Configure:
 #    - Dockerfile: frontend/Dockerfile
 #    - Build context: / (repository root)
-#    - Build args: VITE_API_URL=https://your-backend.koyeb.app/api
+#    - Build args:
+#      VITE_API_URL=https://your-backend.koyeb.app/api
+#      (Example: https://mammoth-nathalia-jacquesikot-bf168f23.koyeb.app/api)
+#      IMPORTANT: Must include https:// and end with /api
+#    - Port: 80 (IMPORTANT: Must be 80, not 8000)
+# 4. Health Check:
+#    - Protocol: HTTP (not TCP)
 #    - Port: 80
-# 4. Instance type: Small
-# 5. Deploy
+#    - Path: /
+#    - Grace period: 5s
+# 5. Instance type: Small
+# 6. Deploy
 ```
 
 **Important Notes:**
 - The backend Dockerfile is configured to work with the repository root as build context
 - It uses `COPY backend/requirements.txt .` and `COPY backend/ .` to copy files from the backend directory
 - Make sure to set the ANTHROPIC_API_KEY as a secret environment variable
+- **Frontend runs on port 80** (nginx default), NOT 8000. Health checks must target port 80
+- Backend runs on port 8000 (FastAPI/uvicorn)
 - The health check is configured with a 5s start period, suitable for most deployments
 
 ## Environment Configuration
