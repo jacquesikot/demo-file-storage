@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Trash2, Eye, Loader2, Download, FileEdit, Sparkles, AlertTriangle, CheckCircle2, Plus, X, Layers } from 'lucide-react';
+import { Trash2, Eye, Loader2, Download, FileEdit, Sparkles, AlertTriangle, CheckCircle2, Plus, X, Layers, Edit2, Save } from 'lucide-react';
 import { draftsAPI, briefsAPI, brandDataAPI, jobsAPI } from '../api';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
 import { Button } from './ui/button';
@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Badge } from './ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import MarkdownViewer from './MarkdownViewer';
+import MarkdownEditor from './MarkdownEditor';
 import type { FileInfo, Job, DraftFormData } from '../types';
 
 interface DraftTabProps {
@@ -23,6 +24,9 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
   const [generating, setGenerating] = useState(false);
   const [viewingFile, setViewingFile] = useState<{ filename: string; content: string } | null>(null);
   const [batchMode, setBatchMode] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState<string>('');
+  const [saving, setSaving] = useState(false);
 
   const [formData, setFormData] = useState<DraftFormData>({
     brief_filename: '',
@@ -221,9 +225,45 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
     try {
       const data = await draftsAPI.get(filename);
       setViewingFile({ filename, content: data.content });
+      setIsEditing(false);
+      setEditedContent(data.content);
     } catch (error) {
       console.error('Error viewing file:', error);
     }
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    setEditedContent(viewingFile?.content || '');
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setEditedContent(viewingFile?.content || '');
+  };
+
+  const handleSave = async () => {
+    if (!viewingFile || !editedContent) return;
+
+    setSaving(true);
+    try {
+      await draftsAPI.save(viewingFile.filename, editedContent);
+      setViewingFile({ ...viewingFile, content: editedContent });
+      setIsEditing(false);
+      loadFiles(); // Reload to update preview
+      alert('Draft saved successfully!');
+    } catch (error) {
+      console.error('Error saving file:', error);
+      alert('Failed to save draft. Please check the console for details.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCloseDialog = () => {
+    setViewingFile(null);
+    setIsEditing(false);
+    setEditedContent('');
   };
 
   const downloadFile = (filename: string, content: string) => {
@@ -518,8 +558,8 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
         </CardContent>
       </Card>
 
-      {/* View Modal */}
-      <Dialog open={!!viewingFile} onOpenChange={() => setViewingFile(null)}>
+      {/* View/Edit Modal */}
+      <Dialog open={!!viewingFile} onOpenChange={handleCloseDialog}>
         <DialogContent className="max-w-5xl max-h-[85vh] flex flex-col">
           <DialogHeader className="flex-shrink-0">
             <div className="flex items-start justify-between gap-4 pr-8">
@@ -527,17 +567,49 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
                 <DialogTitle className="text-xl font-semibold truncate" title={viewingFile?.filename}>
                   {viewingFile?.filename}
                 </DialogTitle>
-                <p className="text-sm text-gray-500 mt-1.5">Draft preview</p>
+                <p className="text-sm text-gray-500 mt-1.5">
+                  {isEditing ? 'Editing draft' : 'Draft preview'}
+                </p>
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => viewingFile && downloadFile(viewingFile.filename, viewingFile.content)}
-                className="flex-shrink-0"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download
-              </Button>
+              <div className="flex gap-2">
+                {!isEditing ? (
+                  <>
+                    <Button onClick={handleEdit} size="sm" variant="outline">
+                      <Edit2 className="w-4 h-4 mr-2" />
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => viewingFile && downloadFile(viewingFile.filename, viewingFile.content)}
+                      className="flex-shrink-0"
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Download
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button onClick={handleCancelEdit} size="sm" variant="outline" disabled={saving}>
+                      <X className="w-4 h-4 mr-2" />
+                      Cancel
+                    </Button>
+                    <Button onClick={handleSave} size="sm" disabled={saving}>
+                      {saving ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Saving...
+                        </>
+                      ) : (
+                        <>
+                          <Save className="w-4 h-4 mr-2" />
+                          Save
+                        </>
+                      )}
+                    </Button>
+                  </>
+                )}
+              </div>
             </div>
           </DialogHeader>
 
@@ -546,7 +618,16 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
 
           {/* Scrollable content */}
           <div className="flex-1 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-6 max-h-[calc(85vh-200px)]">
-            {viewingFile && <MarkdownViewer content={viewingFile.content} />}
+            {viewingFile && (
+              isEditing ? (
+                <MarkdownEditor
+                  content={editedContent}
+                  onChange={setEditedContent}
+                />
+              ) : (
+                <MarkdownViewer content={viewingFile.content} />
+              )
+            )}
           </div>
         </DialogContent>
       </Dialog>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Upload, Trash2, Eye, Loader2, Database, Sparkles } from 'lucide-react';
+import { Upload, Trash2, Eye, Loader2, Database, Sparkles, Edit2, Save, X } from 'lucide-react';
 import { brandDataAPI, jobsAPI } from '../api';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
 import { Button } from './ui/button';
@@ -8,6 +8,7 @@ import { Label } from './ui/label';
 import { Badge } from './ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import JsonViewer from './JsonViewer';
+import JsonEditor from './JsonEditor';
 import type { FileInfo, Job } from '../types';
 
 interface BrandDataTabProps {
@@ -22,6 +23,9 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
   const [brandName, setBrandName] = useState('');
   const [generating, setGenerating] = useState(false);
   const [viewingFile, setViewingFile] = useState<{ filename: string; data: any } | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedData, setEditedData] = useState<any>(null);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     loadFiles();
@@ -102,9 +106,45 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
     try {
       const data = await brandDataAPI.get(filename);
       setViewingFile({ filename, data });
+      setIsEditing(false);
+      setEditedData(data);
     } catch (error) {
       console.error('Error viewing file:', error);
     }
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+    setEditedData(viewingFile?.data);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setEditedData(viewingFile?.data);
+  };
+
+  const handleSave = async () => {
+    if (!viewingFile || !editedData) return;
+
+    setSaving(true);
+    try {
+      await brandDataAPI.save(viewingFile.filename, editedData);
+      setViewingFile({ ...viewingFile, data: editedData });
+      setIsEditing(false);
+      loadFiles(); // Reload to update preview
+      alert('Brand data saved successfully!');
+    } catch (error) {
+      console.error('Error saving file:', error);
+      alert('Failed to save brand data. Please check the console for details.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCloseDialog = () => {
+    setViewingFile(null);
+    setIsEditing(false);
+    setEditedData(null);
   };
 
   return (
@@ -251,8 +291,8 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
         </CardContent>
       </Card>
 
-      {/* View Modal */}
-      <Dialog open={!!viewingFile} onOpenChange={() => setViewingFile(null)}>
+      {/* View/Edit Modal */}
+      <Dialog open={!!viewingFile} onOpenChange={handleCloseDialog}>
         <DialogContent className="max-w-5xl max-h-[85vh] flex flex-col">
           <DialogHeader className="flex-shrink-0">
             <div className="flex items-start justify-between gap-4 pr-8">
@@ -260,7 +300,37 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
                 <DialogTitle className="text-xl font-semibold truncate" title={viewingFile?.filename}>
                   {viewingFile?.filename}
                 </DialogTitle>
-                <p className="text-sm text-gray-500 mt-1.5">Brand data preview</p>
+                <p className="text-sm text-gray-500 mt-1.5">
+                  {isEditing ? 'Editing brand data' : 'Brand data preview'}
+                </p>
+              </div>
+              <div className="flex gap-2">
+                {!isEditing ? (
+                  <Button onClick={handleEdit} size="sm" variant="outline">
+                    <Edit2 className="w-4 h-4 mr-2" />
+                    Edit
+                  </Button>
+                ) : (
+                  <>
+                    <Button onClick={handleCancelEdit} size="sm" variant="outline" disabled={saving}>
+                      <X className="w-4 h-4 mr-2" />
+                      Cancel
+                    </Button>
+                    <Button onClick={handleSave} size="sm" disabled={saving}>
+                      {saving ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Saving...
+                        </>
+                      ) : (
+                        <>
+                          <Save className="w-4 h-4 mr-2" />
+                          Save
+                        </>
+                      )}
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </DialogHeader>
@@ -270,7 +340,16 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
 
           {/* Scrollable content */}
           <div className="flex-1 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-6 max-h-[calc(85vh-200px)]">
-            {viewingFile && <JsonViewer data={viewingFile.data} />}
+            {viewingFile && (
+              isEditing ? (
+                <JsonEditor
+                  data={editedData}
+                  onChange={setEditedData}
+                />
+              ) : (
+                <JsonViewer data={viewingFile.data} />
+              )
+            )}
           </div>
         </DialogContent>
       </Dialog>

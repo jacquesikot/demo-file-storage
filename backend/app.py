@@ -122,6 +122,21 @@ class JobResponse(BaseModel):
     output_files: Optional[List[str]] = None
 
 
+class BrandDataSaveRequest(BaseModel):
+    filename: str
+    content: dict
+
+
+class BriefSaveRequest(BaseModel):
+    filename: str
+    content: str
+
+
+class DraftSaveRequest(BaseModel):
+    filename: str
+    content: str
+
+
 # File Manager
 class FileManager:
     def __init__(self, base_dir: Path):
@@ -188,6 +203,18 @@ class FileManager:
         content = await file.read()
         file_path.write_bytes(content)
         return file.filename
+
+    def save_file(self, folder: str, filename: str, content: str) -> bool:
+        """Save content to a file"""
+        file_path = self.base_dir / folder / filename
+        if not file_path.exists():
+            raise HTTPException(status_code=404, detail="File not found")
+        try:
+            file_path.write_text(content, encoding='utf-8')
+            return True
+        except Exception as e:
+            print(f"Error saving file {filename}: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
 
 
 # Job Manager
@@ -821,6 +848,21 @@ async def upload_brand_data(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Invalid JSON format")
 
 
+@app.put("/api/brand-data/save")
+async def save_brand_data(request: BrandDataSaveRequest):
+    """Save edited brand data"""
+    if not request.filename.endswith(".json"):
+        raise HTTPException(status_code=400, detail="Filename must end with .json")
+
+    try:
+        # Validate JSON content
+        content_str = json.dumps(request.content, indent=2, ensure_ascii=False)
+        file_manager.save_file("brand-data", request.filename, content_str)
+        return {"success": True, "message": "Brand data saved successfully"}
+    except json.JSONDecodeError:
+        raise HTTPException(status_code=400, detail="Invalid JSON content")
+
+
 @app.delete("/api/brand-data/{filename}")
 async def delete_brand_data(filename: str):
     success = file_manager.delete_file("brand-data", filename)
@@ -877,6 +919,16 @@ async def upload_brief(file: UploadFile = File(...)):
 
     filename = await file_manager.save_upload("brief-outputs", file)
     return {"success": True, "filename": filename}
+
+
+@app.put("/api/briefs/save")
+async def save_brief(request: BriefSaveRequest):
+    """Save edited brief"""
+    if not request.filename.endswith(".md"):
+        raise HTTPException(status_code=400, detail="Filename must end with .md")
+
+    file_manager.save_file("brief-outputs", request.filename, request.content)
+    return {"success": True, "message": "Brief saved successfully"}
 
 
 @app.delete("/api/briefs/{filename}")
@@ -981,6 +1033,16 @@ async def upload_draft(file: UploadFile = File(...)):
 
     filename = await file_manager.save_upload("draft-outputs", file)
     return {"success": True, "filename": filename}
+
+
+@app.put("/api/drafts/save")
+async def save_draft(request: DraftSaveRequest):
+    """Save edited draft"""
+    if not request.filename.endswith(".md"):
+        raise HTTPException(status_code=400, detail="Filename must end with .md")
+
+    file_manager.save_file("draft-outputs", request.filename, request.content)
+    return {"success": True, "message": "Draft saved successfully"}
 
 
 @app.delete("/api/drafts/{filename}")

@@ -32,6 +32,15 @@ export const brandDataAPI = {
     return response.json();
   },
 
+  save: async (filename: string, content: any): Promise<{ success: boolean; message: string }> => {
+    const response = await fetch(`${API_BASE_URL}/brand-data/save`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename, content }),
+    });
+    return response.json();
+  },
+
   generate: async (data: BrandDataFormData): Promise<JobResponse> => {
     const response = await fetch(`${API_BASE_URL}/brand-data/generate`, {
       method: 'POST',
@@ -67,6 +76,15 @@ export const briefsAPI = {
   delete: async (filename: string): Promise<{ message: string }> => {
     const response = await fetch(`${API_BASE_URL}/briefs/${filename}`, {
       method: 'DELETE',
+    });
+    return response.json();
+  },
+
+  save: async (filename: string, content: string): Promise<{ success: boolean; message: string }> => {
+    const response = await fetch(`${API_BASE_URL}/briefs/save`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename, content }),
     });
     return response.json();
   },
@@ -115,6 +133,15 @@ export const draftsAPI = {
   delete: async (filename: string): Promise<{ message: string }> => {
     const response = await fetch(`${API_BASE_URL}/drafts/${filename}`, {
       method: 'DELETE',
+    });
+    return response.json();
+  },
+
+  save: async (filename: string, content: string): Promise<{ success: boolean; message: string }> => {
+    const response = await fetch(`${API_BASE_URL}/drafts/save`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename, content }),
     });
     return response.json();
   },
