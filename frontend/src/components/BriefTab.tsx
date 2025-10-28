@@ -1,4 +1,4 @@
-import { Download, Eye, FileText, Loader2, Sparkles, Trash2, Upload } from 'lucide-react';
+import { Download, Eye, FileText, Loader2, Sparkles, Trash2, Upload, Plus, X, Layers } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { brandDataAPI, briefsAPI, jobsAPI } from '../api';
 import type { BriefFormData, FileInfo, Job } from '../types';
@@ -23,6 +23,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
   const [viewingFile, setViewingFile] = useState<{ filename: string; content: string } | null>(null);
+  const [batchMode, setBatchMode] = useState(false);
 
   const [formData, setFormData] = useState<BriefFormData>({
     title: '',
@@ -30,6 +31,15 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
     secondary_keywords: '',
     brand_data: '',
   });
+
+  const [batchForms, setBatchForms] = useState<BriefFormData[]>([
+    {
+      title: '',
+      primary_keyword: '',
+      secondary_keywords: '',
+      brand_data: '',
+    },
+  ]);
 
   useEffect(() => {
     loadFiles();
@@ -76,7 +86,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
 
       const interval = setInterval(async () => {
         const jobData = await jobsAPI.get(job_id);
-        if (jobData.status !== 'running') {
+        if (jobData.status !== 'running' && jobData.status !== 'queued') {
           clearInterval(interval);
           setGenerating(false);
           setFormData({
@@ -93,6 +103,108 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
       console.error('Error generating brief:', error);
       setGenerating(false);
     }
+  };
+
+  const handleBatchGenerate = async () => {
+    // Validate all forms
+    const validForms = batchForms.filter(
+      (form) => form.title && form.primary_keyword && form.brand_data
+    );
+
+    if (validForms.length === 0) {
+      alert('Please fill in at least one complete brief');
+      return;
+    }
+
+    if (validForms.length !== batchForms.length) {
+      if (!confirm(`${batchForms.length - validForms.length} brief(s) have missing fields and will be skipped. Continue?`)) {
+        return;
+      }
+    }
+
+    setGenerating(true);
+
+    try {
+      const { batch_id, job_ids } = await briefsAPI.generateBatch(validForms);
+
+      // Fetch all job data concurrently
+      const jobDataPromises = job_ids.map((id) => jobsAPI.get(id));
+      const jobDataArray = await Promise.all(jobDataPromises);
+
+      // Add all jobs
+      jobDataArray.forEach((jobData, i) => {
+        addJob({
+          id: job_ids[i],
+          type: 'brief',
+          status: jobData.status,
+          params: validForms[i],
+          batch_id: batch_id,
+          queue_position: jobData.queue_position,
+        });
+      });
+
+      // Monitor all jobs
+      const intervals = job_ids.map((job_id) =>
+        setInterval(async () => {
+          const jobData = await jobsAPI.get(job_id);
+          if (jobData.status !== 'running' && jobData.status !== 'queued') {
+            clearInterval(intervals[job_ids.indexOf(job_id)]);
+            updateJob(job_id, { status: jobData.status, queue_position: jobData.queue_position });
+
+            // Check if all jobs are done
+            const allDone = job_ids.every(async (id) => {
+              const data = await jobsAPI.get(id);
+              return data.status !== 'running' && data.status !== 'queued';
+            });
+
+            if (allDone) {
+              setGenerating(false);
+              setBatchForms([
+                {
+                  title: '',
+                  primary_keyword: '',
+                  secondary_keywords: '',
+                  brand_data: '',
+                },
+              ]);
+              loadFiles();
+            }
+          } else {
+            // Update queue position
+            updateJob(job_id, { queue_position: jobData.queue_position });
+          }
+        }, 2000)
+      );
+    } catch (error) {
+      console.error('Error generating batch:', error);
+      setGenerating(false);
+    }
+  };
+
+  const addBatchEntry = () => {
+    setBatchForms([
+      ...batchForms,
+      {
+        title: '',
+        primary_keyword: '',
+        secondary_keywords: '',
+        brand_data: '',
+      },
+    ]);
+  };
+
+  const removeBatchEntry = (index: number) => {
+    if (batchForms.length === 1) {
+      alert('You must have at least one brief');
+      return;
+    }
+    setBatchForms(batchForms.filter((_, i) => i !== index));
+  };
+
+  const updateBatchForm = (index: number, updates: Partial<BriefFormData>) => {
+    const newForms = [...batchForms];
+    newForms[index] = { ...newForms[index], ...updates };
+    setBatchForms(newForms);
   };
 
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -142,14 +254,32 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
       {/* Generation Form */}
       <Card>
         <CardHeader>
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary" />
-            <CardTitle>Create New Brief</CardTitle>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-primary" />
+              <CardTitle>Create New Brief{batchMode ? 's' : ''}</CardTitle>
+            </div>
+            <Button
+              variant={batchMode ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setBatchMode(!batchMode)}
+              disabled={generating}
+            >
+              <Layers className="w-4 h-4 mr-2" />
+              {batchMode ? 'Batch Mode' : 'Single Mode'}
+            </Button>
           </div>
-          <CardDescription>Generate a comprehensive SEO brief with keywords and brand guidelines</CardDescription>
+          <CardDescription>
+            {batchMode
+              ? 'Generate multiple briefs at once (up to 5 concurrent jobs)'
+              : 'Generate a comprehensive SEO brief with keywords and brand guidelines'}
+          </CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
+          {!batchMode ? (
+            // Single Mode Form
+            <>
           <div className="space-y-2">
             <Label htmlFor="title">Title *</Label>
             <Input
@@ -216,31 +346,139 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
             </Select>
           </div>
 
-          <div className="flex gap-2 pt-2">
-            <Button onClick={handleGenerate} disabled={generating} className="flex-1">
-              {generating ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Generating...
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Generate Brief
-                </>
-              )}
-            </Button>
+              <div className="flex gap-2 pt-2">
+                <Button onClick={handleGenerate} disabled={generating} className="flex-1">
+                  {generating ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Generating...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Generate Brief
+                    </>
+                  )}
+                </Button>
 
-            <label htmlFor="file-upload">
-              <Button variant="outline" asChild>
-                <span className="cursor-pointer">
-                  <Upload className="w-4 h-4 mr-2" />
-                  Upload Brief
-                </span>
-              </Button>
-              <input id="file-upload" type="file" accept=".md" className="hidden" onChange={handleUpload} />
-            </label>
-          </div>
+                <label htmlFor="file-upload">
+                  <Button variant="outline" asChild>
+                    <span className="cursor-pointer">
+                      <Upload className="w-4 h-4 mr-2" />
+                      Upload Brief
+                    </span>
+                  </Button>
+                  <input id="file-upload" type="file" accept=".md" className="hidden" onChange={handleUpload} />
+                </label>
+              </div>
+            </>
+          ) : (
+            // Batch Mode Form
+            <>
+              <div className="space-y-4">
+                {batchForms.map((form, index) => (
+                  <div key={index} className="border border-gray-200 rounded-lg p-4 space-y-4 relative">
+                    <div className="flex items-center justify-between mb-2">
+                      <Badge variant="outline" className="text-xs">
+                        Brief #{index + 1}
+                      </Badge>
+                      {batchForms.length > 1 && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeBatchEntry(index)}
+                          disabled={generating}
+                          className="h-6 w-6 p-0 hover:bg-error/10 hover:text-error"
+                        >
+                          <X className="w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor={`batch-title-${index}`}>Title *</Label>
+                        <Input
+                          id={`batch-title-${index}`}
+                          type="text"
+                          placeholder="Best Electric Cars 2025"
+                          value={form.title}
+                          onChange={(e) => updateBatchForm(index, { title: e.target.value })}
+                          disabled={generating}
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor={`batch-primary-${index}`}>Primary Keyword *</Label>
+                        <Input
+                          id={`batch-primary-${index}`}
+                          type="text"
+                          placeholder="electric cars 2025"
+                          value={form.primary_keyword}
+                          onChange={(e) => updateBatchForm(index, { primary_keyword: e.target.value })}
+                          disabled={generating}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor={`batch-secondary-${index}`}>Secondary Keywords</Label>
+                      <Textarea
+                        id={`batch-secondary-${index}`}
+                        rows={2}
+                        placeholder="best electric vehicles, EV comparison"
+                        value={form.secondary_keywords}
+                        onChange={(e) => updateBatchForm(index, { secondary_keywords: e.target.value })}
+                        disabled={generating}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor={`batch-brand-${index}`}>Brand Data *</Label>
+                      <Select
+                        value={form.brand_data}
+                        onValueChange={(value: string) => updateBatchForm(index, { brand_data: value })}
+                        disabled={generating}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select brand data file..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {brandFiles.map((file) => (
+                            <SelectItem key={file.name} value={file.name}>
+                              {file.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-2 pt-2">
+                <Button variant="outline" onClick={addBatchEntry} disabled={generating || batchForms.length >= 50}>
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Another Brief
+                </Button>
+
+                <Button onClick={handleBatchGenerate} disabled={generating} className="flex-1">
+                  {generating ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Generating {batchForms.filter((f) => f.title && f.primary_keyword && f.brand_data).length}{' '}
+                      Brief(s)...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Generate {batchForms.filter((f) => f.title && f.primary_keyword && f.brand_data).length} Brief(s)
+                    </>
+                  )}
+                </Button>
+              </div>
+            </>
+          )}
         </CardContent>
       </Card>
 

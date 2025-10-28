@@ -1,12 +1,14 @@
 // Job types
 export type JobType = 'brand_data' | 'brief' | 'draft';
-export type JobStatus = 'running' | 'completed' | 'failed';
+export type JobStatus = 'running' | 'completed' | 'failed' | 'queued';
 
 export interface Job {
   id: string;
   type: JobType;
   status: JobStatus;
   params: Record<string, any>;
+  batch_id?: string;
+  queue_position?: number;
 }
 
 // File types
@@ -34,10 +36,19 @@ export interface JobResponse {
   job_id: string;
 }
 
+export interface BatchJobResponse {
+  batch_id: string;
+  job_ids: string[];
+  total_jobs: number;
+  message: string;
+}
+
 export interface JobDetailResponse {
   id: string;
   type: JobType;
   status: JobStatus;
+  batch_id?: string;
+  queue_position?: number;
 }
 
 // Form types

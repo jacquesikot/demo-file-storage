@@ -7,12 +7,17 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
 import re
+from collections import deque
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from sse_starlette.sse import EventSourceResponse
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Initialize FastAPI app
 app = FastAPI(title="Claude Workflow Manager")
@@ -64,7 +69,8 @@ for directory in [BRAND_DATA_DIR, BRIEF_OUTPUTS_DIR, DRAFT_OUTPUTS_DIR, INSTRUCT
 
 # Job storage
 jobs: Dict[str, dict] = {}
-MAX_CONCURRENT_JOBS = 3
+job_queue: deque = deque()  # Queue for jobs waiting to be executed
+MAX_CONCURRENT_JOBS = int(os.getenv("MAX_CONCURRENT_JOBS", "5"))
 
 
 # Pydantic models
@@ -83,6 +89,21 @@ class BriefGenerateRequest(BaseModel):
 class DraftGenerateRequest(BaseModel):
     brief_filename: str
     brand_data_filename: str
+
+
+class BriefBatchGenerateRequest(BaseModel):
+    briefs: List[BriefGenerateRequest]
+
+
+class DraftBatchGenerateRequest(BaseModel):
+    drafts: List[DraftGenerateRequest]
+
+
+class BatchJobResponse(BaseModel):
+    batch_id: str
+    job_ids: List[str]
+    total_jobs: int
+    message: str
 
 
 class FileResponse(BaseModel):
@@ -173,34 +194,80 @@ class FileManager:
 class JobManager:
     def __init__(self):
         self.jobs = jobs
+        self.queue = job_queue
 
     def active_count(self) -> int:
         return sum(1 for job in self.jobs.values() if job["status"] == "running")
 
-    async def start_job(self, job_type: str, params: dict) -> str:
-        if self.active_count() >= MAX_CONCURRENT_JOBS:
-            raise HTTPException(status_code=429, detail="Maximum concurrent jobs reached (3)")
+    def queued_count(self) -> int:
+        return sum(1 for job in self.jobs.values() if job["status"] == "queued")
 
+    async def start_job(self, job_type: str, params: dict, batch_id: Optional[str] = None) -> str:
+        """Create a job and either start it immediately or add to queue"""
         job_id = str(uuid.uuid4())[:8]
 
         # Create log file
         log_file = LOGS_DIR / f"{job_id}.log"
 
+        # Determine initial status based on active jobs
+        if self.active_count() >= MAX_CONCURRENT_JOBS:
+            status = "queued"
+        else:
+            status = "running"
+
         self.jobs[job_id] = {
             "id": job_id,
             "type": job_type,
-            "status": "running",
+            "status": status,
             "created_at": datetime.now().isoformat(),
             "params": params,
             "process": None,
             "log_file": str(log_file),
-            "output_files": []
+            "output_files": [],
+            "batch_id": batch_id,
+            "queue_position": None
         }
 
-        # Start the job in background
-        asyncio.create_task(self.execute_job(job_id, job_type, params, log_file))
+        if status == "queued":
+            # Add to queue
+            self.queue.append(job_id)
+            self.jobs[job_id]["queue_position"] = len(self.queue)
+            print(f"[Job {job_id}] Added to queue (position: {len(self.queue)})", flush=True)
+        else:
+            # Start immediately
+            asyncio.create_task(self.execute_job(job_id, job_type, params, log_file))
 
         return job_id
+
+    async def process_queue(self):
+        """Process queued jobs when slots become available"""
+        while self.queue and self.active_count() < MAX_CONCURRENT_JOBS:
+            job_id = self.queue.popleft()
+
+            if job_id not in self.jobs:
+                continue
+
+            job = self.jobs[job_id]
+
+            # Update status and start job
+            job["status"] = "running"
+            job["queue_position"] = None
+
+            print(f"[Job {job_id}] Starting from queue", flush=True)
+
+            asyncio.create_task(
+                self.execute_job(
+                    job_id,
+                    job["type"],
+                    job["params"],
+                    Path(job["log_file"])
+                )
+            )
+
+        # Update queue positions for remaining jobs
+        for idx, job_id in enumerate(self.queue, start=1):
+            if job_id in self.jobs:
+                self.jobs[job_id]["queue_position"] = idx
 
     async def execute_job(self, job_id: str, job_type: str, params: dict, log_file: Path):
         """Execute Claude Code command and capture output"""
@@ -384,6 +451,10 @@ class JobManager:
                 f.write(f"{timestamp} | Traceback: {traceback.format_exc()}\n")
             print(f"\n[Job {job_id}] ✗ Exception: {str(e)}\n", flush=True)
 
+        finally:
+            # Process queue to start next jobs
+            await self.process_queue()
+
     def _run_claude_with_pty(self, job_id: str, prompt: str, log_file: Path):
         """Run Claude with PTY for unbuffered output - runs in thread pool"""
         import subprocess
@@ -539,26 +610,16 @@ class JobManager:
 
         These URLs represent different parts of the same brand (e.g., main website, blog, store, help center, etc.). Your task is to generate ONE comprehensive brand data file in JSON format that consolidates information from ALL provided URLs.
 
-        The output JSON file must match the EXACT structure of the file at @backend/data/your_data.json (which is the Indie Campers example).
+        The output JSON file must match the EXACT structure of the file at data/your_data.json (which is the Indie Campers example).
 
         The output JSON file must include ALL of the following sections with comprehensive, well-researched data:
 
-        1. **brandInfo**: Company name, domain, CMS/CDN, key locations/hubs, brand assets URL, social media profiles, analytics tools, website technology stack, additional tools, brand description, brand point of view, industry vertical, company subdomains
+        1. **targetAudience**: Target customer segments, customer personas, target markets, target audience description, proof points
 
-        2. **competitors**: A comprehensive list of direct and indirect competitors with names, descriptions, and types
-
-        3. **targetAudience**: Target customer segments, customer personas, target markets, target audience description, proof points
-
-        4. **contentStrategy**: Content pillars, sources to repurpose
-
-        5. **writingGuidelines**: Guidelines, tone of voice, author persona, example phrases, inspiration articles, vocabulary preferences
-
-        6. **companyPositioning**: Use cases, market categories, core problems solved, reference customers, products and services, unique selling propositions
-
-        7. **businessSalesInsights**: Aha moment, key purchase triggers, common sales objections, most profitable segments
+        2. **writingGuidelines**: Guidelines, tone of voice, author persona, example phrases, inspiration articles, vocabulary preferences
 
         **Research Instructions:**
-        - Use the WebSearch tool extensively to gather up-to-date information about {brand_name}
+        - Use the WebSearch tool to gather up-to-date information about {brand_name}
         - Visit ALL provided URLs to gather comprehensive information from each source
         - Research the company's competitors and industry positioning
         - Look for customer reviews on Trustpilot, G2, Capterra, or similar platforms
@@ -572,7 +633,7 @@ class JobManager:
 
         **Output Requirements:**
         1. Create a SINGLE JSON file for {brand_name} at: {output_file}
-        2. Follow the EXACT structure from @backend/data/your_data.json - every field must be present
+        2. Follow the EXACT structure from data/your_data.json - every field must be present
         3. All data should be well-researched and accurate (not placeholder data)
         4. Consolidate information from all provided URLs into one comprehensive brand profile
         5. For any data you cannot find after thorough research, make intelligent inferences based on industry standards and similar companies
@@ -694,7 +755,9 @@ class JobManager:
                 "created_at": job["created_at"],
                 "params": job["params"],
                 "log_file": job["log_file"],
-                "output_files": job.get("output_files", [])
+                "output_files": job.get("output_files", []),
+                "batch_id": job.get("batch_id"),
+                "queue_position": job.get("queue_position")
             }
             jobs_list.append(job_dict)
 
@@ -843,6 +906,47 @@ async def generate_brief(request: BriefGenerateRequest):
     return {"job_id": job_id}
 
 
+@app.post("/api/briefs/generate/batch")
+async def generate_briefs_batch(request: BriefBatchGenerateRequest):
+    """Generate multiple briefs at once"""
+    if not request.briefs or len(request.briefs) == 0:
+        raise HTTPException(status_code=400, detail="At least one brief is required")
+
+    if len(request.briefs) > 50:
+        raise HTTPException(status_code=400, detail="Maximum 50 briefs per batch")
+
+    batch_id = str(uuid.uuid4())[:8]
+
+    # Validate all briefs first
+    for brief_request in request.briefs:
+        if not brief_request.title or not brief_request.primary_keyword or not brief_request.brand_data:
+            raise HTTPException(status_code=400, detail=f"Brief '{brief_request.title}' has missing required fields")
+
+        brand_data_path = BRAND_DATA_DIR / brief_request.brand_data
+        if not brand_data_path.exists():
+            raise HTTPException(status_code=404, detail=f"Brand data file not found: {brief_request.brand_data}")
+
+    # Create all jobs concurrently using asyncio.gather
+    job_tasks = [
+        job_manager.start_job("brief", {
+            "title": brief_request.title,
+            "primary_keyword": brief_request.primary_keyword,
+            "secondary_keywords": brief_request.secondary_keywords,
+            "brand_data": brief_request.brand_data
+        }, batch_id=batch_id)
+        for brief_request in request.briefs
+    ]
+
+    job_ids = await asyncio.gather(*job_tasks)
+
+    return BatchJobResponse(
+        batch_id=batch_id,
+        job_ids=job_ids,
+        total_jobs=len(job_ids),
+        message=f"Batch of {len(job_ids)} brief(s) submitted successfully"
+    )
+
+
 # Draft Endpoints
 @app.get("/api/drafts")
 async def list_drafts():
@@ -908,6 +1012,50 @@ async def generate_draft(request: DraftGenerateRequest):
     return {"job_id": job_id}
 
 
+@app.post("/api/drafts/generate/batch")
+async def generate_drafts_batch(request: DraftBatchGenerateRequest):
+    """Generate multiple drafts at once"""
+    if not request.drafts or len(request.drafts) == 0:
+        raise HTTPException(status_code=400, detail="At least one draft is required")
+
+    if len(request.drafts) > 50:
+        raise HTTPException(status_code=400, detail="Maximum 50 drafts per batch")
+
+    batch_id = str(uuid.uuid4())[:8]
+
+    # Validate all drafts first
+    for draft_request in request.drafts:
+        if not draft_request.brief_filename or not draft_request.brand_data_filename:
+            raise HTTPException(status_code=400, detail=f"Draft with brief '{draft_request.brief_filename}' has missing required fields")
+
+        # Check if files exist
+        brief_path = BRIEF_OUTPUTS_DIR / draft_request.brief_filename
+        brand_data_path = BRAND_DATA_DIR / draft_request.brand_data_filename
+
+        if not brief_path.exists():
+            raise HTTPException(status_code=404, detail=f"Brief file not found: {draft_request.brief_filename}")
+        if not brand_data_path.exists():
+            raise HTTPException(status_code=404, detail=f"Brand data file not found: {draft_request.brand_data_filename}")
+
+    # Create all jobs concurrently using asyncio.gather
+    job_tasks = [
+        job_manager.start_job("draft", {
+            "brief_filename": draft_request.brief_filename,
+            "brand_data_filename": draft_request.brand_data_filename
+        }, batch_id=batch_id)
+        for draft_request in request.drafts
+    ]
+
+    job_ids = await asyncio.gather(*job_tasks)
+
+    return BatchJobResponse(
+        batch_id=batch_id,
+        job_ids=job_ids,
+        total_jobs=len(job_ids),
+        message=f"Batch of {len(job_ids)} draft(s) submitted successfully"
+    )
+
+
 # Job Endpoints
 @app.get("/api/jobs")
 async def list_jobs(status: Optional[str] = None):
@@ -929,7 +1077,9 @@ async def get_job(job_id: str):
         "created_at": job["created_at"],
         "params": job["params"],
         "log_file": job["log_file"],
-        "output_files": job.get("output_files", [])
+        "output_files": job.get("output_files", []),
+        "batch_id": job.get("batch_id"),
+        "queue_position": job.get("queue_position")
     }
     return job_response
 

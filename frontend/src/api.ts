@@ -1,4 +1,4 @@
-import type { FileListResponse, BrandDataResponse, JobResponse, BrandDataFormData } from './types';
+import type { FileListResponse, BrandDataResponse, JobResponse, BatchJobResponse, BrandDataFormData, BriefFormData, DraftFormData } from './types';
 
 // Use environment variable for API URL, with fallback to localhost for development
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
@@ -79,6 +79,15 @@ export const briefsAPI = {
     });
     return response.json();
   },
+
+  generateBatch: async (briefs: BriefFormData[]): Promise<BatchJobResponse> => {
+    const response = await fetch(`${API_BASE_URL}/briefs/generate/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ briefs }),
+    });
+    return response.json();
+  },
 };
 
 // Drafts API
@@ -115,6 +124,15 @@ export const draftsAPI = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
+    });
+    return response.json();
+  },
+
+  generateBatch: async (drafts: DraftFormData[]): Promise<BatchJobResponse> => {
+    const response = await fetch(`${API_BASE_URL}/drafts/generate/batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ drafts }),
     });
     return response.json();
   },
