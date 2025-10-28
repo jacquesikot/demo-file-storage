@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Upload, Trash2, Eye, Loader2, Download, FileEdit, Sparkles, AlertTriangle, CheckCircle2, X } from 'lucide-react';
+import { Trash2, Eye, Loader2, Download, FileEdit, Sparkles, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { draftsAPI, briefsAPI, brandDataAPI, jobsAPI } from '../api';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Label } from './ui/label';
-import { Select } from './ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Badge } from './ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle,  } from './ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import MarkdownViewer from './MarkdownViewer';
 import type { FileInfo, Job, DraftFormData } from '../types';
 
@@ -100,18 +100,6 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
     }
   };
 
-  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    try {
-      await draftsAPI.upload(file);
-      loadFiles();
-    } catch (error) {
-      console.error('Error uploading file:', error);
-    }
-  };
-
   const handleDelete = async (filename: string) => {
     if (!confirm(`Delete ${filename}?`)) return;
 
@@ -151,61 +139,54 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
             <Sparkles className="w-5 h-5 text-primary" />
             <CardTitle>Create New Draft</CardTitle>
           </div>
-          <CardDescription>
-            Generate a complete SEO-optimized article draft from a brief
-          </CardDescription>
+          <CardDescription>Generate a complete SEO-optimized article draft from a brief</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="brief_filename">Select Brief *</Label>
             <Select
-              id="brief_filename"
               value={formData.brief_filename}
-              onChange={(e) =>
-                setFormData({ ...formData, brief_filename: e.target.value })
-              }
+              onValueChange={(value: string) => setFormData({ ...formData, brief_filename: value })}
               disabled={generating}
               aria-label="Select brief file"
             >
-              <option value="">Select brief file...</option>
-              {briefFiles.map((file) => (
-                <option key={file.name} value={file.name}>
-                  {file.preview || file.name}
-                </option>
-              ))}
+              <SelectTrigger>
+                <SelectValue placeholder="Select brief file..." />
+              </SelectTrigger>
+              <SelectContent>
+                {briefFiles.map((file) => (
+                  <SelectItem key={file.name} value={file.name}>
+                    {file.preview || file.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
             </Select>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="brand_data_filename">Select Brand Data *</Label>
             <Select
-              id="brand_data_filename"
               value={formData.brand_data_filename}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  brand_data_filename: e.target.value,
-                })
-              }
+              onValueChange={(value: string) => setFormData({ ...formData, brand_data_filename: value })}
               disabled={generating}
               aria-label="Select brand data file"
             >
-              <option value="">Select brand data file...</option>
-              {brandFiles.map((file) => (
-                <option key={file.name} value={file.name}>
-                  {file.name}
-                </option>
-              ))}
+              <SelectTrigger>
+                <SelectValue placeholder="Select brand data file..." />
+              </SelectTrigger>
+              <SelectContent>
+                {brandFiles.map((file) => (
+                  <SelectItem key={file.name} value={file.name}>
+                    {file.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
             </Select>
           </div>
 
           <div className="flex gap-2 pt-2">
-            <Button
-              onClick={handleGenerate}
-              disabled={generating}
-              className="flex-1"
-            >
+            <Button onClick={handleGenerate} disabled={generating} className="flex-1">
               {generating ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -218,22 +199,6 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
                 </>
               )}
             </Button>
-
-            <label htmlFor="file-upload">
-              <Button variant="outline" asChild>
-                <span className="cursor-pointer">
-                  <Upload className="w-4 h-4 mr-2" />
-                  Upload Draft
-                </span>
-              </Button>
-              <input
-                id="file-upload"
-                type="file"
-                accept=".md"
-                className="hidden"
-                onChange={handleUpload}
-              />
-            </label>
           </div>
         </CardContent>
       </Card>
@@ -261,9 +226,7 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
             <div className="text-center py-12">
               <FileEdit className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <p className="text-gray-500 font-medium">No drafts yet</p>
-              <p className="text-sm text-gray-400 mt-1">
-                Generate or upload a draft to get started
-              </p>
+              <p className="text-sm text-gray-400 mt-1">Generate a draft to get started</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -279,15 +242,13 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-gray-900 mb-2 truncate">
-                          {file.preview || file.name}
-                        </h3>
+                        <h3 className="font-medium text-gray-900 mb-2 truncate">{file.preview || file.name}</h3>
                         <div className="flex flex-wrap items-center gap-2 mb-2">
                           <Badge variant="outline" className="text-xs">
                             {new Date(file.created_at * 1000).toLocaleDateString()}
                           </Badge>
                           <Badge
-                            variant={isOverLimit ? "destructive" : isWithinLimit ? "default" : "secondary"}
+                            variant={isOverLimit ? 'destructive' : isWithinLimit ? 'default' : 'secondary'}
                             className="text-xs"
                           >
                             {wordCount} words
@@ -307,12 +268,7 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
                         )}
                       </div>
                       <div className="flex gap-2">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => handleView(file.name)}
-                          title="View draft"
-                        >
+                        <Button variant="ghost" size="icon" onClick={() => handleView(file.name)} title="View draft">
                           <Eye className="w-4 h-4" />
                         </Button>
                         <Button
@@ -335,24 +291,32 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
 
       {/* View Modal */}
       <Dialog open={!!viewingFile} onOpenChange={() => setViewingFile(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh]">
-          <DialogHeader>
-            <DialogTitle>{viewingFile?.filename}</DialogTitle>
-            <div className="flex gap-2">
+        <DialogContent className="max-w-5xl max-h-[85vh] flex flex-col">
+          <DialogHeader className="flex-shrink-0">
+            <div className="flex items-start justify-between gap-4 pr-8">
+              <div className="flex-1 min-w-0">
+                <DialogTitle className="text-xl font-semibold truncate" title={viewingFile?.filename}>
+                  {viewingFile?.filename}
+                </DialogTitle>
+                <p className="text-sm text-gray-500 mt-1.5">Draft preview</p>
+              </div>
               <Button
-                variant="ghost"
-                size="icon"
-                onClick={() =>
-                  viewingFile && downloadFile(viewingFile.filename, viewingFile.content)
-                }
-                title="Download file"
+                variant="outline"
+                size="sm"
+                onClick={() => viewingFile && downloadFile(viewingFile.filename, viewingFile.content)}
+                className="flex-shrink-0"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-4 h-4 mr-2" />
+                Download
               </Button>
-              
             </div>
           </DialogHeader>
-          <div className="mt-4 overflow-auto max-h-[60vh]">
+
+          {/* Divider */}
+          <div className="border-t border-gray-200 my-4" />
+
+          {/* Scrollable content */}
+          <div className="flex-1 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-6 max-h-[calc(85vh-200px)]">
             {viewingFile && <MarkdownViewer content={viewingFile.content} />}
           </div>
         </DialogContent>

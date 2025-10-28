@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { Upload, Trash2, Eye, Loader2, Download, FileText, Sparkles, X } from 'lucide-react';
-import { briefsAPI, brandDataAPI, jobsAPI } from '../api';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
+import { Download, Eye, FileText, Loader2, Sparkles, Trash2, Upload } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { brandDataAPI, briefsAPI, jobsAPI } from '../api';
+import type { BriefFormData, FileInfo, Job } from '../types';
+import MarkdownViewer from './MarkdownViewer';
+import { Badge } from './ui/badge';
 import { Button } from './ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Textarea } from './ui/textarea';
-import { Select } from './ui/select';
-import { Badge } from './ui/badge';
-import { Dialog, DialogContent, DialogHeader, DialogTitle,  } from './ui/dialog';
-import MarkdownViewer from './MarkdownViewer';
-import type { FileInfo, Job, BriefFormData } from '../types';
 
 interface BriefTabProps {
   addJob: (job: Job) => void;
@@ -146,9 +146,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
             <Sparkles className="w-5 h-5 text-primary" />
             <CardTitle>Create New Brief</CardTitle>
           </div>
-          <CardDescription>
-            Generate a comprehensive SEO brief with keywords and brand guidelines
-          </CardDescription>
+          <CardDescription>Generate a comprehensive SEO brief with keywords and brand guidelines</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
@@ -159,9 +157,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
               type="text"
               placeholder="Best Electric Cars 2025"
               value={formData.title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               disabled={generating}
               aria-label="Brief title"
             />
@@ -174,9 +170,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
               type="text"
               placeholder="electric cars 2025"
               value={formData.primary_keyword}
-              onChange={(e) =>
-                setFormData({ ...formData, primary_keyword: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, primary_keyword: e.target.value })}
               disabled={generating}
               aria-label="Primary keyword"
             />
@@ -198,37 +192,32 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
               disabled={generating}
               aria-label="Secondary keywords"
             />
-            <p className="text-xs text-gray-500">
-              Comma-separated list of secondary keywords
-            </p>
+            <p className="text-xs text-gray-500">Comma-separated list of secondary keywords</p>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="brand_data">Brand Data *</Label>
             <Select
-              id="brand_data"
               value={formData.brand_data}
-              onChange={(e) =>
-                setFormData({ ...formData, brand_data: e.target.value })
-              }
+              onValueChange={(value: string) => setFormData({ ...formData, brand_data: value })}
               disabled={generating}
               aria-label="Select brand data file"
             >
-              <option value="">Select brand data file...</option>
-              {brandFiles.map((file) => (
-                <option key={file.name} value={file.name}>
-                  {file.name}
-                </option>
-              ))}
+              <SelectTrigger>
+                <SelectValue placeholder="Select brand data file..." />
+              </SelectTrigger>
+              <SelectContent>
+                {brandFiles.map((file) => (
+                  <SelectItem key={file.name} value={file.name}>
+                    {file.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
             </Select>
           </div>
 
           <div className="flex gap-2 pt-2">
-            <Button
-              onClick={handleGenerate}
-              disabled={generating}
-              className="flex-1"
-            >
+            <Button onClick={handleGenerate} disabled={generating} className="flex-1">
               {generating ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -249,13 +238,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
                   Upload Brief
                 </span>
               </Button>
-              <input
-                id="file-upload"
-                type="file"
-                accept=".md"
-                className="hidden"
-                onChange={handleUpload}
-              />
+              <input id="file-upload" type="file" accept=".md" className="hidden" onChange={handleUpload} />
             </label>
           </div>
         </CardContent>
@@ -284,9 +267,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
             <div className="text-center py-12">
               <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <p className="text-gray-500 font-medium">No briefs yet</p>
-              <p className="text-sm text-gray-400 mt-1">
-                Generate or upload a brief to get started
-              </p>
+              <p className="text-sm text-gray-400 mt-1">Generate or upload a brief to get started</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -295,9 +276,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
                   key={file.name}
                   className="border border-gray-200 rounded-lg p-4 hover:border-gray-300 hover:shadow-sm transition-all"
                 >
-                  <h3 className="font-medium text-gray-900 mb-2 truncate">
-                    {file.preview || file.name}
-                  </h3>
+                  <h3 className="font-medium text-gray-900 mb-2 truncate">{file.preview || file.name}</h3>
                   <div className="flex items-center gap-2 mb-3">
                     <Badge variant="outline" className="text-xs">
                       {new Date(file.created_at * 1000).toLocaleDateString()}
@@ -309,21 +288,11 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
                     )}
                   </div>
                   <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleView(file.name)}
-                      className="flex-1"
-                    >
+                    <Button variant="outline" size="sm" onClick={() => handleView(file.name)} className="flex-1">
                       <Eye className="w-4 h-4 mr-1" />
                       View
                     </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleDelete(file.name)}
-                      title="Delete brief"
-                    >
+                    <Button variant="ghost" size="sm" onClick={() => handleDelete(file.name)} title="Delete brief">
                       <Trash2 className="w-4 h-4 text-error" />
                     </Button>
                   </div>
@@ -336,24 +305,32 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
 
       {/* View Modal */}
       <Dialog open={!!viewingFile} onOpenChange={() => setViewingFile(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh]">
-          <DialogHeader>
-            <DialogTitle>{viewingFile?.filename}</DialogTitle>
-            <div className="flex gap-2">
+        <DialogContent className="max-w-5xl max-h-[85vh] flex flex-col">
+          <DialogHeader className="flex-shrink-0">
+            <div className="flex items-start justify-between gap-4 pr-8">
+              <div className="flex-1 min-w-0">
+                <DialogTitle className="text-xl font-semibold truncate" title={viewingFile?.filename}>
+                  {viewingFile?.filename}
+                </DialogTitle>
+                <p className="text-sm text-gray-500 mt-1.5">Brief preview</p>
+              </div>
               <Button
-                variant="ghost"
-                size="icon"
-                onClick={() =>
-                  viewingFile && downloadFile(viewingFile.filename, viewingFile.content)
-                }
-                title="Download file"
+                variant="outline"
+                size="sm"
+                onClick={() => viewingFile && downloadFile(viewingFile.filename, viewingFile.content)}
+                className="flex-shrink-0"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-4 h-4 mr-2" />
+                Download
               </Button>
-              
             </div>
           </DialogHeader>
-          <div className="mt-4 overflow-auto max-h-[60vh]">
+
+          {/* Divider */}
+          <div className="border-t border-gray-200 my-4" />
+
+          {/* Scrollable content */}
+          <div className="flex-1 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-6 max-h-[calc(85vh-200px)]">
             {viewingFile && <MarkdownViewer content={viewingFile.content} />}
           </div>
         </DialogContent>

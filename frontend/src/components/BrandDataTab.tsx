@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Upload, Trash2, Eye, Loader2, Database, Sparkles, X } from 'lucide-react';
+import { Upload, Trash2, Eye, Loader2, Database, Sparkles } from 'lucide-react';
 import { brandDataAPI, jobsAPI } from '../api';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
 import { Button } from './ui/button';
@@ -47,7 +47,7 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
     try {
       const { job_id } = await brandDataAPI.generate({
         brand_name: brandName.trim(),
-        urls: urlList
+        urls: urlList,
       });
 
       addJob({
@@ -116,9 +116,7 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
             <Sparkles className="w-5 h-5 text-primary" />
             <CardTitle>Generate Brand Data</CardTitle>
           </div>
-          <CardDescription>
-            Research and generate comprehensive brand data from multiple URLs
-          </CardDescription>
+          <CardDescription>Research and generate comprehensive brand data from multiple URLs</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
@@ -132,9 +130,7 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
               onChange={(e) => setBrandName(e.target.value)}
               disabled={generating}
             />
-            <p className="text-xs text-gray-500">
-              The name of the brand you want to research
-            </p>
+            <p className="text-xs text-gray-500">The name of the brand you want to research</p>
           </div>
 
           <div className="space-y-2">
@@ -147,9 +143,7 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
               onChange={(e) => setUrls(e.target.value)}
               disabled={generating}
             />
-            <p className="text-xs text-gray-500">
-              Multiple URLs separated by spaces (main site, blog, store, etc.)
-            </p>
+            <p className="text-xs text-gray-500">Multiple URLs separated by spaces (main site, blog, store, etc.)</p>
           </div>
 
           <Button
@@ -192,13 +186,7 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
                   Upload JSON
                 </span>
               </Button>
-              <input
-                id="file-upload"
-                type="file"
-                accept=".json"
-                className="hidden"
-                onChange={handleUpload}
-              />
+              <input id="file-upload" type="file" accept=".json" className="hidden" onChange={handleUpload} />
             </label>
           </div>
         </CardHeader>
@@ -212,9 +200,7 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
             <div className="text-center py-12">
               <Database className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <p className="text-gray-500 font-medium">No brand data files yet</p>
-              <p className="text-sm text-gray-400 mt-1">
-                Generate or upload a brand data file to get started
-              </p>
+              <p className="text-sm text-gray-400 mt-1">Generate or upload a brand data file to get started</p>
             </div>
           ) : (
             <div className="grid gap-4">
@@ -231,27 +217,13 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
                           {new Date(file.created_at * 1000).toLocaleDateString()}
                         </Badge>
                       </div>
-                      {file.preview && (
-                        <p className="text-xs text-gray-500 mt-2 line-clamp-2">
-                          {file.preview}
-                        </p>
-                      )}
+                      {file.preview && <p className="text-xs text-gray-500 mt-2 line-clamp-2">{file.preview}</p>}
                     </div>
                     <div className="flex gap-2 ml-4">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => handleView(file.name)}
-                        title="View file"
-                      >
+                      <Button variant="ghost" size="icon" onClick={() => handleView(file.name)} title="View file">
                         <Eye className="w-4 h-4" />
                       </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => handleDelete(file.name)}
-                        title="Delete file"
-                      >
+                      <Button variant="ghost" size="icon" onClick={() => handleDelete(file.name)} title="Delete file">
                         <Trash2 className="w-4 h-4 text-error" />
                       </Button>
                     </div>
@@ -265,11 +237,23 @@ export default function BrandDataTab({ addJob, updateJob }: BrandDataTabProps) {
 
       {/* View Modal */}
       <Dialog open={!!viewingFile} onOpenChange={() => setViewingFile(null)}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-auto">
-          <DialogHeader>
-            <DialogTitle>{viewingFile?.filename}</DialogTitle>
+        <DialogContent className="max-w-5xl max-h-[85vh] flex flex-col">
+          <DialogHeader className="flex-shrink-0">
+            <div className="flex items-start justify-between gap-4 pr-8">
+              <div className="flex-1 min-w-0">
+                <DialogTitle className="text-xl font-semibold truncate" title={viewingFile?.filename}>
+                  {viewingFile?.filename}
+                </DialogTitle>
+                <p className="text-sm text-gray-500 mt-1.5">Brand data preview</p>
+              </div>
+            </div>
           </DialogHeader>
-          <div className="mt-4">
+
+          {/* Divider */}
+          <div className="border-t border-gray-200 my-4" />
+
+          {/* Scrollable content */}
+          <div className="flex-1 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-6 max-h-[calc(85vh-200px)]">
             {viewingFile && <JsonViewer data={viewingFile.data} />}
           </div>
         </DialogContent>
