@@ -106,6 +106,15 @@ export const briefsAPI = {
     });
     return response.json();
   },
+
+  editWithAI: async (filename: string, editPrompt: string): Promise<JobResponse> => {
+    const response = await fetch(`${API_BASE_URL}/briefs/edit-with-ai`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename, edit_prompt: editPrompt }),
+    });
+    return response.json();
+  },
 };
 
 // Drafts API
@@ -160,6 +169,15 @@ export const draftsAPI = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ drafts }),
+    });
+    return response.json();
+  },
+
+  editWithAI: async (filename: string, editPrompt: string): Promise<JobResponse> => {
+    const response = await fetch(`${API_BASE_URL}/drafts/edit-with-ai`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename, edit_prompt: editPrompt }),
     });
     return response.json();
   },

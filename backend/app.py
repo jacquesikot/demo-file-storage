@@ -137,6 +137,16 @@ class DraftSaveRequest(BaseModel):
     content: str
 
 
+class BriefEditWithAIRequest(BaseModel):
+    filename: str
+    edit_prompt: str
+
+
+class DraftEditWithAIRequest(BaseModel):
+    filename: str
+    edit_prompt: str
+
+
 # File Manager
 class FileManager:
     def __init__(self, base_dir: Path):
@@ -306,6 +316,10 @@ class JobManager:
                 prompt = self.build_brief_prompt(params)
             elif job_type == "draft":
                 prompt = self.build_draft_prompt(params)
+            elif job_type == "brief_edit":
+                prompt = self.build_brief_edit_prompt(params)
+            elif job_type == "draft_edit":
+                prompt = self.build_draft_edit_prompt(params)
             else:
                 raise ValueError(f"Unknown job type: {job_type}")
 
@@ -744,6 +758,76 @@ class JobManager:
 
         return prompt
 
+    def build_brief_edit_prompt(self, params: dict) -> str:
+        """Build prompt for AI-assisted brief editing"""
+        filename = params["filename"]
+        edit_prompt = params["edit_prompt"]
+        output_file = f"backend/brief-outputs/{filename}"
+
+        prompt = f"""I need you to edit an existing content brief based on specific user instructions.
+
+**Current Brief File:** @{output_file}
+
+**User's Edit Request:**
+{edit_prompt}
+
+**Instructions:**
+1. Read the current brief from @{output_file}
+2. Understand EXACTLY what the user wants changed - be precise and surgical with your edits
+3. Make ONLY the changes requested by the user - do not make additional improvements or modifications
+4. Maintain the exact same structure, format, and markdown style as the original brief
+5. Preserve all other content that was not specifically mentioned in the edit request
+6. Save the edited brief back to the SAME file: {output_file}
+
+**Important Guidelines:**
+- Be conservative: Only change what was explicitly requested
+- Maintain brand voice and tone from the original brief
+- Keep the same level of detail unless instructed otherwise
+- Do not add sections, remove sections, or restructure unless explicitly asked
+- Preserve all markdown formatting, headers, and styling
+
+After completing the edit, confirm with a single line: "Brief edited successfully."
+
+Do NOT provide a summary of changes or any additional commentary."""
+
+        return prompt
+
+    def build_draft_edit_prompt(self, params: dict) -> str:
+        """Build prompt for AI-assisted draft editing"""
+        filename = params["filename"]
+        edit_prompt = params["edit_prompt"]
+        output_file = f"backend/draft-outputs/{filename}"
+
+        prompt = f"""I need you to edit an existing content draft based on specific user instructions.
+
+**Current Draft File:** @{output_file}
+
+**User's Edit Request:**
+{edit_prompt}
+
+**Instructions:**
+1. Read the current draft from @{output_file}
+2. Understand EXACTLY what the user wants changed - be precise and surgical with your edits
+3. Make ONLY the changes requested by the user - do not make additional improvements or modifications
+4. Maintain the exact same structure, format, and markdown style as the original draft
+5. Preserve all other content that was not specifically mentioned in the edit request
+6. Keep the word count similar to the original unless the user specifically asks to expand or reduce
+7. Save the edited draft back to the SAME file: {output_file}
+
+**Important Guidelines:**
+- Be conservative: Only change what was explicitly requested
+- Maintain brand voice, tone, and writing style from the original draft
+- Keep the same level of detail unless instructed otherwise
+- Do not add sections, remove sections, or restructure unless explicitly asked
+- Preserve all markdown formatting, headers, links, and styling
+- If word count changes are requested, maintain quality and SEO value
+
+After completing the edit, confirm with a single line: "Draft edited successfully."
+
+Do NOT provide a summary of changes or any additional commentary."""
+
+        return prompt
+
     def find_output_files(self, job_type: str, params: dict) -> List[str]:
         """Find output files created by the job"""
         output_files = []
@@ -767,6 +851,16 @@ class JobManager:
         elif job_type == "draft":
             brief_name = params["brief_filename"].replace("_brief.md", "")
             filename = f"{brief_name}_draft.md"
+            if (DRAFT_OUTPUTS_DIR / filename).exists():
+                output_files.append(filename)
+
+        elif job_type == "brief_edit":
+            filename = params.get("filename", "")
+            if (BRIEF_OUTPUTS_DIR / filename).exists():
+                output_files.append(filename)
+
+        elif job_type == "draft_edit":
+            filename = params.get("filename", "")
             if (DRAFT_OUTPUTS_DIR / filename).exists():
                 output_files.append(filename)
 
@@ -1007,6 +1101,24 @@ async def generate_briefs_batch(request: BriefBatchGenerateRequest):
     )
 
 
+@app.post("/api/briefs/edit-with-ai")
+async def edit_brief_with_ai(request: BriefEditWithAIRequest):
+    """Edit a brief using AI based on user prompt"""
+    if not request.filename or not request.edit_prompt:
+        raise HTTPException(status_code=400, detail="Filename and edit prompt are required")
+
+    # Check if brief file exists
+    brief_path = BRIEF_OUTPUTS_DIR / request.filename
+    if not brief_path.exists():
+        raise HTTPException(status_code=404, detail="Brief file not found")
+
+    job_id = await job_manager.start_job("brief_edit", {
+        "filename": request.filename,
+        "edit_prompt": request.edit_prompt
+    })
+    return {"job_id": job_id}
+
+
 # Draft Endpoints
 @app.get("/api/drafts")
 async def list_drafts():
@@ -1124,6 +1236,24 @@ async def generate_drafts_batch(request: DraftBatchGenerateRequest):
         total_jobs=len(job_ids),
         message=f"Batch of {len(job_ids)} draft(s) submitted successfully"
     )
+
+
+@app.post("/api/drafts/edit-with-ai")
+async def edit_draft_with_ai(request: DraftEditWithAIRequest):
+    """Edit a draft using AI based on user prompt"""
+    if not request.filename or not request.edit_prompt:
+        raise HTTPException(status_code=400, detail="Filename and edit prompt are required")
+
+    # Check if draft file exists
+    draft_path = DRAFT_OUTPUTS_DIR / request.filename
+    if not draft_path.exists():
+        raise HTTPException(status_code=404, detail="Draft file not found")
+
+    job_id = await job_manager.start_job("draft_edit", {
+        "filename": request.filename,
+        "edit_prompt": request.edit_prompt
+    })
+    return {"job_id": job_id}
 
 
 # Job Endpoints

@@ -201,7 +201,7 @@ McCormick Place Lot B, located at 31st Street near Lake Shore Drive, sits just 1
 
 ### How early should I book my RV for Lollapalooza 2026?
 
-Book immediately when Lollapalooza 2026 dates are officially announced. With 400,000+ festival attendees competing for accommodation and RV rentals during peak summer season, popular vehicle types sell out quickly. Indie Campers offers a 72-hour booking hold and flexible cancellation up to 31 days before pickup, making early booking low-risk.
+Book immediately when dates are announced. Popular vehicles sell out fast during peak summer season. Indie Campers offers flexible cancellation up to 31 days before pickup.
 
 ---
 

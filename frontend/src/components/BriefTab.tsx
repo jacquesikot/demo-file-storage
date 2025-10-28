@@ -1,4 +1,4 @@
-import { Download, Eye, FileText, Loader2, Sparkles, Trash2, Upload, Plus, X, Layers, Edit2, Save } from 'lucide-react';
+import { Download, Eye, FileText, Loader2, Sparkles, Trash2, Upload, Plus, X, Layers, Edit2, Save, Wand2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { brandDataAPI, briefsAPI, jobsAPI } from '../api';
 import type { BriefFormData, FileInfo, Job } from '../types';
@@ -28,6 +28,9 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState<string>('');
   const [saving, setSaving] = useState(false);
+  const [showAIEdit, setShowAIEdit] = useState(false);
+  const [aiEditPrompt, setAiEditPrompt] = useState('');
+  const [aiEditing, setAiEditing] = useState(false);
 
   const [formData, setFormData] = useState<BriefFormData>({
     title: '',
@@ -277,6 +280,55 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
     setViewingFile(null);
     setIsEditing(false);
     setEditedContent('');
+    setShowAIEdit(false);
+    setAiEditPrompt('');
+  };
+
+  const handleAIEdit = async () => {
+    if (!viewingFile || !aiEditPrompt.trim()) {
+      alert('Please enter edit instructions');
+      return;
+    }
+
+    setAiEditing(true);
+
+    try {
+      const { job_id } = await briefsAPI.editWithAI(viewingFile.filename, aiEditPrompt);
+
+      addJob({
+        id: job_id,
+        type: 'brief_edit',
+        status: 'running',
+        params: { filename: viewingFile.filename, edit_prompt: aiEditPrompt },
+      });
+
+      // Poll for job completion
+      const interval = setInterval(async () => {
+        const jobData = await jobsAPI.get(job_id);
+        if (jobData.status !== 'running' && jobData.status !== 'queued') {
+          clearInterval(interval);
+          setAiEditing(false);
+          updateJob(job_id, { status: jobData.status });
+
+          if (jobData.status === 'completed') {
+            // Reload the file content
+            const data = await briefsAPI.get(viewingFile.filename);
+            setViewingFile({ ...viewingFile, content: data.content });
+            setEditedContent(data.content);
+            setShowAIEdit(false);
+            setAiEditPrompt('');
+            loadFiles(); // Refresh file list
+            alert('Brief edited successfully with AI!');
+          } else {
+            alert('AI edit failed. Please check the job logs for details.');
+          }
+        }
+      }, 2000);
+    } catch (error) {
+      console.error('Error starting AI edit:', error);
+      setAiEditing(false);
+      alert('Failed to start AI edit. Please try again.');
+    }
   };
 
   const downloadFile = (filename: string, content: string) => {
@@ -602,7 +654,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
 
       {/* View/Edit Modal */}
       <Dialog open={!!viewingFile} onOpenChange={handleCloseDialog}>
-        <DialogContent className="max-w-5xl max-h-[85vh] flex flex-col">
+        <DialogContent className="max-w-[95vw] w-[95vw] h-[95vh] max-h-[95vh] flex flex-col">
           <DialogHeader className="flex-shrink-0">
             <div className="flex items-start justify-between gap-4 pr-8">
               <div className="flex-1 min-w-0">
@@ -614,8 +666,12 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
                 </p>
               </div>
               <div className="flex gap-2">
-                {!isEditing ? (
+                {!isEditing && !showAIEdit ? (
                   <>
+                    <Button onClick={() => setShowAIEdit(true)} size="sm" variant="outline">
+                      <Wand2 className="w-4 h-4 mr-2" />
+                      Edit with AI
+                    </Button>
                     <Button onClick={handleEdit} size="sm" variant="outline">
                       <Edit2 className="w-4 h-4 mr-2" />
                       Edit
@@ -630,7 +686,7 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
                       Download
                     </Button>
                   </>
-                ) : (
+                ) : isEditing ? (
                   <>
                     <Button onClick={handleCancelEdit} size="sm" variant="outline" disabled={saving}>
                       <X className="w-4 h-4 mr-2" />
@@ -650,6 +706,13 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
                       )}
                     </Button>
                   </>
+                ) : (
+                  <>
+                    <Button onClick={() => setShowAIEdit(false)} size="sm" variant="outline" disabled={aiEditing}>
+                      <X className="w-4 h-4 mr-2" />
+                      Cancel
+                    </Button>
+                  </>
                 )}
               </div>
             </div>
@@ -658,8 +721,48 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
           {/* Divider */}
           <div className="border-t border-gray-200 my-4" />
 
+          {/* AI Edit Interface */}
+          {showAIEdit && (
+            <div className="mb-4 p-4 border border-primary/20 rounded-lg bg-gradient-to-r from-primary/5 to-primary/10">
+              <div className="flex items-start gap-3 mb-3">
+                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Wand2 className="w-4 h-4 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-1">Edit with AI</h3>
+                  <p className="text-sm text-gray-600">
+                    Describe the changes you want Claude to make to this brief. Be specific about what needs to be edited.
+                  </p>
+                </div>
+              </div>
+              <Textarea
+                value={aiEditPrompt}
+                onChange={(e) => setAiEditPrompt(e.target.value)}
+                placeholder="Example: Change the tone to be more casual and conversational, or add a section about sustainability benefits..."
+                rows={4}
+                disabled={aiEditing}
+                className="mb-3"
+              />
+              <div className="flex gap-2">
+                <Button onClick={handleAIEdit} disabled={aiEditing || !aiEditPrompt.trim()} className="flex-1">
+                  {aiEditing ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      AI is editing...
+                    </>
+                  ) : (
+                    <>
+                      <Wand2 className="w-4 h-4 mr-2" />
+                      Apply AI Edits
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+          )}
+
           {/* Scrollable content */}
-          <div className="flex-1 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-6 max-h-[calc(85vh-200px)]">
+          <div className="flex-1 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-6">
             {viewingFile && (
               isEditing ? (
                 <MarkdownEditor
