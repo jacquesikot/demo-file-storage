@@ -601,7 +601,7 @@ class JobManager:
 
         **Instructions:**
         Follow the instructions in @backend/instructions/brief_generation_instructions.md to create a final brief in markdown that meets all the requirements.
-
+        Use the example brief from @backend/instructions/brief_example.md to understand the structure and format of the brief.
         Use the brand data from @backend/brand-data/{params["brand_data"]} to ensure the brief matches the brand voice and positioning.
 
         Use the WebSearch tool in your research to get the most up-to-date information.
@@ -609,7 +609,7 @@ class JobManager:
         **Output:**
         Create the brief as a markdown file at: {output_file}
 
-        The brief should be 2000-2500 words maximum and follow the exact structure specified in the instructions."""
+        The brief should be 2000-2500 words maximum and follow the exact structure specified in the instructions and the example brief."""
 
         return prompt
 
@@ -631,13 +631,14 @@ class JobManager:
 
         Use the content brief from @backend/brief-outputs/{params["brief_filename"]} as the brief_content.
         Use the brand data from @backend/brand-data/{params["brand_data_filename"]} to ensure the draft matches the brand voice.
+        Use the example draft from @backend/instructions/draft_example.md to understand the structure and format of the draft.
 
         Use the WebSearch tool in your research to get the most up-to-date information and verify facts.
 
         **Output:**
         Create the production ready draft as a markdown file at: {output_file}
 
-        The draft should be 2000 words maximum and follow the exact structure specified in the instructions.
+        The draft should be 2000 words maximum and follow the exact structure specified in the instructions and the example draft.
 
         Do not add any additional text or comments to the draft.
         Do not add any claude code watermark or signature to the draft.

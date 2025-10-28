@@ -10,13 +10,20 @@ dist
 build
 .git
 .gitignore
+# Exclude markdown files except instruction files
 *.md
+!instructions/*.md
 .env*
 !.env.example
-brand-data/*
+# Keep data directory contents
+# Exclude output directories but keep the folders themselves
 brief-outputs/*
+!brief-outputs/.gitkeep
 draft-outputs/*
+!draft-outputs/.gitkeep
 logs/*
+!logs/.gitkeep
 .pytest_cache
 .coverage
 htmlcov
+venv

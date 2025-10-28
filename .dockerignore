@@ -58,6 +58,8 @@ frontend/build
 # Documentation
 *.md
 !README.md
+# Keep backend instruction files
+!backend/instructions/*.md
 
 # Test files
 **/test-*.py
