@@ -62,9 +62,10 @@ BRIEF_OUTPUTS_DIR = BASE_DIR / "brief-outputs"
 DRAFT_OUTPUTS_DIR = BASE_DIR / "draft-outputs"
 INSTRUCTIONS_DIR = BASE_DIR / "instructions"
 LOGS_DIR = BASE_DIR / "logs"
+TEMP_DIFFS_DIR = BASE_DIR / "temp-diffs"
 
 # Ensure directories exist
-for directory in [BRAND_DATA_DIR, BRIEF_OUTPUTS_DIR, DRAFT_OUTPUTS_DIR, INSTRUCTIONS_DIR, LOGS_DIR]:
+for directory in [BRAND_DATA_DIR, BRIEF_OUTPUTS_DIR, DRAFT_OUTPUTS_DIR, INSTRUCTIONS_DIR, LOGS_DIR, TEMP_DIFFS_DIR]:
     directory.mkdir(exist_ok=True)
 
 # Job storage
@@ -145,6 +146,15 @@ class BriefEditWithAIRequest(BaseModel):
 class DraftEditWithAIRequest(BaseModel):
     filename: str
     edit_prompt: str
+
+
+class DiffApproveRequest(BaseModel):
+    diff_id: str
+    edited_content: str  # Allow user to edit the AI-generated content before approving
+
+
+class DiffRejectRequest(BaseModel):
+    diff_id: str
 
 
 # File Manager
@@ -762,22 +772,24 @@ class JobManager:
         """Build prompt for AI-assisted brief editing"""
         filename = params["filename"]
         edit_prompt = params["edit_prompt"]
-        output_file = f"backend/brief-outputs/{filename}"
+        diff_id = params.get("diff_id", str(uuid.uuid4())[:8])
+        source_file = f"backend/brief-outputs/{filename}"
+        temp_file = f"backend/temp-diffs/{diff_id}_{filename}"
 
         prompt = f"""I need you to edit an existing content brief based on specific user instructions.
 
-**Current Brief File:** @{output_file}
+**Current Brief File:** @{source_file}
 
 **User's Edit Request:**
 {edit_prompt}
 
 **Instructions:**
-1. Read the current brief from @{output_file}
+1. Read the current brief from @{source_file}
 2. Understand EXACTLY what the user wants changed - be precise and surgical with your edits
 3. Make ONLY the changes requested by the user - do not make additional improvements or modifications
 4. Maintain the exact same structure, format, and markdown style as the original brief
 5. Preserve all other content that was not specifically mentioned in the edit request
-6. Save the edited brief back to the SAME file: {output_file}
+6. Save the edited version to: {temp_file}
 
 **Important Guidelines:**
 - Be conservative: Only change what was explicitly requested
@@ -785,8 +797,9 @@ class JobManager:
 - Keep the same level of detail unless instructed otherwise
 - Do not add sections, remove sections, or restructure unless explicitly asked
 - Preserve all markdown formatting, headers, and styling
+- DO NOT modify the original file at {source_file} - only create the new file at {temp_file}
 
-After completing the edit, confirm with a single line: "Brief edited successfully."
+After completing the edit, confirm with a single line: "Brief edited successfully. Temporary diff created at {temp_file}"
 
 Do NOT provide a summary of changes or any additional commentary."""
 
@@ -796,23 +809,25 @@ Do NOT provide a summary of changes or any additional commentary."""
         """Build prompt for AI-assisted draft editing"""
         filename = params["filename"]
         edit_prompt = params["edit_prompt"]
-        output_file = f"backend/draft-outputs/{filename}"
+        diff_id = params.get("diff_id", str(uuid.uuid4())[:8])
+        source_file = f"backend/draft-outputs/{filename}"
+        temp_file = f"backend/temp-diffs/{diff_id}_{filename}"
 
         prompt = f"""I need you to edit an existing content draft based on specific user instructions.
 
-**Current Draft File:** @{output_file}
+**Current Draft File:** @{source_file}
 
 **User's Edit Request:**
 {edit_prompt}
 
 **Instructions:**
-1. Read the current draft from @{output_file}
+1. Read the current draft from @{source_file}
 2. Understand EXACTLY what the user wants changed - be precise and surgical with your edits
 3. Make ONLY the changes requested by the user - do not make additional improvements or modifications
 4. Maintain the exact same structure, format, and markdown style as the original draft
 5. Preserve all other content that was not specifically mentioned in the edit request
 6. Keep the word count similar to the original unless the user specifically asks to expand or reduce
-7. Save the edited draft back to the SAME file: {output_file}
+7. Save the edited version to: {temp_file}
 
 **Important Guidelines:**
 - Be conservative: Only change what was explicitly requested
@@ -821,8 +836,9 @@ Do NOT provide a summary of changes or any additional commentary."""
 - Do not add sections, remove sections, or restructure unless explicitly asked
 - Preserve all markdown formatting, headers, links, and styling
 - If word count changes are requested, maintain quality and SEO value
+- DO NOT modify the original file at {source_file} - only create the new file at {temp_file}
 
-After completing the edit, confirm with a single line: "Draft edited successfully."
+After completing the edit, confirm with a single line: "Draft edited successfully. Temporary diff created at {temp_file}"
 
 Do NOT provide a summary of changes or any additional commentary."""
 
@@ -856,13 +872,17 @@ Do NOT provide a summary of changes or any additional commentary."""
 
         elif job_type == "brief_edit":
             filename = params.get("filename", "")
-            if (BRIEF_OUTPUTS_DIR / filename).exists():
-                output_files.append(filename)
+            diff_id = params.get("diff_id", "")
+            temp_filename = f"{diff_id}_{filename}"
+            if (TEMP_DIFFS_DIR / temp_filename).exists():
+                output_files.append(temp_filename)
 
         elif job_type == "draft_edit":
             filename = params.get("filename", "")
-            if (DRAFT_OUTPUTS_DIR / filename).exists():
-                output_files.append(filename)
+            diff_id = params.get("diff_id", "")
+            temp_filename = f"{diff_id}_{filename}"
+            if (TEMP_DIFFS_DIR / temp_filename).exists():
+                output_files.append(temp_filename)
 
         return output_files
 
@@ -1103,7 +1123,7 @@ async def generate_briefs_batch(request: BriefBatchGenerateRequest):
 
 @app.post("/api/briefs/edit-with-ai")
 async def edit_brief_with_ai(request: BriefEditWithAIRequest):
-    """Edit a brief using AI based on user prompt"""
+    """Edit a brief using AI based on user prompt - creates a temporary diff"""
     if not request.filename or not request.edit_prompt:
         raise HTTPException(status_code=400, detail="Filename and edit prompt are required")
 
@@ -1112,11 +1132,15 @@ async def edit_brief_with_ai(request: BriefEditWithAIRequest):
     if not brief_path.exists():
         raise HTTPException(status_code=404, detail="Brief file not found")
 
+    # Generate unique diff ID
+    diff_id = str(uuid.uuid4())[:8]
+
     job_id = await job_manager.start_job("brief_edit", {
         "filename": request.filename,
-        "edit_prompt": request.edit_prompt
+        "edit_prompt": request.edit_prompt,
+        "diff_id": diff_id
     })
-    return {"job_id": job_id}
+    return {"job_id": job_id, "diff_id": diff_id}
 
 
 # Draft Endpoints
@@ -1240,7 +1264,7 @@ async def generate_drafts_batch(request: DraftBatchGenerateRequest):
 
 @app.post("/api/drafts/edit-with-ai")
 async def edit_draft_with_ai(request: DraftEditWithAIRequest):
-    """Edit a draft using AI based on user prompt"""
+    """Edit a draft using AI based on user prompt - creates a temporary diff"""
     if not request.filename or not request.edit_prompt:
         raise HTTPException(status_code=400, detail="Filename and edit prompt are required")
 
@@ -1249,11 +1273,98 @@ async def edit_draft_with_ai(request: DraftEditWithAIRequest):
     if not draft_path.exists():
         raise HTTPException(status_code=404, detail="Draft file not found")
 
+    # Generate unique diff ID
+    diff_id = str(uuid.uuid4())[:8]
+
     job_id = await job_manager.start_job("draft_edit", {
         "filename": request.filename,
-        "edit_prompt": request.edit_prompt
+        "edit_prompt": request.edit_prompt,
+        "diff_id": diff_id
     })
-    return {"job_id": job_id}
+    return {"job_id": job_id, "diff_id": diff_id}
+
+
+# Diff Management Endpoints
+@app.get("/api/diffs/{diff_id}")
+async def get_diff(diff_id: str):
+    """Get the temporary diff file content"""
+    # Find the diff file in temp-diffs directory
+    diff_files = list(TEMP_DIFFS_DIR.glob(f"{diff_id}_*"))
+
+    if not diff_files:
+        raise HTTPException(status_code=404, detail="Diff not found")
+
+    diff_file = diff_files[0]
+    edited_content = diff_file.read_text()
+
+    # Extract original filename
+    original_filename = diff_file.name.replace(f"{diff_id}_", "")
+
+    # Determine the type (brief or draft) and get original content
+    if original_filename.endswith("_brief.md"):
+        original_file = BRIEF_OUTPUTS_DIR / original_filename
+        file_type = "brief"
+    else:
+        original_file = DRAFT_OUTPUTS_DIR / original_filename
+        file_type = "draft"
+
+    if not original_file.exists():
+        raise HTTPException(status_code=404, detail="Original file not found")
+
+    original_content = original_file.read_text()
+
+    return {
+        "diff_id": diff_id,
+        "filename": original_filename,
+        "file_type": file_type,
+        "original_content": original_content,
+        "edited_content": edited_content
+    }
+
+
+@app.post("/api/diffs/approve")
+async def approve_diff(request: DiffApproveRequest):
+    """Approve the diff and apply changes to the original file"""
+    # Find the diff file
+    diff_files = list(TEMP_DIFFS_DIR.glob(f"{request.diff_id}_*"))
+
+    if not diff_files:
+        raise HTTPException(status_code=404, detail="Diff not found")
+
+    diff_file = diff_files[0]
+    original_filename = diff_file.name.replace(f"{request.diff_id}_", "")
+
+    # Determine the type and get original file path
+    if original_filename.endswith("_brief.md"):
+        original_file = BRIEF_OUTPUTS_DIR / original_filename
+    else:
+        original_file = DRAFT_OUTPUTS_DIR / original_filename
+
+    if not original_file.exists():
+        raise HTTPException(status_code=404, detail="Original file not found")
+
+    # Save the edited content (which may have been further edited by the user) to the original file
+    original_file.write_text(request.edited_content, encoding='utf-8')
+
+    # Delete the temporary diff file
+    diff_file.unlink()
+
+    return {"success": True, "message": "Changes approved and applied successfully"}
+
+
+@app.post("/api/diffs/reject")
+async def reject_diff(request: DiffRejectRequest):
+    """Reject the diff and delete the temporary file"""
+    # Find the diff file
+    diff_files = list(TEMP_DIFFS_DIR.glob(f"{request.diff_id}_*"))
+
+    if not diff_files:
+        raise HTTPException(status_code=404, detail="Diff not found")
+
+    # Delete the temporary diff file
+    diff_files[0].unlink()
+
+    return {"success": True, "message": "Changes rejected successfully"}
 
 
 # Job Endpoints

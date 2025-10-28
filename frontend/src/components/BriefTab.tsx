@@ -4,6 +4,7 @@ import { brandDataAPI, briefsAPI, jobsAPI } from '../api';
 import type { BriefFormData, FileInfo, Job } from '../types';
 import MarkdownViewer from './MarkdownViewer';
 import MarkdownEditor from './MarkdownEditor';
+import DiffViewer from './DiffViewer';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
@@ -31,6 +32,8 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
   const [showAIEdit, setShowAIEdit] = useState(false);
   const [aiEditPrompt, setAiEditPrompt] = useState('');
   const [aiEditing, setAiEditing] = useState(false);
+  const [showDiffView, setShowDiffView] = useState(false);
+  const [currentDiffId, setCurrentDiffId] = useState<string | null>(null);
 
   const [formData, setFormData] = useState<BriefFormData>({
     title: '',
@@ -282,6 +285,8 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
     setEditedContent('');
     setShowAIEdit(false);
     setAiEditPrompt('');
+    setShowDiffView(false);
+    setCurrentDiffId(null);
   };
 
   const handleAIEdit = async () => {
@@ -293,13 +298,13 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
     setAiEditing(true);
 
     try {
-      const { job_id } = await briefsAPI.editWithAI(viewingFile.filename, aiEditPrompt);
+      const { job_id, diff_id } = await briefsAPI.editWithAI(viewingFile.filename, aiEditPrompt);
 
       addJob({
         id: job_id,
         type: 'brief_edit',
         status: 'running',
-        params: { filename: viewingFile.filename, edit_prompt: aiEditPrompt },
+        params: { filename: viewingFile.filename, edit_prompt: aiEditPrompt, diff_id },
       });
 
       // Poll for job completion
@@ -311,14 +316,11 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
           updateJob(job_id, { status: jobData.status });
 
           if (jobData.status === 'completed') {
-            // Reload the file content
-            const data = await briefsAPI.get(viewingFile.filename);
-            setViewingFile({ ...viewingFile, content: data.content });
-            setEditedContent(data.content);
+            // Show diff view instead of automatically applying changes
+            setCurrentDiffId(diff_id);
+            setShowDiffView(true);
             setShowAIEdit(false);
             setAiEditPrompt('');
-            loadFiles(); // Refresh file list
-            alert('Brief edited successfully with AI!');
           } else {
             alert('AI edit failed. Please check the job logs for details.');
           }
@@ -329,6 +331,24 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
       setAiEditing(false);
       alert('Failed to start AI edit. Please try again.');
     }
+  };
+
+  const handleDiffApprove = () => {
+    // Reload the file content after approval
+    if (viewingFile) {
+      briefsAPI.get(viewingFile.filename).then((data) => {
+        setViewingFile({ ...viewingFile, content: data.content });
+        setEditedContent(data.content);
+      });
+    }
+    setShowDiffView(false);
+    setCurrentDiffId(null);
+    loadFiles(); // Refresh file list
+  };
+
+  const handleDiffReject = () => {
+    setShowDiffView(false);
+    setCurrentDiffId(null);
   };
 
   const downloadFile = (filename: string, content: string) => {
@@ -762,16 +782,26 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
           )}
 
           {/* Scrollable content */}
-          <div className="flex-1 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-6">
-            {viewingFile && (
-              isEditing ? (
-                <MarkdownEditor
-                  content={editedContent}
-                  onChange={setEditedContent}
-                />
-              ) : (
-                <MarkdownViewer content={viewingFile.content} />
-              )
+          <div className="flex-1 overflow-auto">
+            {showDiffView && currentDiffId ? (
+              <DiffViewer
+                diffId={currentDiffId}
+                onApprove={handleDiffApprove}
+                onReject={handleDiffReject}
+              />
+            ) : (
+              <div className="rounded-lg border border-gray-200 bg-gray-50 p-6">
+                {viewingFile && (
+                  isEditing ? (
+                    <MarkdownEditor
+                      content={editedContent}
+                      onChange={setEditedContent}
+                    />
+                  ) : (
+                    <MarkdownViewer content={viewingFile.content} />
+                  )
+                )}
+              </div>
             )}
           </div>
         </DialogContent>

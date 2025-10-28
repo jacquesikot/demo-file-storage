@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
 import { Textarea } from './ui/textarea';
 import MarkdownViewer from './MarkdownViewer';
 import MarkdownEditor from './MarkdownEditor';
+import DiffViewer from './DiffViewer';
 import type { FileInfo, Job, DraftFormData } from '../types';
 
 interface DraftTabProps {
@@ -31,6 +32,8 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
   const [showAIEdit, setShowAIEdit] = useState(false);
   const [aiEditPrompt, setAiEditPrompt] = useState('');
   const [aiEditing, setAiEditing] = useState(false);
+  const [showDiffView, setShowDiffView] = useState(false);
+  const [currentDiffId, setCurrentDiffId] = useState<string | null>(null);
 
   const [formData, setFormData] = useState<DraftFormData>({
     brief_filename: '',
@@ -270,6 +273,8 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
     setEditedContent('');
     setShowAIEdit(false);
     setAiEditPrompt('');
+    setShowDiffView(false);
+    setCurrentDiffId(null);
   };
 
   const handleAIEdit = async () => {
@@ -281,13 +286,13 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
     setAiEditing(true);
 
     try {
-      const { job_id } = await draftsAPI.editWithAI(viewingFile.filename, aiEditPrompt);
+      const { job_id, diff_id } = await draftsAPI.editWithAI(viewingFile.filename, aiEditPrompt);
 
       addJob({
         id: job_id,
         type: 'draft_edit',
         status: 'running',
-        params: { filename: viewingFile.filename, edit_prompt: aiEditPrompt },
+        params: { filename: viewingFile.filename, edit_prompt: aiEditPrompt, diff_id },
       });
 
       // Poll for job completion
@@ -299,14 +304,11 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
           updateJob(job_id, { status: jobData.status });
 
           if (jobData.status === 'completed') {
-            // Reload the file content
-            const data = await draftsAPI.get(viewingFile.filename);
-            setViewingFile({ ...viewingFile, content: data.content });
-            setEditedContent(data.content);
+            // Show diff view instead of automatically applying changes
+            setCurrentDiffId(diff_id);
+            setShowDiffView(true);
             setShowAIEdit(false);
             setAiEditPrompt('');
-            loadFiles(); // Refresh file list
-            alert('Draft edited successfully with AI!');
           } else {
             alert('AI edit failed. Please check the job logs for details.');
           }
@@ -317,6 +319,24 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
       setAiEditing(false);
       alert('Failed to start AI edit. Please try again.');
     }
+  };
+
+  const handleDiffApprove = () => {
+    // Reload the file content after approval
+    if (viewingFile) {
+      draftsAPI.get(viewingFile.filename).then((data) => {
+        setViewingFile({ ...viewingFile, content: data.content });
+        setEditedContent(data.content);
+      });
+    }
+    setShowDiffView(false);
+    setCurrentDiffId(null);
+    loadFiles(); // Refresh file list
+  };
+
+  const handleDiffReject = () => {
+    setShowDiffView(false);
+    setCurrentDiffId(null);
   };
 
   const downloadFile = (filename: string, content: string) => {
@@ -721,16 +741,26 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
           )}
 
           {/* Scrollable content */}
-          <div className="flex-1 overflow-auto rounded-lg border border-gray-200 bg-gray-50 p-6">
-            {viewingFile && (
-              isEditing ? (
-                <MarkdownEditor
-                  content={editedContent}
-                  onChange={setEditedContent}
-                />
-              ) : (
-                <MarkdownViewer content={viewingFile.content} />
-              )
+          <div className="flex-1 overflow-auto">
+            {showDiffView && currentDiffId ? (
+              <DiffViewer
+                diffId={currentDiffId}
+                onApprove={handleDiffApprove}
+                onReject={handleDiffReject}
+              />
+            ) : (
+              <div className="rounded-lg border border-gray-200 bg-gray-50 p-6">
+                {viewingFile && (
+                  isEditing ? (
+                    <MarkdownEditor
+                      content={editedContent}
+                      onChange={setEditedContent}
+                    />
+                  ) : (
+                    <MarkdownViewer content={viewingFile.content} />
+                  )
+                )}
+              </div>
             )}
           </div>
         </DialogContent>

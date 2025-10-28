@@ -107,7 +107,7 @@ export const briefsAPI = {
     return response.json();
   },
 
-  editWithAI: async (filename: string, editPrompt: string): Promise<JobResponse> => {
+  editWithAI: async (filename: string, editPrompt: string): Promise<JobResponse & { diff_id: string }> => {
     const response = await fetch(`${API_BASE_URL}/briefs/edit-with-ai`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -173,11 +173,43 @@ export const draftsAPI = {
     return response.json();
   },
 
-  editWithAI: async (filename: string, editPrompt: string): Promise<JobResponse> => {
+  editWithAI: async (filename: string, editPrompt: string): Promise<JobResponse & { diff_id: string }> => {
     const response = await fetch(`${API_BASE_URL}/drafts/edit-with-ai`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ filename, edit_prompt: editPrompt }),
+    });
+    return response.json();
+  },
+};
+
+// Diffs API
+export const diffsAPI = {
+  get: async (diffId: string): Promise<{
+    diff_id: string;
+    filename: string;
+    file_type: string;
+    original_content: string;
+    edited_content: string;
+  }> => {
+    const response = await fetch(`${API_BASE_URL}/diffs/${diffId}`);
+    return response.json();
+  },
+
+  approve: async (diffId: string, editedContent: string): Promise<{ success: boolean; message: string }> => {
+    const response = await fetch(`${API_BASE_URL}/diffs/approve`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ diff_id: diffId, edited_content: editedContent }),
+    });
+    return response.json();
+  },
+
+  reject: async (diffId: string): Promise<{ success: boolean; message: string }> => {
+    const response = await fetch(`${API_BASE_URL}/diffs/reject`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ diff_id: diffId }),
     });
     return response.json();
   },
