@@ -631,43 +631,51 @@ class JobManager:
         # Format URLs for the prompt
         urls_list = "\n".join([f"- {url}" for url in urls])
 
-        prompt = f"""I need you to conduct thorough research on the brand "{brand_name}" using the following URLs:
+        prompt = f"""I need you to conduct FAST and efficient research on the brand "{brand_name}" using the following URLs:
 
         {urls_list}
 
         These URLs represent different parts of the same brand (e.g., main website, blog, store, help center, etc.). Your task is to generate ONE comprehensive brand data file in JSON format that consolidates information from ALL provided URLs.
 
-        The output JSON file must match the EXACT structure of the file at data/your_data.json (which is the Indie Campers example).
+        The output JSON file must match the EXACT structure of the your_data.json file in the backend/data folder.
 
-        The output JSON file must include ALL of the following sections with comprehensive, well-researched data:
+        The output JSON file must include ALL of the following sections with comprehensive data:
 
         1. **targetAudience**: Target customer segments, customer personas, target markets, target audience description, proof points
 
         2. **writingGuidelines**: Guidelines, tone of voice, author persona, example phrases, inspiration articles, vocabulary preferences
 
-        **Research Instructions:**
-        - Use the WebSearch tool to gather up-to-date information about {brand_name}
-        - Visit ALL provided URLs to gather comprehensive information from each source
-        - Research the company's competitors and industry positioning
-        - Look for customer reviews on Trustpilot, G2, Capterra, or similar platforms
-        - Find information about funding, team size, and company milestones
-        - Identify their technology stack using available tools/sources
-        - Research their target audience and customer personas
-        - Analyze their content strategy from their blog and marketing materials
-        - Identify their unique selling propositions and competitive advantages
-        - Find example content to understand their tone of voice and writing style
-        - If the brand has multiple domains (main site, blog, store), list them in the companySubdomains field
+        **CRITICAL CONSTRAINTS - MUST FOLLOW:**
+        - You have a HARD LIMIT of 5 web searches TOTAL for the entire task (not per section)
+        - Prioritize visiting the provided URLs first using WebFetch - they contain most of the information you need
+        - Only use WebSearch if absolutely critical information is missing from the provided URLs
+        - Work QUICKLY - aim to complete this task in under 90 seconds
+
+        **Research Strategy:**
+        1. FIRST: Visit ALL provided URLs using WebFetch to extract brand information, tone, audience, and content examples
+        2. SECOND: Analyze the content from those URLs to infer brand voice, target audience, and writing style
+        3. ONLY IF NECESSARY: Use up to 5 web searches total to fill critical gaps (e.g., "who uses {brand_name}", "{brand_name} target audience", "{brand_name} writing style")
+        4. For any remaining gaps: Make intelligent, research-backed inferences based on:
+           - Industry standards for similar companies
+           - Content patterns observed in the provided URLs
+           - Common practices in the brand's sector
+           - Logical deductions from available information
+
+        **Intelligent Inference Guidelines:**
+        - If the brand sells B2B software, infer professional tone and business decision-maker audience
+        - If the brand has casual blog content, infer conversational tone and approachable voice
+        - Use observed content examples to extrapolate vocabulary preferences and style guidelines
+        - Base persona details on typical customers for similar products/services
+        - Generate realistic proof points from observable brand claims and positioning
 
         **Output Requirements:**
         1. Create a SINGLE JSON file for {brand_name} at: {output_file}
-        2. Follow the EXACT structure from data/your_data.json - every field must be present
-        3. All data should be well-researched and accurate (not placeholder data)
-        4. Consolidate information from all provided URLs into one comprehensive brand profile
-        5. For any data you cannot find after thorough research, make intelligent inferences based on industry standards and similar companies
-        6. Ensure all JSON is properly formatted and valid
-        7. Include the 'locked: false' field for every section (matching the Indie Campers format)
+        2. Follow the EXACT structure from your_data.json - every field must be present
+        3. Prioritize SPEED over exhaustive research - intelligent inferences are acceptable and encouraged
+        4. All data must be realistic and credible (no obvious placeholders like "TBD" or "Unknown")
+        5. Ensure all JSON is properly formatted and valid
 
-        When you're done, confirm the file has been created but do not provide a summary of the research findings."""
+        When you're done, confirm the file has been created with a brief one-line confirmation. Do NOT provide a summary of findings."""
 
         return prompt
 
