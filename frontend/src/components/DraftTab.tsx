@@ -4,6 +4,7 @@ import { draftsAPI, briefsAPI, brandDataAPI, jobsAPI } from '../api';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Label } from './ui/label';
+import { Input } from './ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Badge } from './ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from './ui/dialog';
@@ -38,12 +39,14 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
   const [formData, setFormData] = useState<DraftFormData>({
     brief_filename: '',
     brand_data_filename: '',
+    target_word_count: 2000,
   });
 
   const [batchForms, setBatchForms] = useState<DraftFormData[]>([
     {
       brief_filename: '',
       brand_data_filename: '',
+      target_word_count: 2000,
     },
   ]);
 
@@ -108,6 +111,7 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
           setFormData({
             brief_filename: '',
             brand_data_filename: '',
+            target_word_count: 2000,
           });
           loadFiles();
           updateJob(job_id, { status: jobData.status });
@@ -177,6 +181,7 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
                 {
                   brief_filename: '',
                   brand_data_filename: '',
+                  target_word_count: 2000,
                 },
               ]);
               loadFiles();
@@ -199,6 +204,7 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
       {
         brief_filename: '',
         brand_data_filename: '',
+        target_word_count: 2000,
       },
     ]);
   };
@@ -422,6 +428,21 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
                 </Select>
               </div>
 
+              <div className="space-y-2">
+                <Label htmlFor="target_word_count">Target Word Count *</Label>
+                <Input
+                  id="target_word_count"
+                  type="number"
+                  min="500"
+                  max="5000"
+                  value={formData.target_word_count}
+                  onChange={(e) => setFormData({ ...formData, target_word_count: parseInt(e.target.value) || 2000 })}
+                  disabled={generating}
+                  placeholder="2000"
+                />
+                <p className="text-xs text-gray-500">Recommended: 2000-2500 words for SEO-optimized content</p>
+              </div>
+
               <div className="flex gap-2 pt-2">
                 <Button onClick={handleGenerate} disabled={generating} className="flex-1">
                   {generating ? (
@@ -501,6 +522,20 @@ export default function DraftTab({ addJob, updateJob }: DraftTabProps) {
                           </SelectContent>
                         </Select>
                       </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor={`batch-word-count-${index}`}>Target Word Count *</Label>
+                      <Input
+                        id={`batch-word-count-${index}`}
+                        type="number"
+                        min="500"
+                        max="5000"
+                        value={form.target_word_count}
+                        onChange={(e) => updateBatchForm(index, { target_word_count: parseInt(e.target.value) || 2000 })}
+                        disabled={generating}
+                        placeholder="2000"
+                      />
                     </div>
                   </div>
                 ))}

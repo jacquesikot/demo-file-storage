@@ -93,6 +93,7 @@ class BriefGenerateRequest(BaseModel):
 class DraftGenerateRequest(BaseModel):
     brief_filename: str
     brand_data_filename: str
+    target_word_count: int = 2000  # Default to 2000 if not provided
 
 
 class BriefBatchGenerateRequest(BaseModel):
@@ -709,9 +710,11 @@ class JobManager:
 
         The output JSON file must include ALL of the following sections with comprehensive data:
 
-        1. **targetAudience**: Target customer segments, customer personas, target markets, target audience description, proof points
+        1. **brandInfo**: Brand URLs, companyName, companyDomain, profiles, subDomains, brandDescription and brandPointOfView
 
-        2. **writingGuidelines**: Guidelines, tone of voice, author persona, example phrases, inspiration articles, vocabulary preferences
+        2. **targetAudience**: Target customer segments, customer personas, target markets, target audience description, proof points
+
+        3. **writingGuidelines**: Guidelines, tone of voice, author persona, example phrases, inspiration articles, vocabulary preferences
 
         **CRITICAL CONSTRAINTS - MUST FOLLOW:**
         - You have a HARD LIMIT of 5 web searches TOTAL for the entire task (not per section)
@@ -754,19 +757,31 @@ class JobManager:
         filename = re.sub(r'[-\s]+', '_', filename)
         output_file = f"backend/brief-outputs/{filename}_brief.md"
 
+        # Fetch brand data from Supabase storage
+        brand_data_content = ""
+
+        try:
+            brand_data_content = file_manager.read_file("brand-data", params["brand_data"])
+        except Exception as e:
+            print(f"Warning: Could not fetch brand data from storage: {e}")
+            # Fall back to file reference if storage fetch fails
+            brand_data_content = f"@backend/brand-data/{params['brand_data']}"
+
         prompt = f"""Generate a content brief in the backend/brief-outputs/ folder.
 
         **Input Information:**
         - Title: {params["title"]}
         - Primary Keyword: {params["primary_keyword"]}
         - Secondary Keywords: {params["secondary_keywords"]}
-        - Brand Data File: backend/brand-data/{params["brand_data"]}
         - Today's Date: {datetime.now().strftime("%Y-%m-%d")}
 
+        - Brand Writing Guidelines:
+        {brand_data_content if not brand_data_content.startswith("@") else f"Use the brand data from {brand_data_content}"}
+
         **Instructions:**
-        Follow the instructions in @backend/instructions/brief_generation_instructions.md to create a final brief in markdown that meets all the requirements.
-        Use the example brief from @backend/instructions/brief_example.md to understand the structure and format of the brief.
-        Use the brand data from @backend/brand-data/{params["brand_data"]} to ensure the brief matches the brand voice and positioning.
+        Follow the instructions in the backend/instructions/brief_generation_instructions.md to create a final brief in markdown that meets all the requirements.
+        Use the example brief from the backend/instructions/brief_example.md to understand the structure and format of the brief.
+        Use the brand writing guidelines provided above to ensure the brief matches the brand voice and positioning.
 
         Use the WebSearch tool in your research to get the most up-to-date information.
 
@@ -782,33 +797,52 @@ class JobManager:
         # Extract title from brief filename for output naming
         brief_name = params["brief_filename"].replace("_brief.md", "")
         output_file = f"backend/draft-outputs/{brief_name}_draft.md"
+        target_word_count = params.get("target_word_count", 2500)
+
+        # Fetch brief and brand data from Supabase storage
+        brief_content = ""
+        brand_data_content = ""
+
+        try:
+            brief_content = file_manager.read_file("brief-outputs", params["brief_filename"])
+            brand_data_content = file_manager.read_file("brand-data", params["brand_data_filename"])
+        except Exception as e:
+            print(f"Warning: Could not fetch files from storage: {e}")
+            # Fall back to file references if storage fetch fails
+            brief_content = f"@backend/brief-outputs/{params['brief_filename']}"
+            brand_data_content = f"@backend/brand-data/{params['brand_data_filename']}"
 
         prompt = f"""Generate a content draft in the backend/draft-outputs/ folder.
 
         **Input Information:**
-        - Brief File: backend/brief-outputs/{params["brief_filename"]}
-        - Brand Data File: backend/brand-data/{params["brand_data_filename"]}
+        - Brief Content:
+        {brief_content if not brief_content.startswith("@") else f"Use the content brief from {brief_content}"}
+
+        - Brand Writing Guidelines:
+        {brand_data_content if not brand_data_content.startswith("@") else f"Use the brand data from {brand_data_content}"}
+
+        - Target Word Count: {target_word_count} words
         - Today's Date: {datetime.now().strftime("%Y-%m-%d")}
 
         **Instructions:**
-        Follow the instructions in @backend/instructions/draft_generation_instructions.md to create a final draft in markdown that meets all the requirements.
+        Follow the instructions in the backend/instructions/draft_generation_instructions.md to create a final draft in markdown that meets all the requirements.
 
-        Use the content brief from @backend/brief-outputs/{params["brief_filename"]} as the brief_content.
-        Use the brand data from @backend/brand-data/{params["brand_data_filename"]} to ensure the draft matches the brand voice.
-        Use the example draft from @backend/instructions/draft_example.md to understand the structure and format of the draft.
+        Use the brief content provided above as the brief_content.
+        Use the brand data provided above to ensure the draft matches the brand voice.
+        Use the example draft from the backend/instructions/draft_example.md to understand the structure and format of the draft.
 
         Use the WebSearch tool in your research to get the most up-to-date information and verify facts.
 
         **Output:**
         Create the production ready draft as a markdown file at: {output_file}
 
-        The draft should be 2000 words maximum and follow the exact structure specified in the instructions and the example draft.
+        The draft should be {target_word_count} words maximum and follow the exact structure specified in the instructions and the example draft.
 
         Do not add any additional text or comments to the draft.
         Do not add any claude code watermark or signature to the draft.
 
         **Word Count Check:**
-        After generating the draft, check if the word count exceeds 2000 words. If it does, automatically revise it to reduce it to 2000 words MAX while maintaining all critical information, SEO value, and brand voice."""
+        After generating the draft, check if the word count exceeds {target_word_count} words. If it does, automatically revise it to reduce it to {target_word_count} words MAX while maintaining all critical information, SEO value, and brand voice."""
 
         return prompt
 
@@ -1311,7 +1345,8 @@ async def generate_draft(request: DraftGenerateRequest):
 
     job_id = await job_manager.start_job("draft", {
         "brief_filename": request.brief_filename,
-        "brand_data_filename": request.brand_data_filename
+        "brand_data_filename": request.brand_data_filename,
+        "target_word_count": request.target_word_count
     })
     return {"job_id": job_id}
 
@@ -1356,7 +1391,8 @@ async def generate_drafts_batch(request: DraftBatchGenerateRequest):
     job_tasks = [
         job_manager.start_job("draft", {
             "brief_filename": draft_request.brief_filename,
-            "brand_data_filename": draft_request.brand_data_filename
+            "brand_data_filename": draft_request.brand_data_filename,
+            "target_word_count": draft_request.target_word_count
         }, batch_id=batch_id)
         for draft_request in request.drafts
     ]

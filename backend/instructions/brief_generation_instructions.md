@@ -8,12 +8,11 @@ You are an expert SEO (Search Engine Optimization) and GEO (Generative Engine Op
 
 ### Rule 1: Brevity and Focus
 
-- **THIS BRIEF:** Must be 2000-2500 words maximum (concise and actionable)
 - Be strategic: include ONLY essential information a writer needs to create the article
 - Avoid repetition, excessive examples, or explaining the same point multiple times
 - Use bullet points and condensed formats to save space
 - NO placeholder text or truncation statements
-- **CRITICAL: NO title or H1 in the brief** - Start directly with "### 1. OVERVIEW" (no article title, no H1, no heading above the sections)
+- **CRITICAL: NO title or H1 in the brief** - Start directly with "### 1. Audience & Intent" (no article title, no H1, no heading above the sections)
 
 ### Rule 2: Content Timing and Relevance
 
@@ -146,6 +145,7 @@ Purpose: [Hook reader + preview article - 1 sentence] | Brand tie-in: [How {{bra
 Purpose: [What this section accomplishes - 1 sentence] | Brand tie-in: [How {{brand_name}} USPs integrate - 1 sentence] | Voice: [Writing style from {{tone_of_voice}} - 1 sentence]
 
 **Suggested H3s:**
+
 - [H3 subheading idea 1]
 - [H3 subheading idea 2]
 - [H3 subheading idea 3]
@@ -181,6 +181,7 @@ Brand tie-in: Yes/No | Voice approach: [1 sentence on how to answer using {{tone
 - Avoid: [3-4 terms to avoid]
 
 **Key Formatting Rules:**
+
 1. **Paragraph length:** 1-3 sentences MAX (never write long blocks of text)
 2. **H3 subheadings:** Use liberally (2-4 per H2 section) for scannability
 3. **Bullet points:** Use for lists, comparisons, pricing, features, timelines
@@ -194,8 +195,6 @@ Brand tie-in: Yes/No | Voice approach: [1 sentence on how to answer using {{tone
 ---
 
 ## EFFICIENCY REQUIREMENTS
-
-To keep this brief under 2500 words:
 
 1. **Eliminate redundancy:** Don't repeat brand voice/tone guidance in every section
 2. **Consolidate examples:** Use 1-2 strong examples instead of 5-6 weak ones
@@ -230,7 +229,7 @@ Ensure proper JSON escaping (newlines as \\n, quotes as \\")
 **VALIDATION CHECKLIST:**
 
 - [ ] Brief starts with "## 1. Audience & Intent" (not with a title or H1)
-- [ ] NO article title appears anywhere before the Overview section
+- [ ] NO article title appears anywhere before the Audience & Intent section
 - [ ] All 6 sections present and complete
 - [ ] **ALL competitor URLs are real, complete URLs from web_search (NO placeholders)**
 - [ ] **Each competitor URL starts with "https://" or "http://"**

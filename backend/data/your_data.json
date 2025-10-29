@@ -1,4 +1,24 @@
 {
+  "brandInfo": {
+    "companyName": {
+      "value": "Indie Campers"
+    },
+    "companyDomain": {
+      "value": "https://indiecampers.com"
+    },
+    "otherProfiles": {
+      "value": ["https://blog.indiecampers.com/", "https://help.indiecampers.com/"]
+    },
+    "brandDescription": {
+      "value": "Indie Campers is a leading global provider of campervan and RV rentals, offering travelers the flexibility to explore North America, Europe, and Oceania on their own terms. With a fleet of over 7,000 vehicles and more than 70 pick-up and drop-off locations, the company makes road trips accessible and convenient for adventurers of all experience levels. Founded in 2013, its mission is to democratize road trips by enhancing travel experiences and lowering prices for millions of travelers worldwide. Operating across three continents, Indie Campers is currently undergoing a significant transformation to set new industry standards for safety, transparency, and customer service."
+    },
+    "brandPointOfView": {
+      "value": "Indie Campers believes in providing the freedom of movement and instilling the pleasure of road travel, inspiring and connecting travelers worldwide. The company is anchored in accessibility, reliability, and innovation, with the promise that 'your journey is our priority.' They are committed to keeping road travel accessible and effortless for all, democratizing the road trip experience through flexible, tech-enabled travel solutions."
+    },
+    "companySubDomains": {
+      "value": ["blog.indiecampers.com", "help.indiecampers.com", "indiecampers.co.uk"]
+    }
+  },
   "targetAudience": {
     "proofPoints": {
       "value": [
@@ -18,8 +38,7 @@
         "Europe (primary market - Portugal, Spain, France, Italy, Germany, UK, Nordic countries)",
         "North America (USA and Canada - expanding market)",
         "Oceania (Australia and New Zealand)"
-      ],
-      "locked": false
+      ]
     },
     "customerPersonas": {
       "value": [
@@ -53,8 +72,7 @@
           "valueProposition": "IC's RTBs and competitive superiorities",
           "channels": "Offline agencies: Tui, Dertour"
         }
-      ],
-      "locked": false
+      ]
     },
     "targetCustomerSegments": {
       "value": [
@@ -66,12 +84,10 @@
         "Budget-conscious travelers seeking affordable road trip options",
         "Groups and friends planning multi-day adventures",
         "Travelers from 130+ countries seeking authentic local experiences"
-      ],
-      "locked": false
+      ]
     },
     "targetAudienceDescription": {
-      "value": "Indie Campers serves a diverse community of travelers from over 130 countries who value freedom, flexibility, and authentic travel experiences. The primary audience includes adventure enthusiasts, families, and groups ranging from first-time campervan renters to seasoned travelers. The sweet spot comprises three main personas: Young Explorers (under 35) seeking unique, budget-friendly experiences; Family Adventurers (36-59) prioritizing safety and reliability for quality family time; and Seasoned Travelers (60+) looking for comfort and extended journeys. The audience is tech-savvy, values convenience through digital booking, and seeks the freedom to explore at their own pace with start-anywhere, end-anywhere flexibility.",
-      "locked": false
+      "value": "Indie Campers serves a diverse community of travelers from over 130 countries who value freedom, flexibility, and authentic travel experiences. The primary audience includes adventure enthusiasts, families, and groups ranging from first-time campervan renters to seasoned travelers. The sweet spot comprises three main personas: Young Explorers (under 35) seeking unique, budget-friendly experiences; Family Adventurers (36-59) prioritizing safety and reliability for quality family time; and Seasoned Travelers (60+) looking for comfort and extended journeys. The audience is tech-savvy, values convenience through digital booking, and seeks the freedom to explore at their own pace with start-anywhere, end-anywhere flexibility."
     }
   },
   "writingGuidelines": {
@@ -102,8 +118,7 @@
           "do": "Keep it enthusiastic, especially at the beginning of the article and whenever mentioning obligations, rules, or laws. Write in a cool, engaging blog style that feels authentic and inspiring. Aim for a persuasive travel guide style so it feels like an inspiring blog post from a reputable publication.",
           "dont": "Don't use any negative sentences or negative sentiment. Avoid sounding like an advertisement."
         }
-      ],
-      "locked": false
+      ]
     },
     "toneOfVoice": {
       "value": [
@@ -120,12 +135,10 @@
         "Encourages exploration and curiosity through enthusiastic language",
         "Uses short, punchy sentences to maintain energy and momentum",
         "Employs paragraphs for flow rather than lists and bullet points for easy digestibility"
-      ],
-      "locked": false
+      ]
     },
     "authorPersona": {
-      "value": "Indie Campers as a person is like a well-traveled explorer who's also your helpful friend. They're someone who's curious, energetic, and spontaneous—but grounded in responsibility. They speak with warmth and encouragement, always offering practical tips and insider knowledge. They're bold enough to go off the beaten path, but also dependable and organized behind the scenes. This persona embodies values of enthusiasm, clarity, engagement, and inspiration.",
-      "locked": false
+      "value": "Indie Campers as a person is like a well-traveled explorer who's also your helpful friend. They're someone who's curious, energetic, and spontaneous—but grounded in responsibility. They speak with warmth and encouragement, always offering practical tips and insider knowledge. They're bold enough to go off the beaten path, but also dependable and organized behind the scenes. This persona embodies values of enthusiasm, clarity, engagement, and inspiration."
     },
     "examplePhrases": {
       "value": [
@@ -137,8 +150,7 @@
         "Island roads were made for slow travel. They follow the water, slip through small towns and loop back to the place you began.",
         "Aim for three to four hours on the road each travel day.",
         "Sketch out your must see stops and reliable fuel points, but leave room to linger around."
-      ],
-      "locked": false
+      ]
     },
     "inspirationArticles": {
       "value": [
@@ -147,15 +159,13 @@
         "https://blog.indiecampers.com/7-essential-campervan-tips-for-first-time/",
         "https://blog.indiecampers.com/category/destinations-en/",
         "https://indiecampers.com/blog/travelers/how-to-guides-2/"
-      ],
-      "locked": false
+      ]
     },
     "vocabularyPreferences": {
       "value": [
         "Preferred/encouraged terms: 'Road trip', 'adventure', 'journey', 'Flexible', 'seamless', 'freedom', 'discover', 'explore', 'Personalized', 'local', 'authentic', 'Start anywhere, end anywhere', 'Digital experience', 'mobile booking', 'easy pick-up/drop-off', 'campervan', 'RV', 'motorhome', 'vanlife'",
         "Terms/phrases to avoid (or use carefully): 'Luxury' (unless context supports it) — the brand leans more toward accessible exploration, 'Mission critical' or overly corporate buzzwords, 'Hidden fees', 'extra charges' (unless you're explicitly clarifying them), Overuse of superlatives ('the best in the universe'), Difficult or uncommon vocabulary, Negative phrasing or sentiment"
-      ],
-      "locked": false
+      ]
     }
   }
 }

@@ -279,7 +279,7 @@ A campervan rental for Tomorrowland 2026 might sound unconventional, but it's ac
 
 ### Critical Requirements
 
-- [ ] **Target word count: 2,000-2,500 words MAX** (avoid going over 2,500 words)
+- [ ] **Target word count: {{target_word_count}} words MAX** (stay within the specified target)
 - [ ] **Paragraph length: 1-3 sentences MAXIMUM** (check every paragraph)
 - [ ] **H3 subheadings used throughout:** Every H2 section should have 2-4 H3s
 - [ ] **Bullet points for lists:** Pricing, comparisons, features, timelines use bullets
@@ -347,7 +347,7 @@ Return the blog post as a **clean markdown file** with the following structure:
 
 **ABSOLUTE REQUIREMENTS:**
 
-1. **Word count: 2,000-2,500 words MAXIMUM**
+1. **Word count: {{target_word_count}} words MAXIMUM**
 2. **Paragraph length: 1-3 sentences MAXIMUM** (check EVERY paragraph)
 3. **H3 subheadings: 2-4 per H2 section** (essential for scannability)
 4. **Bullet points:** Use for comparisons, pricing, features, timelines, recommendations

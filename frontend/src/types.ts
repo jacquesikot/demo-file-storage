@@ -67,4 +67,5 @@ export interface BriefFormData {
 export interface DraftFormData {
   brief_filename: string;
   brand_data_filename: string;
+  target_word_count: number;
 }
