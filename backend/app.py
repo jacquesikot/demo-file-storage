@@ -751,7 +751,7 @@ class JobManager:
         return prompt
 
     def build_brief_prompt(self, params: dict) -> str:
-        """Build prompt for brief generation"""
+        """Build prompt for brief generation by populating template with actual data"""
         # Sanitize filename
         filename = re.sub(r'[^\w\s-]', '', params["title"].lower())
         filename = re.sub(r'[-\s]+', '_', filename)
@@ -759,41 +759,103 @@ class JobManager:
 
         # Fetch brand data from Supabase storage
         brand_data_content = ""
+        brand_data = {}
 
         try:
             brand_data_content = file_manager.read_file("brand-data", params["brand_data"])
+            brand_data = json.loads(brand_data_content)
         except Exception as e:
             print(f"Warning: Could not fetch brand data from storage: {e}")
             # Fall back to file reference if storage fetch fails
             brand_data_content = f"@backend/brand-data/{params['brand_data']}"
 
-        prompt = f"""Generate a content brief in the backend/brief-outputs/ folder.
+        # Read the brief generation instructions template
+        instructions_path = INSTRUCTIONS_DIR / "brief_generation_instructions.md"
+        template = instructions_path.read_text()
 
-        **Input Information:**
-        - Title: {params["title"]}
-        - Primary Keyword: {params["primary_keyword"]}
-        - Secondary Keywords: {params["secondary_keywords"]}
-        - Today's Date: {datetime.now().strftime("%Y-%m-%d")}
+        # Extract values from brand data JSON structure
+        brand_name = brand_data.get("brandInfo", {}).get("companyName", {}).get("value", "the brand")
 
-        - Brand Writing Guidelines:
-        {brand_data_content if not brand_data_content.startswith("@") else f"Use the brand data from {brand_data_content}"}
+        # Create a comprehensive brand summary from brand data
+        brand_summary = ""
+        if brand_data:
+            brand_info = brand_data.get("brandInfo", {})
+            target_audience = brand_data.get("targetAudience", {})
+            writing_guidelines = brand_data.get("writingGuidelines", {})
 
-        **Instructions:**
-        Follow the instructions in the backend/instructions/brief_generation_instructions.md to create a final brief in markdown that meets all the requirements.
-        Use the example brief from the backend/instructions/brief_example.md to understand the structure and format of the brief.
-        Use the brand writing guidelines provided above to ensure the brief matches the brand voice and positioning.
+            brand_summary = f"""
+            **Brand Name:** {brand_name}
 
-        Use the WebSearch tool in your research to get the most up-to-date information.
+            **Brand Description:**
+            {brand_info.get("brandDescription", {}).get("value", "")}
 
-        **Output:**
-        Create the brief as a markdown file at: {output_file}
+            **Brand Point of View:**
+            {brand_info.get("brandPointOfView", {}).get("value", "")}
 
-        The brief should be 2000-2500 words maximum and follow the exact structure specified in the instructions and the example brief."""
+            **Target Audience:**
+            {target_audience.get("targetAudienceDescription", {}).get("value", "")}
+
+            **Proof Points:**
+            {chr(10).join(['- ' + point for point in target_audience.get("proofPoints", {}).get("value", [])])}
+            """
+        else:
+            brand_summary = brand_data_content
+
+        # Extract writing guidelines components
+        tone_of_voice = ""
+        author_persona = ""
+        example_phrases = ""
+        vocabulary_preferences = ""
+        additional_guidelines = ""
+
+        if brand_data:
+            writing_guidelines = brand_data.get("writingGuidelines", {})
+
+            tone_of_voice_list = writing_guidelines.get("toneOfVoice", {}).get("value", [])
+            tone_of_voice = "\n".join(['- ' + tone for tone in tone_of_voice_list])
+
+            author_persona = writing_guidelines.get("authorPersona", {}).get("value", "")
+
+            example_phrases_list = writing_guidelines.get("examplePhrases", {}).get("value", [])
+            example_phrases = "\n".join(['- ' + phrase for phrase in example_phrases_list])
+
+            vocabulary_list = writing_guidelines.get("vocabularyPreferences", {}).get("value", [])
+            vocabulary_preferences = "\n".join(['- ' + vocab for vocab in vocabulary_list])
+
+            guidelines_list = writing_guidelines.get("guidelines", {}).get("value", [])
+            additional_guidelines = "\n".join([f"- {guideline.get('do', '')}" for guideline in guidelines_list if guideline.get('do')])
+
+        # Populate all placeholders in the template
+        prompt = template.replace("{{title}}", params["title"])
+        prompt = prompt.replace("{{primary_keyword}}", params["primary_keyword"])
+        prompt = prompt.replace("{{secondary_keywords}}", params["secondary_keywords"])
+        prompt = prompt.replace("{{todays_date}}", datetime.now().strftime("%Y-%m-%d"))
+        prompt = prompt.replace("{{brand_name}}", brand_name)
+        prompt = prompt.replace("{{brand_summary}}", brand_summary)
+        prompt = prompt.replace("{{tone_of_voice}}", tone_of_voice)
+        prompt = prompt.replace("{{author_persona}}", author_persona)
+        prompt = prompt.replace("{{example_phrases}}", example_phrases)
+        prompt = prompt.replace("{{vocabulary_preferences}}", vocabulary_preferences)
+        prompt = prompt.replace("{{additional_guidelines}}", additional_guidelines)
+
+        # Add output file instruction at the end
+        prompt += f"""
+
+        ---
+
+        ## OUTPUT FILE LOCATION
+
+        **CRITICAL:** After generating the brief following all the instructions above, save it to: {output_file}
+
+        The brief must be saved as a clean markdown file (not JSON, not wrapped in code blocks).
+
+        Do not read any other files within this codebase
+        """
 
         return prompt
 
     def build_draft_prompt(self, params: dict) -> str:
-        """Build prompt for draft generation"""
+        """Build prompt for draft generation by populating template with actual data"""
         # Extract title from brief filename for output naming
         brief_name = params["brief_filename"].replace("_brief.md", "")
         output_file = f"backend/draft-outputs/{brief_name}_draft.md"
@@ -802,47 +864,108 @@ class JobManager:
         # Fetch brief and brand data from Supabase storage
         brief_content = ""
         brand_data_content = ""
+        brand_data = {}
 
         try:
             brief_content = file_manager.read_file("brief-outputs", params["brief_filename"])
             brand_data_content = file_manager.read_file("brand-data", params["brand_data_filename"])
+            brand_data = json.loads(brand_data_content)
         except Exception as e:
             print(f"Warning: Could not fetch files from storage: {e}")
             # Fall back to file references if storage fetch fails
             brief_content = f"@backend/brief-outputs/{params['brief_filename']}"
             brand_data_content = f"@backend/brand-data/{params['brand_data_filename']}"
 
-        prompt = f"""Generate a content draft in the backend/draft-outputs/ folder.
+        # Read the draft generation instructions template
+        instructions_path = INSTRUCTIONS_DIR / "draft_generation_instructions.md"
+        template = instructions_path.read_text()
 
-        **Input Information:**
-        - Brief Content:
-        {brief_content if not brief_content.startswith("@") else f"Use the content brief from {brief_content}"}
+        # Extract article title from brief filename
+        article_title = params.get('brief_filename', '').replace('_brief.md', '').replace('_', ' ').title()
 
-        - Brand Writing Guidelines:
-        {brand_data_content if not brand_data_content.startswith("@") else f"Use the brand data from {brand_data_content}"}
+        # Extract brand name from brand data
+        brand_name = "the brand"
+        if brand_data:
+            brand_name = brand_data.get("brandInfo", {}).get("companyName", {}).get("value", "the brand")
 
-        - Target Word Count: {target_word_count} words
-        - Today's Date: {datetime.now().strftime("%Y-%m-%d")}
+        # Extract sitemap URLs from brand data for internal linking
+        sitemap = "No sitemap data available - use WebSearch to find internal pages"
+        if brand_data:
+            brand_info = brand_data.get("brandInfo", {})
+            company_domain = brand_info.get("companyDomain", {}).get("value", "")
+            other_profiles = brand_info.get("otherProfiles", {}).get("value", [])
 
-        **Instructions:**
-        Follow the instructions in the backend/instructions/draft_generation_instructions.md to create a final draft in markdown that meets all the requirements.
+            if company_domain or other_profiles:
+                sitemap_urls = []
+                if company_domain:
+                    sitemap_urls.append(f"- Main domain: {company_domain}")
+                    sitemap_urls.append(f"  - Sitemap: {company_domain}/sitemap.xml")
 
-        Use the brief content provided above as the brief_content.
-        Use the brand data provided above to ensure the draft matches the brand voice.
-        Use the example draft from the backend/instructions/draft_example.md to understand the structure and format of the draft.
+                for profile in other_profiles:
+                    sitemap_urls.append(f"- {profile}")
+                    # Try to append /sitemap.xml for blog domains
+                    if 'blog' in profile.lower():
+                        sitemap_urls.append(f"  - Sitemap: {profile}/sitemap.xml")
 
-        Use the WebSearch tool in your research to get the most up-to-date information and verify facts.
+                sitemap = "\n".join(sitemap_urls)
 
-        **Output:**
-        Create the production ready draft as a markdown file at: {output_file}
+        # Calculate acceptable word count range (5% tolerance)
+        min_word_count = target_word_count
+        max_word_count = int(target_word_count * 1.05)  # 5% over is acceptable
 
-        The draft should be {target_word_count} words maximum and follow the exact structure specified in the instructions and the example draft.
+        # Populate all placeholders in the template
+        prompt = template.replace("{{brand_name}}", brand_name)
+        prompt = prompt.replace("{{title}}", article_title)
+        prompt = prompt.replace("{{brief_content}}", brief_content)
+        prompt = prompt.replace("{{sitemap}}", sitemap)
+        prompt = prompt.replace("{{todays_date}}", datetime.now().strftime("%Y-%m-%d"))
+        prompt = prompt.replace("{{target_word_count}}", str(target_word_count))
 
-        Do not add any additional text or comments to the draft.
-        Do not add any claude code watermark or signature to the draft.
+        # Add word count instructions and output file instruction at the end
+        prompt += f"""
 
-        **Word Count Check:**
-        After generating the draft, check if the word count exceeds {target_word_count} words. If it does, automatically revise it to reduce it to {target_word_count} words MAX while maintaining all critical information, SEO value, and brand voice."""
+        ---
+
+        ## WORD COUNT REQUIREMENTS
+
+        **Target Word Count:** {target_word_count} words (acceptable range: {min_word_count}-{max_word_count} words)
+
+        **CRITICAL WORD COUNT RULES:**
+
+        1. **Write to the target from the start** - do NOT overshoot then trim
+        2. **Plan your word budget per section** before writing:
+        - Key Takeaways: ~250-400 words
+        - Overview Table: ~50 words
+        - Table of Contents: ~30-50 words
+        - Introduction: ~150-200 words
+        - Body sections: Allocate remaining words based on brief's outline
+        - FAQ section: ~50-80 words per question
+
+        3. **Track word count as you write each section** - stay within {min_word_count}-{max_word_count} total
+
+        4. **If you need to reduce word count:**
+        - ✅ Trim WITHIN sections (shorten paragraphs, reduce examples)
+        - ❌ NEVER remove entire sections (TL;DR, Table of Contents, Overview Table, or H2s from brief)
+
+        5. **Count BEFORE writing the file** - ensure you're within the acceptable range
+
+        ---
+
+        ## OUTPUT FILE LOCATION
+
+        **CRITICAL:** After generating the draft following all the instructions above, save it to: {output_file}
+
+        The draft must be saved as a clean markdown file (not JSON, not wrapped in code blocks).
+
+        Do not read any other files in this codebase.
+
+        **Before writing the file:**
+        - Count the total words in your draft
+        - Verify it's between {min_word_count} and {max_word_count} words
+        - If over, trim content WITHIN sections (never remove sections)
+
+        When done, confirm with: "Draft completed at {output_file} - [X] words" (where X is actual word count).
+        """
 
         return prompt
 

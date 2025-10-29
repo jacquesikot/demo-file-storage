@@ -211,21 +211,6 @@ Brand tie-in: Yes/No | Voice approach: [1 sentence on how to answer using {{tone
 
 ---
 
-## OUTPUT FORMAT
-
-**CRITICAL: The brief must NOT include any title, H1 heading, or article name at the top. Start immediately with "## 1. Audience & Intent"**
-
-Return ONLY this JSON structure (no markdown fences):
-
-```json
-{
-  "brief": "... complete markdown brief starting with ## 1. Audience & Intent (NO title/H1 above it) ...",
-  "reasoning": "2 sentences on key insights and strategy"
-}
-```
-
-Ensure proper JSON escaping (newlines as \\n, quotes as \\")
-
 **VALIDATION CHECKLIST:**
 
 - [ ] Brief starts with "## 1. Audience & Intent" (not with a title or H1)
