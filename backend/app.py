@@ -16,6 +16,9 @@ from pydantic import BaseModel
 from sse_starlette.sse import EventSourceResponse
 from dotenv import load_dotenv
 
+# Import Supabase Storage Service
+from supabase_storage import SupabaseStorageService
+
 # Load environment variables
 load_dotenv()
 
@@ -157,36 +160,62 @@ class DiffRejectRequest(BaseModel):
     diff_id: str
 
 
-# File Manager
+# File Manager using Supabase Storage
 class FileManager:
-    def __init__(self, base_dir: Path):
-        self.base_dir = base_dir
+    def __init__(self, use_supabase: bool = True):
+        """
+        Initialize FileManager with optional Supabase Storage integration
+
+        Args:
+            use_supabase: If True, use Supabase Storage; if False, use local filesystem (for backward compatibility)
+        """
+        self.use_supabase = use_supabase
+        if use_supabase:
+            try:
+                self.storage = SupabaseStorageService()
+                print("FileManager initialized with Supabase Storage")
+            except Exception as e:
+                print(f"Failed to initialize Supabase Storage: {e}")
+                print("Falling back to local filesystem")
+                self.use_supabase = False
+                self.base_dir = BASE_DIR
+        else:
+            self.base_dir = BASE_DIR
 
     def list_files(self, folder: str, extension: str) -> List[FileResponse]:
-        files = []
-        folder_path = self.base_dir / folder
-        if not folder_path.exists():
+        if self.use_supabase:
+            try:
+                files_data = self.storage.list_files(folder, extension)
+                return [FileResponse(**file_data) for file_data in files_data]
+            except Exception as e:
+                print(f"Error listing files from Supabase: {e}")
+                return []
+        else:
+            # Legacy local filesystem implementation
+            files = []
+            folder_path = self.base_dir / folder
+            if not folder_path.exists():
+                return files
+
+            for file in folder_path.glob(f"*.{extension}"):
+                try:
+                    stat = file.stat()
+                    preview = self.get_preview_local(file)
+                    files.append(FileResponse(
+                        name=file.name,
+                        size=stat.st_size,
+                        created_at=stat.st_mtime,
+                        preview=preview
+                    ))
+                except Exception as e:
+                    print(f"Error reading file {file}: {e}")
+                    continue
+
+            files.sort(key=lambda x: x.created_at, reverse=True)
             return files
 
-        for file in folder_path.glob(f"*.{extension}"):
-            try:
-                stat = file.stat()
-                preview = self.get_preview(file)
-                files.append(FileResponse(
-                    name=file.name,
-                    size=stat.st_size,
-                    created_at=stat.st_mtime,
-                    preview=preview
-                ))
-            except Exception as e:
-                print(f"Error reading file {file}: {e}")
-                continue
-
-        # Sort by creation time, newest first
-        files.sort(key=lambda x: x.created_at, reverse=True)
-        return files
-
-    def get_preview(self, file: Path, chars: int = 200) -> str:
+    def get_preview_local(self, file: Path, chars: int = 200) -> str:
+        """Local filesystem preview method"""
         try:
             if file.suffix == ".json":
                 data = json.loads(file.read_text())
@@ -197,7 +226,6 @@ class FileManager:
                 return str(data)[:chars]
             elif file.suffix == ".md":
                 content = file.read_text()
-                # Remove markdown syntax for preview
                 preview = re.sub(r'[#*`\[\]()]', '', content)
                 return preview[:chars]
         except Exception as e:
@@ -206,35 +234,51 @@ class FileManager:
         return ""
 
     def read_file(self, folder: str, filename: str) -> str:
-        file_path = self.base_dir / folder / filename
-        if not file_path.exists():
-            raise HTTPException(status_code=404, detail="File not found")
-        return file_path.read_text()
+        if self.use_supabase:
+            return self.storage.read_file(folder, filename)
+        else:
+            # Legacy local filesystem implementation
+            file_path = self.base_dir / folder / filename
+            if not file_path.exists():
+                raise HTTPException(status_code=404, detail="File not found")
+            return file_path.read_text()
 
     def delete_file(self, folder: str, filename: str) -> bool:
-        file_path = self.base_dir / folder / filename
-        if file_path.exists():
-            file_path.unlink()
-            return True
-        return False
+        if self.use_supabase:
+            return self.storage.delete_file(folder, filename)
+        else:
+            # Legacy local filesystem implementation
+            file_path = self.base_dir / folder / filename
+            if file_path.exists():
+                file_path.unlink()
+                return True
+            return False
 
     async def save_upload(self, folder: str, file: UploadFile) -> str:
-        file_path = self.base_dir / folder / file.filename
-        content = await file.read()
-        file_path.write_bytes(content)
-        return file.filename
+        if self.use_supabase:
+            return await self.storage.save_upload(folder, file)
+        else:
+            # Legacy local filesystem implementation
+            file_path = self.base_dir / folder / file.filename
+            content = await file.read()
+            file_path.write_bytes(content)
+            return file.filename
 
     def save_file(self, folder: str, filename: str, content: str) -> bool:
         """Save content to a file"""
-        file_path = self.base_dir / folder / filename
-        if not file_path.exists():
-            raise HTTPException(status_code=404, detail="File not found")
-        try:
-            file_path.write_text(content, encoding='utf-8')
-            return True
-        except Exception as e:
-            print(f"Error saving file {filename}: {e}")
-            raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
+        if self.use_supabase:
+            return self.storage.save_file(folder, filename, content)
+        else:
+            # Legacy local filesystem implementation
+            file_path = self.base_dir / folder / filename
+            if not file_path.exists():
+                raise HTTPException(status_code=404, detail="File not found")
+            try:
+                file_path.write_text(content, encoding='utf-8')
+                return True
+            except Exception as e:
+                print(f"Error saving file {filename}: {e}")
+                raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
 
 
 # Job Manager
@@ -778,30 +822,30 @@ class JobManager:
 
         prompt = f"""I need you to edit an existing content brief based on specific user instructions.
 
-**Current Brief File:** @{source_file}
+        **Current Brief File:** @{source_file}
 
-**User's Edit Request:**
-{edit_prompt}
+        **User's Edit Request:**
+        {edit_prompt}
 
-**Instructions:**
-1. Read the current brief from @{source_file}
-2. Understand EXACTLY what the user wants changed - be precise and surgical with your edits
-3. Make ONLY the changes requested by the user - do not make additional improvements or modifications
-4. Maintain the exact same structure, format, and markdown style as the original brief
-5. Preserve all other content that was not specifically mentioned in the edit request
-6. Save the edited version to: {temp_file}
+        **Instructions:**
+        1. Read the current brief from @{source_file}
+        2. Understand EXACTLY what the user wants changed - be precise and surgical with your edits
+        3. Make ONLY the changes requested by the user - do not make additional improvements or modifications
+        4. Maintain the exact same structure, format, and markdown style as the original brief
+        5. Preserve all other content that was not specifically mentioned in the edit request
+        6. Save the edited version to: {temp_file}
 
-**Important Guidelines:**
-- Be conservative: Only change what was explicitly requested
-- Maintain brand voice and tone from the original brief
-- Keep the same level of detail unless instructed otherwise
-- Do not add sections, remove sections, or restructure unless explicitly asked
-- Preserve all markdown formatting, headers, and styling
-- DO NOT modify the original file at {source_file} - only create the new file at {temp_file}
+        **Important Guidelines:**
+        - Be conservative: Only change what was explicitly requested
+        - Maintain brand voice and tone from the original brief
+        - Keep the same level of detail unless instructed otherwise
+        - Do not add sections, remove sections, or restructure unless explicitly asked
+        - Preserve all markdown formatting, headers, and styling
+        - DO NOT modify the original file at {source_file} - only create the new file at {temp_file}
 
-After completing the edit, confirm with a single line: "Brief edited successfully. Temporary diff created at {temp_file}"
+        After completing the edit, confirm with a single line: "Brief edited successfully. Temporary diff created at {temp_file}"
 
-Do NOT provide a summary of changes or any additional commentary."""
+        Do NOT provide a summary of changes or any additional commentary."""
 
         return prompt
 
@@ -815,38 +859,48 @@ Do NOT provide a summary of changes or any additional commentary."""
 
         prompt = f"""I need you to edit an existing content draft based on specific user instructions.
 
-**Current Draft File:** @{source_file}
+        **Current Draft File:** @{source_file}
 
-**User's Edit Request:**
-{edit_prompt}
+        **User's Edit Request:**
+        {edit_prompt}
 
-**Instructions:**
-1. Read the current draft from @{source_file}
-2. Understand EXACTLY what the user wants changed - be precise and surgical with your edits
-3. Make ONLY the changes requested by the user - do not make additional improvements or modifications
-4. Maintain the exact same structure, format, and markdown style as the original draft
-5. Preserve all other content that was not specifically mentioned in the edit request
-6. Keep the word count similar to the original unless the user specifically asks to expand or reduce
-7. Save the edited version to: {temp_file}
+        **Instructions:**
+        1. Read the current draft from @{source_file}
+        2. Understand EXACTLY what the user wants changed - be precise and surgical with your edits
+        3. Make ONLY the changes requested by the user - do not make additional improvements or modifications
+        4. Maintain the exact same structure, format, and markdown style as the original draft
+        5. Preserve all other content that was not specifically mentioned in the edit request
+        6. Keep the word count similar to the original unless the user specifically asks to expand or reduce
+        7. Save the edited version to: {temp_file}
 
-**Important Guidelines:**
-- Be conservative: Only change what was explicitly requested
-- Maintain brand voice, tone, and writing style from the original draft
-- Keep the same level of detail unless instructed otherwise
-- Do not add sections, remove sections, or restructure unless explicitly asked
-- Preserve all markdown formatting, headers, links, and styling
-- If word count changes are requested, maintain quality and SEO value
-- DO NOT modify the original file at {source_file} - only create the new file at {temp_file}
+        **Important Guidelines:**
+        - Be conservative: Only change what was explicitly requested
+        - Maintain brand voice, tone, and writing style from the original draft
+        - Keep the same level of detail unless instructed otherwise
+        - Do not add sections, remove sections, or restructure unless explicitly asked
+        - Preserve all markdown formatting, headers, links, and styling
+        - If word count changes are requested, maintain quality and SEO value
+        - DO NOT modify the original file at {source_file} - only create the new file at {temp_file}
 
-After completing the edit, confirm with a single line: "Draft edited successfully. Temporary diff created at {temp_file}"
+        After completing the edit, confirm with a single line: "Draft edited successfully. Temporary diff created at {temp_file}"
 
-Do NOT provide a summary of changes or any additional commentary."""
+        Do NOT provide a summary of changes or any additional commentary."""
 
         return prompt
 
     def find_output_files(self, job_type: str, params: dict) -> List[str]:
-        """Find output files created by the job"""
+        """Find output files created by the job and sync to Supabase if needed"""
         output_files = []
+
+        def sync_to_supabase(local_path: Path, folder: str, filename: str):
+            """Helper to sync local file to Supabase Storage"""
+            if file_manager.use_supabase and local_path.exists():
+                try:
+                    content = local_path.read_text(encoding='utf-8')
+                    file_manager.storage.write_file(folder, filename, content)
+                    print(f"✓ Synced {filename} to Supabase Storage ({folder})")
+                except Exception as e:
+                    print(f"✗ Failed to sync {filename} to Supabase: {e}")
 
         if job_type == "brand_data":
             # Sanitize brand name for filename
@@ -854,35 +908,45 @@ Do NOT provide a summary of changes or any additional commentary."""
             safe_brand_name = re.sub(r'[^\w\s-]', '', brand_name.lower())
             safe_brand_name = re.sub(r'[-\s]+', '_', safe_brand_name)
             filename = f"{safe_brand_name}_brand_data.json"
-            if (BRAND_DATA_DIR / filename).exists():
+            local_path = BRAND_DATA_DIR / filename
+            if local_path.exists():
                 output_files.append(filename)
+                sync_to_supabase(local_path, "brand-data", filename)
 
         elif job_type == "brief":
             filename = re.sub(r'[^\w\s-]', '', params["title"].lower())
             filename = re.sub(r'[-\s]+', '_', filename)
             filename = f"{filename}_brief.md"
-            if (BRIEF_OUTPUTS_DIR / filename).exists():
+            local_path = BRIEF_OUTPUTS_DIR / filename
+            if local_path.exists():
                 output_files.append(filename)
+                sync_to_supabase(local_path, "brief-outputs", filename)
 
         elif job_type == "draft":
             brief_name = params["brief_filename"].replace("_brief.md", "")
             filename = f"{brief_name}_draft.md"
-            if (DRAFT_OUTPUTS_DIR / filename).exists():
+            local_path = DRAFT_OUTPUTS_DIR / filename
+            if local_path.exists():
                 output_files.append(filename)
+                sync_to_supabase(local_path, "draft-outputs", filename)
 
         elif job_type == "brief_edit":
             filename = params.get("filename", "")
             diff_id = params.get("diff_id", "")
             temp_filename = f"{diff_id}_{filename}"
-            if (TEMP_DIFFS_DIR / temp_filename).exists():
+            local_path = TEMP_DIFFS_DIR / temp_filename
+            if local_path.exists():
                 output_files.append(temp_filename)
+                sync_to_supabase(local_path, "temp-diffs", temp_filename)
 
         elif job_type == "draft_edit":
             filename = params.get("filename", "")
             diff_id = params.get("diff_id", "")
             temp_filename = f"{diff_id}_{filename}"
-            if (TEMP_DIFFS_DIR / temp_filename).exists():
+            local_path = TEMP_DIFFS_DIR / temp_filename
+            if local_path.exists():
                 output_files.append(temp_filename)
+                sync_to_supabase(local_path, "temp-diffs", temp_filename)
 
         return output_files
 
@@ -914,7 +978,7 @@ Do NOT provide a summary of changes or any additional commentary."""
 
 
 # Initialize managers
-file_manager = FileManager(BASE_DIR)
+file_manager = FileManager(use_supabase=True)  # Use Supabase Storage by default
 job_manager = JobManager()
 
 
@@ -1066,10 +1130,18 @@ async def generate_brief(request: BriefGenerateRequest):
     if not request.title or not request.primary_keyword or not request.brand_data:
         raise HTTPException(status_code=400, detail="All fields are required")
 
-    # Check if brand data file exists
-    brand_data_path = BRAND_DATA_DIR / request.brand_data
-    if not brand_data_path.exists():
-        raise HTTPException(status_code=404, detail="Brand data file not found")
+    # Check if brand data file exists (check both Supabase and local)
+    if file_manager.use_supabase:
+        try:
+            # Try to read from Supabase to verify it exists
+            file_manager.read_file("brand-data", request.brand_data)
+        except HTTPException:
+            raise HTTPException(status_code=404, detail="Brand data file not found")
+    else:
+        # Legacy: Check local filesystem
+        brand_data_path = BRAND_DATA_DIR / request.brand_data
+        if not brand_data_path.exists():
+            raise HTTPException(status_code=404, detail="Brand data file not found")
 
     job_id = await job_manager.start_job("brief", {
         "title": request.title,
@@ -1096,9 +1168,16 @@ async def generate_briefs_batch(request: BriefBatchGenerateRequest):
         if not brief_request.title or not brief_request.primary_keyword or not brief_request.brand_data:
             raise HTTPException(status_code=400, detail=f"Brief '{brief_request.title}' has missing required fields")
 
-        brand_data_path = BRAND_DATA_DIR / brief_request.brand_data
-        if not brand_data_path.exists():
-            raise HTTPException(status_code=404, detail=f"Brand data file not found: {brief_request.brand_data}")
+        # Check if brand data exists (Supabase or local)
+        if file_manager.use_supabase:
+            try:
+                file_manager.read_file("brand-data", brief_request.brand_data)
+            except HTTPException:
+                raise HTTPException(status_code=404, detail=f"Brand data file not found: {brief_request.brand_data}")
+        else:
+            brand_data_path = BRAND_DATA_DIR / brief_request.brand_data
+            if not brand_data_path.exists():
+                raise HTTPException(status_code=404, detail=f"Brand data file not found: {brief_request.brand_data}")
 
     # Create all jobs concurrently using asyncio.gather
     job_tasks = [
@@ -1127,10 +1206,17 @@ async def edit_brief_with_ai(request: BriefEditWithAIRequest):
     if not request.filename or not request.edit_prompt:
         raise HTTPException(status_code=400, detail="Filename and edit prompt are required")
 
-    # Check if brief file exists
-    brief_path = BRIEF_OUTPUTS_DIR / request.filename
-    if not brief_path.exists():
-        raise HTTPException(status_code=404, detail="Brief file not found")
+    # Check if brief file exists (check both Supabase and local)
+    if file_manager.use_supabase:
+        try:
+            file_manager.read_file("brief-outputs", request.filename)
+        except HTTPException:
+            raise HTTPException(status_code=404, detail="Brief file not found")
+    else:
+        # Legacy: Check local filesystem
+        brief_path = BRIEF_OUTPUTS_DIR / request.filename
+        if not brief_path.exists():
+            raise HTTPException(status_code=404, detail="Brief file not found")
 
     # Generate unique diff ID
     diff_id = str(uuid.uuid4())[:8]
@@ -1202,14 +1288,26 @@ async def generate_draft(request: DraftGenerateRequest):
     if not request.brief_filename or not request.brand_data_filename:
         raise HTTPException(status_code=400, detail="Both brief and brand data are required")
 
-    # Check if files exist
-    brief_path = BRIEF_OUTPUTS_DIR / request.brief_filename
-    brand_data_path = BRAND_DATA_DIR / request.brand_data_filename
+    # Check if files exist (check both Supabase and local)
+    if file_manager.use_supabase:
+        try:
+            # Try to read from Supabase to verify files exist
+            file_manager.read_file("brief-outputs", request.brief_filename)
+            file_manager.read_file("brand-data", request.brand_data_filename)
+        except HTTPException as e:
+            if "Brief" in str(e.detail):
+                raise HTTPException(status_code=404, detail="Brief file not found")
+            else:
+                raise HTTPException(status_code=404, detail="Brand data file not found")
+    else:
+        # Legacy: Check local filesystem
+        brief_path = BRIEF_OUTPUTS_DIR / request.brief_filename
+        brand_data_path = BRAND_DATA_DIR / request.brand_data_filename
 
-    if not brief_path.exists():
-        raise HTTPException(status_code=404, detail="Brief file not found")
-    if not brand_data_path.exists():
-        raise HTTPException(status_code=404, detail="Brand data file not found")
+        if not brief_path.exists():
+            raise HTTPException(status_code=404, detail="Brief file not found")
+        if not brand_data_path.exists():
+            raise HTTPException(status_code=404, detail="Brand data file not found")
 
     job_id = await job_manager.start_job("draft", {
         "brief_filename": request.brief_filename,
@@ -1234,14 +1332,25 @@ async def generate_drafts_batch(request: DraftBatchGenerateRequest):
         if not draft_request.brief_filename or not draft_request.brand_data_filename:
             raise HTTPException(status_code=400, detail=f"Draft with brief '{draft_request.brief_filename}' has missing required fields")
 
-        # Check if files exist
-        brief_path = BRIEF_OUTPUTS_DIR / draft_request.brief_filename
-        brand_data_path = BRAND_DATA_DIR / draft_request.brand_data_filename
+        # Check if files exist (Supabase or local)
+        if file_manager.use_supabase:
+            try:
+                file_manager.read_file("brief-outputs", draft_request.brief_filename)
+                file_manager.read_file("brand-data", draft_request.brand_data_filename)
+            except HTTPException as e:
+                if "Brief" in str(e.detail):
+                    raise HTTPException(status_code=404, detail=f"Brief file not found: {draft_request.brief_filename}")
+                else:
+                    raise HTTPException(status_code=404, detail=f"Brand data file not found: {draft_request.brand_data_filename}")
+        else:
+            # Legacy: Check local filesystem
+            brief_path = BRIEF_OUTPUTS_DIR / draft_request.brief_filename
+            brand_data_path = BRAND_DATA_DIR / draft_request.brand_data_filename
 
-        if not brief_path.exists():
-            raise HTTPException(status_code=404, detail=f"Brief file not found: {draft_request.brief_filename}")
-        if not brand_data_path.exists():
-            raise HTTPException(status_code=404, detail=f"Brand data file not found: {draft_request.brand_data_filename}")
+            if not brief_path.exists():
+                raise HTTPException(status_code=404, detail=f"Brief file not found: {draft_request.brief_filename}")
+            if not brand_data_path.exists():
+                raise HTTPException(status_code=404, detail=f"Brand data file not found: {draft_request.brand_data_filename}")
 
     # Create all jobs concurrently using asyncio.gather
     job_tasks = [
@@ -1268,10 +1377,17 @@ async def edit_draft_with_ai(request: DraftEditWithAIRequest):
     if not request.filename or not request.edit_prompt:
         raise HTTPException(status_code=400, detail="Filename and edit prompt are required")
 
-    # Check if draft file exists
-    draft_path = DRAFT_OUTPUTS_DIR / request.filename
-    if not draft_path.exists():
-        raise HTTPException(status_code=404, detail="Draft file not found")
+    # Check if draft file exists (check both Supabase and local)
+    if file_manager.use_supabase:
+        try:
+            file_manager.read_file("draft-outputs", request.filename)
+        except HTTPException:
+            raise HTTPException(status_code=404, detail="Draft file not found")
+    else:
+        # Legacy: Check local filesystem
+        draft_path = DRAFT_OUTPUTS_DIR / request.filename
+        if not draft_path.exists():
+            raise HTTPException(status_code=404, detail="Draft file not found")
 
     # Generate unique diff ID
     diff_id = str(uuid.uuid4())[:8]
@@ -1288,83 +1404,170 @@ async def edit_draft_with_ai(request: DraftEditWithAIRequest):
 @app.get("/api/diffs/{diff_id}")
 async def get_diff(diff_id: str):
     """Get the temporary diff file content"""
-    # Find the diff file in temp-diffs directory
-    diff_files = list(TEMP_DIFFS_DIR.glob(f"{diff_id}_*"))
+    if file_manager.use_supabase:
+        # Use Supabase Storage
+        try:
+            # List files in temp-diffs folder to find the matching diff
+            temp_files = file_manager.storage.list_files("temp-diffs", "md")
+            diff_file = None
+            for file in temp_files:
+                if file["name"].startswith(f"{diff_id}_"):
+                    diff_file = file
+                    break
 
-    if not diff_files:
-        raise HTTPException(status_code=404, detail="Diff not found")
+            if not diff_file:
+                raise HTTPException(status_code=404, detail="Diff not found")
 
-    diff_file = diff_files[0]
-    edited_content = diff_file.read_text()
+            # Read edited content
+            edited_content = file_manager.read_file("temp-diffs", diff_file["name"])
 
-    # Extract original filename
-    original_filename = diff_file.name.replace(f"{diff_id}_", "")
+            # Extract original filename
+            original_filename = diff_file["name"].replace(f"{diff_id}_", "")
 
-    # Determine the type (brief or draft) and get original content
-    if original_filename.endswith("_brief.md"):
-        original_file = BRIEF_OUTPUTS_DIR / original_filename
-        file_type = "brief"
+            # Determine the type and get original content
+            if original_filename.endswith("_brief.md"):
+                file_type = "brief"
+                original_content = file_manager.read_file("brief-outputs", original_filename)
+            else:
+                file_type = "draft"
+                original_content = file_manager.read_file("draft-outputs", original_filename)
+
+            return {
+                "diff_id": diff_id,
+                "filename": original_filename,
+                "file_type": file_type,
+                "original_content": original_content,
+                "edited_content": edited_content
+            }
+        except Exception as e:
+            print(f"Error getting diff: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to get diff: {str(e)}")
     else:
-        original_file = DRAFT_OUTPUTS_DIR / original_filename
-        file_type = "draft"
+        # Legacy local filesystem implementation
+        diff_files = list(TEMP_DIFFS_DIR.glob(f"{diff_id}_*"))
 
-    if not original_file.exists():
-        raise HTTPException(status_code=404, detail="Original file not found")
+        if not diff_files:
+            raise HTTPException(status_code=404, detail="Diff not found")
 
-    original_content = original_file.read_text()
+        diff_file = diff_files[0]
+        edited_content = diff_file.read_text()
 
-    return {
-        "diff_id": diff_id,
-        "filename": original_filename,
-        "file_type": file_type,
-        "original_content": original_content,
-        "edited_content": edited_content
-    }
+        original_filename = diff_file.name.replace(f"{diff_id}_", "")
+
+        if original_filename.endswith("_brief.md"):
+            original_file = BRIEF_OUTPUTS_DIR / original_filename
+            file_type = "brief"
+        else:
+            original_file = DRAFT_OUTPUTS_DIR / original_filename
+            file_type = "draft"
+
+        if not original_file.exists():
+            raise HTTPException(status_code=404, detail="Original file not found")
+
+        original_content = original_file.read_text()
+
+        return {
+            "diff_id": diff_id,
+            "filename": original_filename,
+            "file_type": file_type,
+            "original_content": original_content,
+            "edited_content": edited_content
+        }
 
 
 @app.post("/api/diffs/approve")
 async def approve_diff(request: DiffApproveRequest):
     """Approve the diff and apply changes to the original file"""
-    # Find the diff file
-    diff_files = list(TEMP_DIFFS_DIR.glob(f"{request.diff_id}_*"))
+    if file_manager.use_supabase:
+        # Use Supabase Storage
+        try:
+            # Find the diff file
+            temp_files = file_manager.storage.list_files("temp-diffs", "md")
+            diff_file = None
+            for file in temp_files:
+                if file["name"].startswith(f"{request.diff_id}_"):
+                    diff_file = file
+                    break
 
-    if not diff_files:
-        raise HTTPException(status_code=404, detail="Diff not found")
+            if not diff_file:
+                raise HTTPException(status_code=404, detail="Diff not found")
 
-    diff_file = diff_files[0]
-    original_filename = diff_file.name.replace(f"{request.diff_id}_", "")
+            original_filename = diff_file["name"].replace(f"{request.diff_id}_", "")
 
-    # Determine the type and get original file path
-    if original_filename.endswith("_brief.md"):
-        original_file = BRIEF_OUTPUTS_DIR / original_filename
+            # Determine the folder
+            if original_filename.endswith("_brief.md"):
+                folder = "brief-outputs"
+            else:
+                folder = "draft-outputs"
+
+            # Save the edited content to the original file using write_file to create/update
+            file_manager.storage.write_file(folder, original_filename, request.edited_content)
+
+            # Delete the temporary diff file
+            file_manager.delete_file("temp-diffs", diff_file["name"])
+
+            return {"success": True, "message": "Changes approved and applied successfully"}
+        except Exception as e:
+            print(f"Error approving diff: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to approve diff: {str(e)}")
     else:
-        original_file = DRAFT_OUTPUTS_DIR / original_filename
+        # Legacy local filesystem implementation
+        diff_files = list(TEMP_DIFFS_DIR.glob(f"{request.diff_id}_*"))
 
-    if not original_file.exists():
-        raise HTTPException(status_code=404, detail="Original file not found")
+        if not diff_files:
+            raise HTTPException(status_code=404, detail="Diff not found")
 
-    # Save the edited content (which may have been further edited by the user) to the original file
-    original_file.write_text(request.edited_content, encoding='utf-8')
+        diff_file = diff_files[0]
+        original_filename = diff_file.name.replace(f"{request.diff_id}_", "")
 
-    # Delete the temporary diff file
-    diff_file.unlink()
+        if original_filename.endswith("_brief.md"):
+            original_file = BRIEF_OUTPUTS_DIR / original_filename
+        else:
+            original_file = DRAFT_OUTPUTS_DIR / original_filename
 
-    return {"success": True, "message": "Changes approved and applied successfully"}
+        if not original_file.exists():
+            raise HTTPException(status_code=404, detail="Original file not found")
+
+        original_file.write_text(request.edited_content, encoding='utf-8')
+        diff_file.unlink()
+
+        return {"success": True, "message": "Changes approved and applied successfully"}
 
 
 @app.post("/api/diffs/reject")
 async def reject_diff(request: DiffRejectRequest):
     """Reject the diff and delete the temporary file"""
-    # Find the diff file
-    diff_files = list(TEMP_DIFFS_DIR.glob(f"{request.diff_id}_*"))
+    if file_manager.use_supabase:
+        # Use Supabase Storage
+        try:
+            # Find the diff file
+            temp_files = file_manager.storage.list_files("temp-diffs", "md")
+            diff_file = None
+            for file in temp_files:
+                if file["name"].startswith(f"{request.diff_id}_"):
+                    diff_file = file
+                    break
 
-    if not diff_files:
-        raise HTTPException(status_code=404, detail="Diff not found")
+            if not diff_file:
+                raise HTTPException(status_code=404, detail="Diff not found")
 
-    # Delete the temporary diff file
-    diff_files[0].unlink()
+            # Delete the temporary diff file
+            file_manager.delete_file("temp-diffs", diff_file["name"])
 
-    return {"success": True, "message": "Changes rejected successfully"}
+            return {"success": True, "message": "Changes rejected successfully"}
+        except Exception as e:
+            print(f"Error rejecting diff: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to reject diff: {str(e)}")
+    else:
+        # Legacy local filesystem implementation
+        diff_files = list(TEMP_DIFFS_DIR.glob(f"{request.diff_id}_*"))
+
+        if not diff_files:
+            raise HTTPException(status_code=404, detail="Diff not found")
+
+        diff_files[0].unlink()
+
+        return {"success": True, "message": "Changes rejected successfully"}
 
 
 # Job Endpoints

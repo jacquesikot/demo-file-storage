@@ -333,16 +333,24 @@ export default function BriefTab({ addJob, updateJob }: BriefTabProps) {
     }
   };
 
-  const handleDiffApprove = () => {
+  const handleDiffApprove = async () => {
     // Reload the file content after approval
-    if (viewingFile) {
-      briefsAPI.get(viewingFile.filename).then((data) => {
-        setViewingFile({ ...viewingFile, content: data.content });
-        setEditedContent(data.content);
-      });
-    }
     setShowDiffView(false);
     setCurrentDiffId(null);
+
+    if (viewingFile) {
+      try {
+        // Wait for the updated content to be fetched from the server
+        const data = await briefsAPI.get(viewingFile.filename);
+        setViewingFile({ ...viewingFile, content: data.content });
+        setEditedContent(data.content);
+        alert('Changes approved and applied successfully!');
+      } catch (error) {
+        console.error('Error reloading file:', error);
+        alert('Changes were saved, but failed to reload. Please close and reopen the file.');
+      }
+    }
+
     loadFiles(); // Refresh file list
   };
 

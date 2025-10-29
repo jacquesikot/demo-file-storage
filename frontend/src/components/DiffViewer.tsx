@@ -53,14 +53,14 @@ export default function DiffViewer({ diffId, onApprove, onReject }: DiffViewerPr
     setSaving(true);
     try {
       await diffsAPI.approve(diffId, editedAIContent);
-      alert('Changes approved and saved successfully!');
+      // Don't show alert here - let parent handle success feedback
       onApprove();
     } catch (err) {
       console.error('Error approving diff:', err);
       alert('Failed to approve changes. Please try again.');
-    } finally {
       setSaving(false);
     }
+    // Don't set saving to false here - let the parent component handle unmounting
   };
 
   const handleReject = async () => {
